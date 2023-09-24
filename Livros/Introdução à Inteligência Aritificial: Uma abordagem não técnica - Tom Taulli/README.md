@@ -14,7 +14,7 @@ Data de publicação do livro -> 17 de Dezembro de 2019
 
 - O usuario então é passivo no sistema esperto (ele simplesmente consome as informações dadas pela máquina), enquanto que no sistema inteligente o usuário é ativo.
 
-### Introdução:
+## Introdução:
 
 Inteligência artificial está presente em diversos aspectos do nosso dia a dia, por exemplo em sistemas de recomendação de filmes, músicas, livros, etc.
 Um dos aplicativos que faz um uso muito bom de IA é o Uber, que utiliza IA para calcular o preço da corrida, o tempo de espera, a rota mais eficiente, etc.
@@ -25,9 +25,9 @@ Nos bastidores deste aplicativo existem diversos recursos que utilizam IA, como 
 - Algoritmos de processamento de sensores que ajudam a melhorar a precisão em áreas urbanas, podendo incluir até mesmo uma identificação automática de acidentes.
 - Algoritmos de machine learning para prever a demanda de corridas em determinadas áreas e horários.
 
-### Capítulo 1 - Fundamentos da IA
+## Capítulo 1 - Fundamentos da IA
 
-#### Alan Turing e o teste de Turing:
+### Alan Turing e o teste de Turing:
 
 Através do seu artigo "Computing Machinery and Intelligence", na qual concentrou-se no conceito de uma máquina inteligente, Turing buscou um meio de avaliar a inteligência de uma máquina. Para isso, ele propôs um teste, que ficou conhecido como "teste de Turing", no qual um juiz humano interage com dois participantes, um humano e uma máquina, através de um terminal de computador. O juiz não sabe quem é o humano e quem é a máquina, e deve tentar descobrir quem é quem através de perguntas. Se o juiz não conseguir distinguir entre o humano e a máquina, então a máquina é considerada inteligente.
 
@@ -44,13 +44,13 @@ Searle também propós duas formas de IA:
 Outras alternativas de testes também foram propostas, como por exemplo o teste de Lovelace, que propós que uma máquina só pode ser considerada inteligente se ela for capaz de criar algo original, e não apenas simular um humano.
 Também tem o teste do café, na qual um robô deve ser capaz de entrar na casa de um estranho, localizar a cozinha  e preparar uma xícara de café.
 
-#### O cérebro é uma máquina?
+### O cérebro é uma máquina?
 
 Em 1943, Warren McCulloch e Walter Pitts publicaram um artigo chamado "A Logical Calculus of the Ideas Immanent in Nervous Activity", no qual descreveram um modelo de neurônio artificial, que foi chamado de neurônio de McCulloch-Pitts. Esse modelo foi baseado em um neurônio biológico, que é composto por um corpo celular, dendritos e axônios. Os dendritos recebem sinais de outros neurônios, e o axônio envia sinais para outros neurônios. O corpo celular processa os sinais recebidos e envia sinais para o axônio. O neurônio de McCulloch-Pitts é composto por um conjunto de entradas, um conjunto de pesos e uma função de ativação. As entradas são os sinais recebidos, os pesos são os valores que são atribuídos a cada entrada, e a função de ativação é a função que determina se o neurônio será ativado ou não. O neurônio de McCulloch-Pitts é um modelo simplificado de um neurônio biológico, e é um dos modelos mais simples de neurônio artificial.
 
 A tese era que as funções principais do cérebro poderiam ser explicadas por meio de lógica booleana, com operadores de E, OU e NÃO.
 
-#### Cibernética:
+### Cibernética:
 
 Em 1948, Norbert Wiener publicou "Cybernetic:Or Controland Communication in the Animal and the Machine" no qual ele descreveu a cibernética como o estudo do controle e comunicação em máquinas e animais. Ele também descreveu a cibernética como a ciência da comunicação e controle, e que a cibernética poderia ser aplicada em diversas áreas, como por exemplo na medicina, na economia, na psicologia, na sociologia.
 
@@ -62,7 +62,7 @@ Ele chegou a pensar que as máquinas poderiam tornar as pessoas desnecessárias,
 
 Ele criou diversas teórias, mas a mais famosa era relacionada a cibernética, na qual ele demonstrava a importância dos loops de feedback, atráves da compreensão do controle e das comunicações.
 
-#### História da Origem:
+### História da Origem:
 
 O termo "inteligência artificial" foi criado em 1956, por John McCarthy, que organizou uma conferência na qual o termo foi utilizado pela primeira vez. A conferência foi chamada de "The Dartmouth Summer Research Project on Artificial Intelligence", e foi organizada por McCarthy, Marvin Minsky, Nathaniel Rochester e Claude Shannon. A conferência foi um marco para a IA, pois foi a primeira vez que o termo foi utilizado, e também foi a primeira vez que o termo "programação" foi utilizado.
 
@@ -75,7 +75,7 @@ O IBM não tinha memória suficiente para rodar o Logic Theorist, o que levou a 
 Apesar disso, o Logic Theorist não despertou muito interesse, a conferência foi um fracasso, e a IA foi considerada um fracasso. O motivo disso foi que o Logic Theorist não foi capaz de resolver problemas do mundo real, e também não foi capaz de aprender com o ambiente.
 
 
-#### McCarthy:
+### McCarthy:
 
 Eventos importantes:
 
@@ -83,7 +83,7 @@ Eventos importantes:
 
 -  Em 1961 criou o conceito de Time Sharing, que é a ideia de que um computador pode ser utilizado por diversos usuários ao mesmo tempo. Graças a esse conceito, levou ao desenvolvimento da internet e da computação em nuvem
 
-#### Era de Ouro:
+### Era de Ouro:
 
 A era de ouro da IA foi marcada entre 1956 a 1974.
 
@@ -117,7 +117,7 @@ Minsky e Papert publicaram um livro chamado "Perceptrons: An Introduction to Com
 
 Entretanto, na decada de 1980, a IA baseada em redes neurais voltou a ganhar força, principalmente com o desenvolvimento do deep learning.
 
-#### Inverno da IA:
+### Inverno da IA:
 
 Durante o inicio da decada de 1970, o entusiasmo com a IA começou a diminuir, perdurou pela decada de 1980, e foi chamado de "Inverno da IA".
 
@@ -140,7 +140,7 @@ Entretanto, mesmo no inverno da IA, houve alguns avanços, como por exemplo:
 -   Deep Blue (1997): Foi criado por Feng-hsiung Hsu, e foi capaz de vencer o campeão mundial de xadrez. Foi o primeiro exemplo de um programa de IA que venceu um humano em um jogo de tabuleiro.
 
 
-#### Ascensão e queda dos sistemas especialistas:
+### Ascensão e queda dos sistemas especialistas:
 
 Se baseavam nos conceitos de lógica simbolica de Minsky.
 
@@ -150,7 +150,7 @@ Um dos problemas dos sistemas especialistas e que eram muitos especificios e era
 
 No final da decada de 1980 os sistemas especialistas começaram a perder força, pois os computadores começaram a ter mais poder de processamento e memória, e também começaram a ter mais espaço de armazenamento. Isso levou a um novo inverno da IA.
 
-#### Redes Neurais e Deep Learning:
+### Redes Neurais e Deep Learning:
 
 Geoffrey Hinton acreditou que o caminho do Rosenblatt era o caminho certo.
 
@@ -168,7 +168,7 @@ Ele estimulou e teve como base outros pesquisadores da época como:
 
 -   Yann Lecun publicou um artigo chamado "Gradient-Based Learning Applied to Document Recognition", que utilizou algoritmos de descida de gradiente para treinar redes neurais convolucionais. Esse trabalho foi um marco para a IA, pois foi capaz de resolver um dos maiores problemas da IA, que era o treinamento de redes neurais convolucionais.
 
-#### No contexto moderno:
+### No contexto moderno:
 
 Um dos aspectos que vem impulsionando a IA no contexto atual, moderno é:
 
@@ -182,12 +182,134 @@ Um dos aspectos que vem impulsionando a IA no contexto atual, moderno é:
 
 -   Aprendizado de máquina: O aprendizado de máquina está cada vez mais sofisticado, e isso é um dos fatores que está impulsionando a IA. A IA é capaz de utilizar o aprendizado de máquina para realizar cálculos complexos.
 
-#### Estrutura da IA
+### Estrutura da IA
 
 Em uma visão de alto nível, podemos relacionar os termos IA com Machine Learning e Deep Learning.
 
 Sendo a IA o termo mais amplo, que engloba o Machine Learning, que por sua vez engloba o Deep Learning.
 
+## Capítulo 2 - Dados
+
+#### O Combustível da IA
+
+### Noções básicas de dados:
+
+Dados são informações que podem ser armazenadas e processadas por um computador.
+
+Um bit é a menor unidade de dados que um computador pode armazenar, e pode ter o valor de 0 ou 1.
+
+Um byte é composto por 8 bits, e pode ter o valor de 0 a 255.
+
+Tabela de medidas:
+
+| Unidade | Valor | Caso de uso |
+| --- | --- | --- |
+| Bit | 0 ou 1 | Armazenar um único valor |
+| Byte | 0 a 255 | Armazenar um caractere |
+| Kilobyte | 1024 bytes | Armazenar um parágrafo de texto |
+| Megabyte | 1024 kilobytes | Armazenar uma foto |
+| Gigabyte | 1024 megabytes | Armazenar um filme |
+| Terabyte | 1024 gigabytes | Armazenar uma biblioteca de livros |
+| Petabyte | 1024 terabytes | Armazenar a coleção de livros da biblioteca do congresso dos EUA |
+| Exabyte | 1024 petabytes | Armazenar todos os dados gerados pela humanidade em um ano |
+| Zettabyte | 1024 exabytes | Armazenar todos os dados gerados pela humanidade em 100 anos |
+| Yottabyte | 1024 zettabytes | Armazenar todos os dados gerados pela humanidade em 10.000 anos |
+
+
+Os dados podem vir de diversas fontes, como por exemplo:
+
+-   Dados estruturados: São dados que possuem uma estrutura definida, e que podem ser armazenados em um banco de dados relacional. Por exemplo, uma tabela de clientes de uma empresa, que possui os campos nome, idade, endereço, etc.
+
+-   Dados não estruturados: São dados que não possuem uma estrutura definida, e que não podem ser armazenados em um banco de dados relacional. Por exemplo, um vídeo, uma foto, um áudio, etc.
+
+-   Dados semiestruturados: São dados que possuem uma estrutura definida, mas que não podem ser armazenados em um banco de dados relacional. Por exemplo, um arquivo XML, um arquivo JSON, etc.
+
+### Tipos de dados:
+
+Há quatro maneiras de orgazinar os dados:
+
+#### Dados estruturados:
+São dados que possuem uma estrutura definida, e que podem ser armazenados em um banco de dados relacional. Por exemplo, uma tabela de clientes de uma empresa, que possui os campos nome, idade, endereço, etc. Exemplos de dados estruturados são: tabelas de banco de dados, arquivos CSV, arquivos XML, arquivos JSON, etc.
+
+    Na maior parte das vezes é mais fácil trabalhar com dados estruturados, pois eles possuem uma estrutura definida, e podem ser armazenados em um banco de dados relacional.
+
+São frequentemente provenientes de sistemas de CRM (Customer Relationship Management), ERP (Enterprise Resource Planning), e geralmente tem volume menor que os dados não estruturados.
+
+#### Dados não estruturados:
+
+São dados que não possuem uma estrutura definida, e que não podem ser armazenados em um banco de dados relacional. Por exemplo, um vídeo, uma foto, um áudio, etc. Exemplos de dados não estruturados são: vídeos, fotos, áudios, etc.
+
+    Na maior parte das vezes é mais difícil trabalhar com dados não estruturados, pois eles não possuem uma estrutura definida, e não podem ser armazenados em um banco de dados relacional.
+
+São frequentemente provenientes de redes sociais, e geralmente tem volume maior que os dados estruturados.
+
+É mais trabalhoso devido a necessidade de formatar os dados para que possam ser utilizados.
+
+#### Dados semiestruturados:
+
+São dados que possuem uma estrutura definida, mas que não podem ser armazenados em um banco de dados relacional. Por exemplo, um arquivo XML, um arquivo JSON, etc. Exemplos de dados semiestruturados são: arquivos XML, arquivos JSON, etc.
+
+    Na maior parte das vezes é mais difícil trabalhar com dados semiestruturados, pois eles não podem ser armazenados em um banco de dados relacional.
+
+São frequentemente provenientes de sistemas de CRM (Customer Relationship Management), ERP (Enterprise Resource Planning), e geralmente tem volume menor que os dados não estruturados.
+
+#### Dados temporais:
+
+Podem ser estruturados, semiestruturados ou não estruturados.
+
+    É mais confuso e dificil de entender.
+
+Esse tipo de dado é para interações; como por exemplo: Rastrear os "passos de um cliente".
+
+### Big Data:
+
+Big Data é um termo que se refere a grandes volumes de dados, que podem ser estruturados, semiestruturados ou não estruturados. O termo Big Data é utilizado para descrever o grande volume de dados, a velocidade com que os dados são gerados, e a variedade de dados que são gerados.
+
+Como forma de lidar com dados muito grande, criou-se o Big Data.
+
+A Oracle explica essa importância da seguinte forma:
+
+    Hoje, big data, tornou-se essencial. Pense em todas as coisas que você faz todos os dias e em quantos dados são gerados a partir dessas atividades. Cada vez que você faz uma compra, pesquisa na Internet, baixa músicas, faz login em um site ou aplicativo, ou até mesmo joga um jogo no seu celular, você gera dados. Se você multiplica isso por todos os usuários da Internet, então você começa a ter uma ideia de quão grande é o big data.
+
+#### Os 3 Vs do Big Data:
+
+-   Volume: Refere-se a escala dos dados, que muitas vezes não são estruturados. Por exemplo, um único tweet pode ser considerado um dado, e o Twitter gera cerca de 500 milhões de tweets por dia. O volume é um grande desafio para o Big Data, pois é necessário armazenar e processar grandes volumes de dados. A computação em nuvem e as bases de dados NoSQL são algumas das tecnologias que ajudam a lidar com o volume de dados.
+
+-   Variedade:  Refere-se a diversidade dos dados, que podem ser estruturados, semiestruturados ou não estruturados. Por exemplo, um vídeo, uma foto, um áudio, etc. A variedade é um grande desafio para o Big Data, pois é necessário armazenar e processar diversos tipos de dados. A computação em nuvem e as bases de dados NoSQL são algumas das tecnologias que ajudam a lidar com a variedade de dados.
+
+-   Velocidade: Refere-se a velocidade com que os dados são gerados. Serviços Web geram niveis extremos de dados em tempo real. Por exemplo, o Google processa cerca de 40.000 pesquisas por segundo, e o Facebook processa cerca de 500.000 comentários por minuto. A velocidade é um grande desafio para o Big Data, pois é necessário armazenar e processar dados em tempo real. Esse 'V' é o mais importante, pois é o que mais gera valor para as empresas.
+
+Existem outros Vs que também são importantes:
+
+-   Veracidade: Refere-se a qualidade dos dados, que muitas vezes são imprecisos. Por exemplo, um tweet pode conter informações falsas, e um vídeo pode conter informações falsas. A veracidade é um grande desafio para o Big Data, pois é necessário garantir a qualidade dos dados.
+
+-   Valor: Refere-se ao valor dos dados, que muitas vezes não são utilizados. Por exemplo, um tweet pode conter informações valiosas, e um vídeo pode conter informações valiosas. O valor é um grande desafio para o Big Data, pois é necessário extrair informações valiosas dos dados.
+
+-   Visualização: Refere-se ao uso de recursos visuais para representar os dados. Por exemplo, um gráfico, um mapa, etc. A visualização é um grande desafio para o Big Data, pois é necessário representar os dados de forma visual.
+
+### Bancos de dados e outras ferramentas:
+
+#### Bancos de dados relacionais:
+
+Um banco de dados relacional é um banco de dados que armazena dados em tabelas, e que utiliza chaves primárias e chaves estrangeiras para relacionar as tabelas. Um banco de dados relacional é composto por um conjunto de tabelas, e cada tabela é composta por um conjunto de linhas e colunas. Cada linha representa um registro, e cada coluna representa um campo. Um banco de dados relacional é uma das formas mais comuns de armazenar dados estruturados.
+
+Quando o big data começou a crescer, os bancos de dados relacionais começou a apresentar falhas graves, como:
+
+-   Expansão de dados: Os bancos de dados relacionais não são capazes de armazenar grandes volumes de dados, e isso é um grande problema para o Big Data. Ficou mais dificil centralizar os dados.
+
+-   Novos ambientes: Banco de dados relacionais não foram criados para computação em nuvem.
+
+-   Custos: Os bancos de dados relacionais são muito caros, e isso é um grande problema para o Big Data.
+
+Devido a isso, havia projetos de códi aberto que visavam contornar esse problema. Um deles foi o Hadoop, que foi criado por Doug Cutting e Mike Cafarella, e que foi capaz de armazenar e processar grandes volumes de dados. O Hadoop foi um marco para o Big Data, pois foi capaz de resolver um dos maiores problemas do Big Data, que era o armazenamento e processamento de grandes volumes de dados.
+
+Houve também a inovação do modelo tradicional: o NoSQL.
+
+### Data Lakes:
+
+Um data lake é um repositório de dados que armazena dados em seu formato nativo, e que pode ser utilizado para armazenar dados estruturados, semiestruturados ou não estruturados. Um data lake é composto por um conjunto de dados, e cada dado é composto por um conjunto de linhas e colunas. Cada linha representa um registro, e cada coluna representa um campo. Um data lake é uma das formas mais comuns de armazenar dados estruturados, semiestruturados ou não estruturados.
+
+O Data lake tratará as diversas fontes de dados, e irá armazenar em um único lugar.
 
 
 ## Terminologia:
