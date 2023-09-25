@@ -311,7 +311,106 @@ Um data lake é um repositório de dados que armazena dados em seu formato nativ
 
 O Data lake tratará as diversas fontes de dados, e irá armazenar em um único lugar.
 
+### Processo de dados:
+
+Muitos projetos de big data são abandonados antes de chegar na fase piloto. Alguams razões incluem:
+
+-   Falta de habilidades: A falta de habilidades é um grande problema para o Big Data, pois é necessário ter conhecimento em diversas áreas, como por exemplo programação, estatística, etc.
+
+-   Falta de dados: A falta de dados é um grande problema para o Big Data, pois é necessário ter dados para realizar análises.
+
+-   Falta de recursos: A falta de recursos é um grande problema para o Big Data, pois é necessário ter recursos para realizar análises.
+
+-   Falta de foco no negócio: A falta de foco no negócio é um grande problema para o Big Data, pois é necessário ter foco no negócio para realizar análises.
+
+#### Processo CRISP-DM:
+
+O CRISP-DM é um processo de mineração de dados que é composto por seis fases: entendimento do negócio, entendimento dos dados, preparação dos dados, modelagem, avaliação e implantação. O CRISP-DM é um dos processos mais utilizados para realizar análises de dados.
+
+-   Entendimento do negócio: Nessa fase, é necessário entender o problema de negócio, e definir os objetivos do projeto. É necessário entender o problema de negócio, pois é necessário definir os objetivos do projeto.  Exemplo: "Aumentar as vendas em 10%".
+
+-   Compreensão dos dados: Existem três fontes de dados principais para o projeto:
+        
+        - Dados internos: Dados que são gerados pela empresa, como por exemplo dados de vendas, dados de marketing, etc. As vantagens dos dados internos são que eles são fáceis de obter, e que eles são confiáveis. As desvantagens dos dados internos são que eles são limitados, e que eles são difíceis de analisar.
+
+        - Dados de código aberto: Costumam estar disponíveis gratuitamente. Alguns exemplos são dados cientificos e governamentais. Esse tipo de dado ja vem formatado, entretanto, alguma das variaveis podem não ser claras
+
+        - Dados de terceiros: Dados que são gerados por terceiros, como por exemplo dados de redes sociais, dados de sensores, etc. As vantagens dos dados de terceiros são que eles são abundantes, e que eles são variados. As desvantagens dos dados de terceiros são que eles são difíceis de obter, e que eles são imprecisos.
+
+    Deve-se fazer as seguintes perguntas para avaliar os dados:
+        
+        - Os dados são suficientes?
+        - Os dados são relevantes?
+        - Os dados são de qualidade?
+        - Os dados são acessíveis?
+
+-   Preparação dos dados: Nessa fase, é necessário preparar os dados para a análise. É necessário preparar os dados para a análise, pois é necessário garantir a qualidade dos dados. As etapas da preparação dos dados são: limpeza dos dados, transformação dos dados, redução dos dados e integração dos dados. Medidas para limpar os dados:
+
+        - Remover dados duplicados (deduplicação)
+        - Remover dados inválidos (validação)
+        - Remover dados inconsistentes (padronização)
+        - Remover dados incompletos (imputação)
+        - Remover dados irrelevantes (filtragem)
+        - Remover dados desatualizados (atualização)
+        - Remover dados discrepantes (detecção de outliers)
+        - Dados devem ter definições claras (Consistência)
+        - Codificação one-hot encoding
+
+    Medidas para transformar os dados:
+
+        - Converter dados de um formato para outro
+        - Converter dados de uma unidade para outra
+        - Converter dados de uma escala para outra
+        - Converter dados de uma estrutura para outra
+
+    Medidas para reduzir os dados:
+
+        - Reduzir o número de registros
+        - Reduzir o número de campos
+
+    Medidas para integrar os dados:
+
+        - Integrar dados de diferentes fontes
+        - Integrar dados de diferentes formatos
+        - Integrar dados de diferentes estruturas
+
+### Ética e privacidade:
+
+É preciso estar atento a privacidade dos dados, e a ética de como eles são utilizados.
+### Qual o volume de dados necessário para IA?
+
+Fenômeno de Hughes: "A quantidade de dados necessária para treinar um modelo de IA é inversamente proporcional ao poder de processamento do computador".
+
+Maldiçãod a dimensionalidade: "Quanto maior a dimensionalidade dos dados, maior a quantidade de dados necessária para treinar um modelo de IA". Logo a quantidade de dados que se precisa generalizar é muito grande.
+
+Em caso geral, quanto mais dados, melhor.
+
 
 ## Terminologia:
 
 - Geocerca (geofencing): É uma área virtual que pode ser definida por um conjunto de coordenadas geográficas. É utilizada para delimitar uma área de interesse, e quando um dispositivo entra ou sai dessa área, um alerta é disparado.
+
+- Outlier: É um valor que foge do padrão, e que pode ser considerado um erro ou uma anomalia. Por exemplo, um valor que é muito maior ou muito menor que os outros valores.
+
+- one-hot encoding: É uma técnica que é utilizada para transformar dados categóricos em dados numéricos. Por exemplo, uma variável que possui os valores "vermelho", "verde" e "azul" pode ser transformada em três variáveis que possuem os valores 0 ou 1.
+
+- Dados categóricos: dados que nçao tem um signifiado numérico, como por exemplo cores, nomes, etc. Mas que podem ser transformados em dados numéricos.
+
+- Tipo de dado: É um atributo que define o tipo de dado que pode ser armazenado em uma variável. Por exemplo, uma variável do tipo inteiro só pode armazenar números inteiros.
+
+- Analise descritiva: É uma análise que é utilizada para descrever os dados, e que é utilizada para responder perguntas como "O que aconteceu?" e "O que está acontecendo?".
+
+- ETL (Extract, Transform, Load): É um processo que é utilizado para extrair dados de diversas fontes, transformar os dados em um formato comum, e carregar os dados em um data warehouse.
+
+- Warehouse: É um repositório de dados que armazena dados em seu formato nativo, e que pode ser utilizado para armazenar dados estruturados, semiestruturados ou não estruturados.
+
+- Recurso: coluna de um conjunto de dados.
+
+- Instancia: linha de um conjunto de dados.
+
+- Meta dados: dados sobre os dados.
+
+- Olap: Online Analytical Processing, é um processo que é utilizado para analisar dados. Permite analisar dados de diversas perspectivas, e permite analisar grandes volumes de dados.
+
+- Analise preditiva: uso de dados para previsões. Dependem de algumas abordagens da IA como machine learning e deep learning.
+
