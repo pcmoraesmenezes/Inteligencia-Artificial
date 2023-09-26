@@ -386,6 +386,118 @@ Maldiçãod a dimensionalidade: "Quanto maior a dimensionalidade dos dados, maio
 Em caso geral, quanto mais dados, melhor.
 
 
+## Capítulo 3 - Aprendizado de Máquina (Machine Learning)
+
+### O que é aprendizado de máquina?
+
+Em 1959, Arthur Samuel definiu o aprendizado de máquina como o campo de estudo que dá aos computadores a habilidade de aprender sem serem explicitamente programados.
+
+Ele programou um computador para jogar damas, e o computador foi capaz de aprender com o ambiente.
+
+Através do jogo de damas ele demonstrou como o machine learning funciona: o computador aprende com o ambiente, e é capaz de melhorar seu desempenho ao longo do tempo.
+
+Isso foi possível por conta de conceitos avançados de Estatistica e Probabilidade.
+
+Em essência, trata-se de um processo de adoção de dados rotulados e busca de relações entre eles.
+
+Exemplo: Ensinar um programa a reconhecer um gato. Para isso, é necessário fornecer ao programa uma grande quantidade de imagens de gatos, e dizer ao programa que essas imagens são de gatos. O programa irá analisar as imagens, e irá aprender a reconhecer um gato.
+
+### Desvio padrão:
+
+Mede a dispersão dos dados em relação a média.
+
+Exemplo: Se a média de uma amostra é 10, e o desvio padrão é 2, um desvio padrão abaixo da media é 8, e um desvio padrão acima da media é 12.
+
+### Distribuição normal:
+
+Também chamada curva do sino.
+
+Soma das probabilidades para uma variavel.
+
+Exemplo: Pontuações de QI.
+
+### Teorema de Bayes:
+
+Abordagem comum na ánalise de doenças e testes de diagnóstico.
+
+Exemplo: Se uma doença afeta 1 em cada 10.000 pessoas, e o teste de diagnóstico tem 99% de precisão, qual a probabilidade de uma pessoa ter a doença se o teste der positivo?
+
+Formula: P(A|B) = P(B|A) * P(A) / P(B)
+
+### Correlação:
+
+Algoritmos de machine learning geralmente envolvem algum tipo de correlação.
+
+Exemplo: Se a temperatura aumenta, a venda de sorvete aumenta.
+
+Uma forma de descrever a correlação é através do coeficiente de correlação de Pearson, que é um número entre -1 e 1, e que mede a força da correlação.
+
+-   Se o coeficiente de correlação de Pearson for 0, não há correlação.
+
+-   Se o coeficiente de correlação de Pearson for >=0,7 E <=1 , há uma correlação positiva perfeita.(Se houver um aumento em uma variável, haverá um aumento na outra variável).
+
+-   Se o coeficiente de correlação de Pearson for > -1 e <= 0,3 , há uma correlação negativa perfeita. (Se houver um aumento em uma variável, haverá uma diminuição na outra variável).
+
+Entretanto é preciso ter cuidado com a correlação, pois ela não implica causalidade. Por exemplo: A taxa de divórcio em Maine está correlacionada com o consumo de margarina per capita.
+
+### O que se pode fazer com o aprendizado de máquina?
+
+-   Manutenção preditiva: É a manutenção que é realizada com base em dados, e que é utilizada para prever falhas em equipamentos. Por exemplo, uma empresa pode utilizar o aprendizado de máquina para prever falhas em equipamentos, e realizar a manutenção antes que ocorra uma falha.
+
+-   Recrutamento: É o processo de seleção de candidatos, e que é utilizado para prever o desempenho de um candidato. Por exemplo, uma empresa pode utilizar o aprendizado de máquina para prever o desempenho de um candidato, e selecionar o candidato com o melhor desempenho.
+
+-   Detecção de fraudes: É a detecção de fraudes que é realizada com base em dados, e que é utilizada para prever fraudes. Por exemplo, uma empresa pode utilizar o aprendizado de máquina para prever fraudes, e evitar que ocorra uma fraude.
+
+-   Expereiência do cliente: É a experiência que é oferecida ao cliente, e que é utilizada para prever o comportamento do cliente. Por exemplo, uma empresa pode utilizar o aprendizado de máquina para prever o comportamento do cliente, e oferecer uma experiência personalizada.
+
+### Processo de aprendizado de máquina:
+
+É importante adotar uma abordagem sistemática, afim de evitar resultados equivocados.
+
+É necessário um processo de dados, como: Eles estão dispersos? Ou Existem alguns padrões? Ou Eles são confiáveis? Caso sim, aprendizado de máquina é uma boa opção.
+
+O objetivo do processo de machine learning é criar um modelo que se baseie em um ou mais algoritmos. Isso é alcançado por meio de um processo de treinamento, que envolve a utilização de dados de treinamento para ajustar os parâmetros do modelo.
+
+#### Etapa # 1 - Ordenar os dados:
+
+Se os dados forem classificados, pode haver uma distorção no modelo.
+
+O algoritmo detectaria essa ordenação como um padrão.
+
+Dessa forma é uma boa ideia embaralhar os dados.
+
+#### Etapa # 2 - Escolha do Modelo:
+
+Envolve a seleção de um algoritmo de aprendizado de máquina.
+
+#### Etapa # 3 - Treinamento do Modelo:
+
+Envolve a utilização de dados de treinamento para ajustar os pesos do modelo.
+
+Exemplo: Se o modelo for uma regressão linear, o algoritmo de treinamento ajustará os coeficientes da regressão linear.
+
+Aproximadamente 70% dos dados são usados para criar relações no algoritmo.
+
+#### Etapa # 4 - Avaliação do Modelo:
+
+É necessário reunir dados de teste para avaliar o modelo. Formados pelos 30% restantes dos dados.
+
+Com os dados de teste é possível avaliar o desempenho do modelo.
+
+Observação: os dados de teste não devem ser utilizados para treinar o modelo.
+Ou seja, os dados de treinamento e teste não devem ser nusturados.
+
+A precisão é uma medida de sucesso do algoritmo. Entretanto pode ser enganosa, é necessário outras abordagens, como por exemplo o teorema de Bayes.
+
+#### Etapa # 5 - Sintonia fina do modelo:
+
+É possível ajustar os valores dos parâmetros no algoritmo. Nessa etapa, a intenção é verificar se é possível melhorar o desempenho do modelo.
+
+Ao realizar a sintonia fina do modelo, é necessário ter cuidado para não realizar overfitting, que é quando o modelo se ajusta muito bem aos dados de treinamento, mas não se ajusta bem aos dados de teste.
+
+Nessa sintonia, também pode verificar a existência de hiperparametros, que são parametros que não são ajustados pelo algoritmo de treinamento, e que precisam ser ajustados manualmente.
+
+
 ## Terminologia:
 
 - Geocerca (geofencing): É uma área virtual que pode ser definida por um conjunto de coordenadas geográficas. É utilizada para delimitar uma área de interesse, e quando um dispositivo entra ou sai dessa área, um alerta é disparado.
