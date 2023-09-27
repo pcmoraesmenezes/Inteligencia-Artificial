@@ -497,6 +497,86 @@ Ao realizar a sintonia fina do modelo, é necessário ter cuidado para não real
 
 Nessa sintonia, também pode verificar a existência de hiperparametros, que são parametros que não são ajustados pelo algoritmo de treinamento, e que precisam ser ajustados manualmente.
 
+### Aplicando Algoritmos:
+
+-   O primeiro passo é a processagem de dados, que envolve a limpeza dos dados, a transformação dos dados, a redução dos dados e a integração dos dados. Com isso o computador poderá começar a aprender
+
+#### Aprendizagem supervisionada:
+
+Faz uso de dados rotulados.
+
+Dados rotulados: São dados que possuem um rótulo, e que podem ser utilizados para treinar um modelo de aprendizado de máquina. Por exemplo, uma imagem de um gato, que possui o rótulo "gato", e que pode ser utilizada para treinar um modelo de aprendizado de máquina.
+
+Na maioria dos casos torna a análise mais fácil.
+
+Deve haver grandes quantiddes de dados, para gerar um modelo preciso.
+
+Entretanto, um problema é que a maioria dos dados não são rotulados.
+
+Em alguns casos é possível automatizar o processo de rotulação, como por exemplo o reconhecimento de voz.
+
+Aplicações:
+
+-  Detecção de conteudo improprio
+
+-  Detecção de spam
+
+-  Detecção de fraude
+
+#### Aprendizagem não supervisionada:
+
+Faz uso de dados não rotulados.
+
+Abordagem mais comum e o agrupamento de dados(clustering).
+
+O processo de clustering geralmente se inicia com suposições sobre os dados, seguidas de iterações dos calculos para melhores resultados.
+
+A busca por itens de dados proximos pode ser feito através de diversos metodos quantitativos:
+
+-   Distância euclidiana: É a distância entre dois pontos em um espaço euclidiano. Por exemplo, a distância entre dois pontos em um plano cartesiano.
+
+-  Métrica de Similariedade do cosseno: usa-se um cosseno para medir o angulo.
+
+-  Distância de Manhattan: É a distância entre dois pontos em um espaço euclidiano, e que é calculada pela soma dos valores absolutos das diferenças entre as coordenadas dos pontos. Por exemplo, a distância entre dois pontos em um plano cartesiano.
+
+Aplicações:
+
+-   Segmentação de clientes
+
+-   Analise de sentimento
+
+
+#### Aprendizagem por reforço:
+
+Faz uso de dados de recompensa.
+
+É um processo de tentativa e erro.
+
+O algoritmo de aprendizado de máquina recebe um estado, e executa uma ação. O algoritmo de aprendizado de máquina recebe uma recompensa, e aprende se a ação foi boa ou ruim.
+
+Aplicações:
+
+-   Jogos
+
+-   Robótica
+
+
+#### Aprendizagem semi-supervisionada:
+
+Mistura de aprendizagem supervisionada e não supervisionada.
+
+Surge quando há uma pequena quantidade de dados não rotulados.
+
+É possível usar deep learning para transformar os dados não supervisionados em dados supervisionados, processo chamado de pseudorrotulagem.
+
+Aplicações:
+
+-   Reconhecimento de fala
+
+-   Ressonância magnética
+
+
+
 
 ## Terminologia:
 
