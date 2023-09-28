@@ -575,8 +575,316 @@ Aplicações:
 
 -   Ressonância magnética
 
+![ALgoritmos](/Livros/Introdução%20à%20Inteligência%20Aritificial:%20Uma%20abordagem%20não%20técnica%20-%20Tom%20Taulli/images/algoritmoMachineLearning.jpeg)
+
+Todos os créditos da imagem para o autor do livro, o único intuito é de estudo e uma melhor compreensão do conteúdo.
+
+#### Classificador: Naive Bayes(Aprendizagem supervisionada/Classificação):
+
+Baseado em uma "suposição ingênua" de que as variáveis são independentes.
+
+Ou seja, uma variável não afeta a outra.
+
+Três variações do classificador Naive Bayes:
+
+-   Naive Bayes Gaussiano: É utilizado quando as variáveis são contínuas. Por exemplo, a altura de uma pessoa.
+
+-   Naive Bayes Multinomial: É utilizado quando as variáveis são discretas. Por exemplo, o número de filhos de uma pessoa.
+
+-   Naive Bayes Bernoulli: É utilizado quando as variáveis são binárias. Por exemplo, se uma pessoa possui um carro ou não.
+
+Casos comuns de uso desse algoritmo é para analise de texto, como por exemplo: classificação de spam, classificação de documentos, etc.
+
+A abordagem deste algoritmo é útil na classificação de dados com base em características-chave e padrões.
+
+Exemplo:
+
+Imagine a seguinte tabela de vendas:
+
+| Desconto | Avaliação do produto | Compra
+| --- | --- | --- |
+| Sim | Alta | Sim |
+| Sim | Baixa | Sim |
+| Não | Baixa | Não |
+| Não | Baixa | Não |
+| Não | Baixa | Não |
+| Não | Alta | Sim |
+| Sim | Alta | Não |
+| Sim | Baixa | Sim |
+| Não | Alta | Sim |
+| Sim | Alta | Sim |
+| Não | Alta | Não |
+|Não | Baixa | Sim |
+| Sim | Alta | Sim |
+| Sim | Baixa | Não |
+
+Organizando os dados em uma tabela de frequência:
+
+| Desconto | Sim | Não | Total |
+| --- | --- | --- | --- |
+| Sim | 5 | 3 | 8 |
+| Não | 3 | 3 | 6 |
+| Total | 8 | 6 | 14 |
+
+| Avaliação do produto | Alta | Baixa | Total |
+| --- | --- | --- | --- |
+| Sim | 5 | 3 | 8 |
+| Não | 1 | 5 | 6 |
+| Total | 6 | 8 | 14 |
 
 
+| Compra | Sim | Não | Total |
+| --- | --- | --- | --- |
+| Sim | 7 | 1 | 8 |
+| Não | 1 | 5 | 6 |
+| Total | 8 | 6 | 14 |
+
+Agora é possível calcular a probabilidade de compra com desconto:
+
+P(Compra=Sim|Desconto=Sim) = P(Desconto=Sim|Compra=Sim) * P(Compra=Sim) / P(Desconto=Sim)
+
+P(Desconto=Sim|Compra=Sim) = 7/8 = 0,875
+
+P(Compra=Sim) = 8/14 = 0,571
+
+P(Desconto=Sim) = 8/14 = 0,571
+
+P(Compra=Sim|Desconto=Sim) = 0,875 * 0,571 / 0,571 = 0,875
+
+Dessa forma observamos que o Naive Bayes é um algoritmo simples, e que é capaz de realizar cálculos complexos, sua funcionalidade é baseada em probabilidade.
+
+Em termos gerais o algoritmo:
+
+-   Calcula a probabilidade de cada classe.
+
+-   Calcula a probabilidade de cada classe dado os valores dos atributos.
+
+-   Calcula a probabilidade de cada classe dado os valores dos atributos e a classe.
+
+Pseudo-código:
+
+```
+
+Para cada classe:
+
+    Calcule a probabilidade da classe.
+
+    Para cada atributo:
+
+        Calcule a probabilidade do atributo.
+
+        Calcule a probabilidade do atributo dado a classe.
+
+    Calcule a probabilidade da classe dado os atributos.
+
+```
+
+#### K-Nearest Neighbors(Aprendizagem supervisionada/Classificação):
+
+O Metódo k-Nearest Neighbor (k-NN) é usado para classificar um conjunto de dados (k é um número inteiro positivo, tipicamente pequeno, que representa o número de vizinhos mais próximos a serem considerados).
+
+A ideia central é que valores próximos podem ser classificados juntos.
+
+Não há nenhum processo de treinamento com os dados
+
+O algoritmo é baseado em distância, e é necessário definir uma métrica de distância, como por exemplo a distância euclidiana.
+
+Pseudo-código:
+
+```
+
+Para cada ponto no conjunto de dados:
+
+    Calcule a distância entre o ponto e os outros pontos no conjunto de dados.
+
+    Selecione os k pontos mais próximos.
+
+    Atribua o ponto à classe que é mais frequente entre os k pontos mais próximos.
+
+```
+
+Caso exista dados categóricos , é possível utilizar uma métrica de sobreposição.
+
+Grandes quantidades de vizinhos é bom para regular o modelo, entretanto pode ser ruim para a performance, o ideal é regular os pesos dos vizinhos, quanto mais próximo o vizinho, maior o peso.
+
+#### Regressão Linear(Aprendizagem supervisionada/Regressão):
+
+Indica a relação entre certas variaveis
+
+Pode ajudar a prever os resultados com base nas entradas.
+
+Exemplo:
+
+Imagine a seguinte tabela de estudo e notas:
+
+| Horas de estudo | Nota |
+| --- | --- |
+| 1 | 0,75 |
+| 1 | 0,69 |
+| 1 | 0,71 |
+| 3 | 0,82 |
+| 3 | 0,83 |
+| 4 | 0,86 |
+| 5 | 0,85 |
+| 5 | 0,89 |
+| 5 | 0,84 |
+| 6 | 0,91 |
+| 6 | 0,92 |
+| 7 | 0,95 |
+
+Temos uma relação positiva (quanto mais horas de estudo, maior a nota).
+
+A regressão linear é uma abordagem que é utilizada para prever um valor contínuo, e que é baseada em uma relação linear entre uma variável dependente e uma ou mais variáveis independentes.
+
+Com o algorithm de regressão linear é possível prever a nota com base nas horas de estudo.
+
+Podemos obter a seguinte equação dessa relação:
+
+Nota = Numero de horas de estudo x 0,03731 + 0,6889
+
+O valor 0,03731 é o coeficiente de regressão, e o valor 0,6889 é o intercepto.
+
+Para se obter o coeficiente de regressão e o intercepto, é necessário minimizar o erro quadrático médio.
+
+O erro quadrático médio é a soma dos quadrados dos erros dividida pelo número de amostras.
+
+Com essas informações poderiamos determinar, que nota um aluno teria se estudasse 10 horas.
+
+Nota = 10 x 0,03731 + 0,6889 = 1,07
+
+Esse modelo é bem simplista, para ter algo mais próximo da realidade é necessário mais variaveis, como por exemplo a frequencia do aluno. Nesse caso temos uma regressão linear multivariada.
+
+Pseudo-código:
+
+```
+
+Para cada atributo:
+
+    Calcule o coeficiente de regressão.
+
+    Calcule o intercepto.
+
+    Calcule o erro quadrático médio.
+
+```
+
+#### Árvore de decisão(Aprendizagem supervisionada/Classificação):
+
+Essa abordagem é melhor com dados não numericos.
+
+A arvore se iniciaria com uma raiz, e a partir dela se ramificaria em outras raizes, e assim por diante. A partir da raiz existe uma arvore de caminhos de decisão.
+
+O mais famoso caso é referente ao naufraugio do Titanic, onde a arvore de decisão foi utilizada para determinar quem sobreviveria.
+
+Exemplo:
+
+                     É do sexo masculino?
+                        /     \
+                       /       \
+                      /         \
+                    Sim         Não
+                    /             \
+                   /               \
+                Idade > 9,5?      Sobreviveu
+                     /     \
+                    /       \
+                   /         \
+                   Morreu    Quantidade de filhos > 2,5?
+                                /     \
+                               /       \
+                              /         \
+                            Sim         Não
+                            /             \
+                           /               \
+                          /                 \
+                         Morreu            Sobreviveu
+
+
+As arvores de decisão são simples de entender e funcionam bem com grandes conjungos de dados e fornecem transparencia.
+
+Entretanto se uma decisão se mostrar equivocada, ocorrera grande propagação de erro.
+
+A medida que a arvore cresce, o desempenho diminui.
+
+Pseudo-código:
+
+```
+
+Para cada atributo:
+
+    Calcule a entropia.
+
+    Calcule a informação mútua.
+
+    Calcule o ganho de informação.
+
+```
+
+#### Modelagem por agrupamento(APrendizagem supervisionada/Regressão):
+
+Usa mais de um modelo para prever os resultados.
+
+Gera resultados mais precisos.
+
+O melhor exemplo foi o Netflix Prize, onde o objetivo era melhorar o algoritmo de recomendação de filmes.
+
+O algoritmo de recomendação de filmes da Netflix é baseado em agrupamento.
+
+#### Agrupamento K-Means(Aprendizagem não supervisionada/Agupamento):
+
+Eficiente em grandes conjuntos.
+
+Coloca dados semelhantes não rotulados em diferentes grupos.
+
+O primeiro passo é selecionar k, numero de grupos (clusters)
+
+Exemplo:
+
+        x     x
+        x   x           x
+                                x
+        x    x x             x
+                    x
+
+Para esse exemplo, temos que haveŕa dois grupos, o que significa dois centros.
+
+
+    o
+        x     x
+        x   x           x           o
+                                x
+        x    x x             x
+                    x
+
+O algoritmo calcularia a distancia entre os pontos e os centros, e os agruparia.
+
+    o           |
+        x     x |
+        x   x   |        x           o
+                |                x
+        x    x x|             x
+                |    x
+
+
+Quanto maior o valor de k (numero de grupos), maior a precisão, entretanto maior o custo computacional. Ocorre apenas melhorias incrementais.
+
+O algoritmo não funciona bem com dados não esfericos.
+
+Há situações onde existem grupos com poucos dados, e outros com muitos dados, isso pode ocasionar em o algoritmo não selecionar os grupos corretamente.
+
+Pseudo-código:
+
+```
+
+Para cada ponto no conjunto de dados:
+
+    Calcule a distância entre o ponto e os centros.
+
+    Atribua o ponto ao centro mais próximo.
+
+    Recalcule os centros.
+
+```
 
 ## Terminologia:
 
