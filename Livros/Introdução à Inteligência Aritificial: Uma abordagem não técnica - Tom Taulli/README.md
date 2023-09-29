@@ -886,6 +886,135 @@ Para cada ponto no conjunto de dados:
 
 ```
 
+### Capítulo 4 - Deep Learning
+
+#### Diferenças entre Machine Learning e Deep Learning:
+
+Suponha um problema de reconhecimento de imagem, onde o objetivo é reconhecer um gato em uma imagem.
+
+Há milhares de imagens de animais, e o objetivo é criar um modelo que seja capaz de reconhecer gatos em imagens.
+
+Machine Learning não pode analisar as imagens diretamente, os dados devem ser rotulados. Uma possível forma de se fazer reconhecimento dos gatos seria com o aprendizado supervisionado, onde o algoritmo de aprendizado de máquina recebe uma imagem de um gato, e aprende que essa imagem é de um gato.
+
+Entretanto, mesmo que ele consiga reconhecer um bom numero de gatos, ele não será capaz de reconhecer todos os gatos, pois ele não consegue reconhecer padrões complexos.
+
+Dessa forma uma ánalise de pixel a pixel seria mais eficiente. Para fazer uma analise de pixel a pixel com o machine learning é necessário fazer a extração de recursos. Ou seja é necessário identificar os tipos de recursos que podem ser utilizados para reconhecer um gato em uma imagem, como por exemplo o formato das orelhas, o formato dos olhos, etc.
+
+Entretanto essa abordagem por mais que seja boa, não é perfeita, pois caso
+os dados sejam imprecisos, ou até mesmo ocorra exceções, o algoritmo não será capaz de reconhecer o gato.
+
+Além disso a extração de recursos ignora uma boa quantidade de dados.
+
+Deep Learning é uma abordagem que é utilizada para resolver esse problema, pois ela é capaz de analisar os dados de forma mais profunda, e é capaz de reconhecer padrões complexos.
+
+O deep learning analisaria pixel por pixel, e encontraria relações usando uma 
+rede neural.
+
+#### O que é deep learning?
+
+É uma subárea do machine learning, e que é utilizada para resolver problemas complexos.
+
+Permite o processamento de enormes quantidade de dados visando encontrar padrões complexos.
+
+Deep se refere a profundidade, e a profundidade se refere a quantidade de camadas ocultas (hidden layer) que uma rede neural possui.
+
+Entretanto essa tecnólogia está nos estados iniciais, e ainda não é capaz de resolver todos os problemas.
+
+Para que ele cause um impacto significativo, é necessário um crescimento exponencial de dados, e um aumento na capacidade de processamento.
+
+#### Redes neurais artificiais:
+
+São modelos computacionais que são inspirados no cérebro humano, e que são utilizados para resolver problemas complexos.
+
+Em termos simples, é uma função com unidades(perceptrons, neuronios) de entrada, que são conectadas a unidades de saida, e que são utilizadas para resolver problemas complexos. Essas unidades estão atreladas a pesos, que são ajustados durante o processo de treinamento. Além disso é possível estarem ligadas a uma camada oculta, que é uma camada intermediária entre a camada de entrada e a camada de saida.
+
+Também existe o viés(bias) que é um valor que é adicionado a entrada de uma função de ativação, e que é utilizado para ajustar a saida da função de ativação.
+
+Esse tipo é chamado de rede neural feedforward, pois os dados fluem em uma direção, da camada de entrada para a camada de saida.
+
+Uma saída pode ser a entrada de um novo perceptron, e assim por diante.
+
+Ex de rede neural:
+
+    1 b -
+           \
+
+    x1  w1 ----- Camada oculta ------ Saída 
+
+              /
+    x2 w2 -
+
+Onde:
+
+-   x1 e x2 são as entradas.
+
+-   w1 e w2 são os pesos.
+
+-   b é o viés.
+
+
+Observe que ele se move em uma direção, da camada de entrada para a camada de saida, o ciclo não se repete.
+
+
+#### Backpropagation:
+
+É um algoritmo que é utilizado para treinar redes neurais artificiais.
+
+Sua utilização conseguiu tratar um dos grandes problemas das redes neurais: O ajuste dos pesos. Seu funcionamento é baseado em ajustar a rede neural quando erros são encontrados. Ele calcula o erro, e ajusta os pesos para reduzir o erro. São varias iteracoes até que o erro seja minimizado.
+
+Por exemplo, suponhamos que uma das entradas tenha saída igual a 0,6, o erro então é de 0,4, e o objetivo é reduzir esse erro. Para isso é necessário ajustar os pesos, e o viés. O objetivo é chegar o mais próximo possível de 1.
+
+Se pensarmos em um gráfico de Erro no eixo Y e Peso no eixo X, nota-se que no começo tem-se um grande numero de erros e com as iterações do algoritmo o erro
+diminui até encontrar um ponto de mínimo. Passado o ponto de mínimo, o erro aumenta, e o algoritmo para.
+
+#### Redes neurais recorrentes:
+
+A função processa a entrada atual e a entrada anterior.
+
+É utilizada para analisar dados sequenciais, como por exemplo dados de texto, dados de audio, etc.
+
+O melhor exemplo é a sugestão de texto do celular, onde o celular sugere palavras com base nas palavras anteriores.
+
+Entretanto, existe o problema da dissipação do gradiente, que é quando o gradiente se torna muito pequeno, e o algoritmo não consegue aprender.
+
+Os modelos tambem levam muito tempo para serem treinados.
+
+O Google criou o Transformer, que é um modelo que é utilizado para tradução de texto, e que é baseado em redes neurais recorrentes.
+
+Esse modelo processa em paralelo.
+
+#### Redes neurais convolucionais:
+
+São redes neurais que são utilizadas para analisar dados de imagem.
+
+Existem casos onde as redes neurais não serem conectadas é interessante, por exemplo no caso de imagens, onde cada pixel é uma entrada, e cada pixel não está relacionado com o outro. Caso as redes neurais fossem conectadas, o algoritmo teria que analisar cada pixel, e isso seria muito custoso computacionalmente causando overfitting ( quando o modelo se ajusta muito bem aos dados de treinamento, mas não se ajusta bem aos dados de teste).
+
+As redes neurais convolucionais são baseadas em filtros, que são utilizados para analisar os dados.
+
+O filtro é uma matriz que é utilizada para analisar os dados, e que é deslizada sobre os dados.
+
+O filtro é utilizado para extrair recursos, e é utilizado para reduzir a dimensionalidade dos dados.
+
+Ela deve ser capaz de reconhecer com precisão os recursos, e deve ser capaz de generalizar os recursos.
+
+#### Redes Adversistárias Generativas:
+
+São redes neurais que são utilizadas para gerar dados.
+
+Se baseia na Teoria dos Jogos, onde há dois jogadores: O gerador e o discriminador.
+
+O gerador é responsável por gerar dados, e o discriminador é responsável por determinar se os dados são reais ou falsos.
+
+O gerador da rede adversária generativa é treinado para enganar o discriminador, e o discriminador é treinado para não ser enganado pelo gerador.
+
+Ocorre então um aprendizado em conjunto, onde o gerador aprende a gerar dados mais realistas, e o discriminador aprende a determinar se os dados são reais ou falsos.
+
+Essa tecnólogia foi revolucionária, pois é possível gerar dados realistas, como por exemplo imagens de pessoas que não existem.
+
+É possível com isso gerar um vídeo de um famoso dizendo coisas que ele nunca disse.
+
+Observe, entretanto, que essa tecnólogia pode ser utilizada para gerar dados falsos, como por exemplo um vídeo de um político dizendo coisas que ele nunca disse.
+
 ## Terminologia:
 
 - Geocerca (geofencing): É uma área virtual que pode ser definida por um conjunto de coordenadas geográficas. É utilizada para delimitar uma área de interesse, e quando um dispositivo entra ou sai dessa área, um alerta é disparado.
@@ -914,3 +1043,4 @@ Para cada ponto no conjunto de dados:
 
 - Analise preditiva: uso de dados para previsões. Dependem de algumas abordagens da IA como machine learning e deep learning.
 
+- Crowdsourcing: É um processo que é utilizado para obter informações de um grande número de pessoas. Por exemplo, uma empresa pode utilizar o crowdsourcing para obter informações sobre um produto.
