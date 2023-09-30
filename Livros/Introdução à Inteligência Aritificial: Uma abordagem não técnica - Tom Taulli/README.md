@@ -1015,6 +1015,40 @@ Essa tecnólogia foi revolucionária, pois é possível gerar dados realistas, c
 
 Observe, entretanto, que essa tecnólogia pode ser utilizada para gerar dados falsos, como por exemplo um vídeo de um político dizendo coisas que ele nunca disse.
 
+#### Aplicações de Deep Learning:
+
+-   Detectando o Mal de Alzheimer
+
+-   Energia
+
+-   Terremotos
+
+-   Radiologia
+
+#### Quando utilizar Deep Learning?
+
+Deep learning ainda é uma tecnologia com aplicações restritas, como o caso de conjunto de dados de texto, imagens, etc.
+
+Há a necessidade de grandes quantidades de dados, e de grande poder computacional.
+
+É melhor quando os resultados podem ser quantificados e verificados.
+
+As vezes é dificil encontrar as variaveis certas e com poder preditivo ideal. Eles são incapazes de lidar com certos eventos, principalmente aqueles que tem caracteristicas de caos. Exemplo uma partida de futebol.
+
+#### Desvantagens do Deep Learning:
+
+-   Caixa preta: É dificil entender como o algoritmo funciona.
+
+-   Dados: É necessário grandes quantidades de dados. O Deep learning não é capaz de aprender por abstação, como por exemplo o ser humano.
+
+-   Pensamento conceitual: Deep learning não consegue entender conceitos como justiça, moral, etc.
+
+-   Senso comum: Deep learning não consegue entender ironia, sarcasmo, etc.
+
+-   Conhecimento prévio: Deep learning não consegue utilizar conhecimento prévio, como por exemplo o conhecimento de um médico.
+
+
+
 ## Terminologia:
 
 - Geocerca (geofencing): É uma área virtual que pode ser definida por um conjunto de coordenadas geográficas. É utilizada para delimitar uma área de interesse, e quando um dispositivo entra ou sai dessa área, um alerta é disparado.
