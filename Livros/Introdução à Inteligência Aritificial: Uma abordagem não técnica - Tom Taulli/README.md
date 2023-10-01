@@ -1048,6 +1048,99 @@ As vezes é dificil encontrar as variaveis certas e com poder preditivo ideal. E
 -   Conhecimento prévio: Deep learning não consegue utilizar conhecimento prévio, como por exemplo o conhecimento de um médico.
 
 
+### Capítulo 5 Automação Robótica de Processos (RPA)
+
+Abordagem que já existe desde os anos 2000, tratava-se da automatização de tarefas repetitivas.
+
+Uma das principais razões de ter tido um investimento foi devido a Uipath, que é uma empresa que desenvolveu uma plataforma de RPA. O criador acreditou, mesmo que com o baixo investimento, que a tecnologia poderia ser revolucionária, principalmente devido a ascensão da inteligência artificial e da tecnologia de nuvem.
+
+A RPA foi mais uma área que foi sobrecarregada pela IA.
+
+A implementação no geral é simples, e não requer conhecimentos técnicoa nem custos elevados.
+
+A RPA permite a utilização de sistemas visuais low-code de drag-and-drop, que são utilizados para criar fluxos de trabalho automatizados.
+
+Exemplos:
+
+-   Processamento de pedidos
+
+-   Gerenciamento de estoque
+
+-   Gerenciamento de faturas
+
+-   Gerenciamento de folha de pagamento
+
+-   Gerenciamento de contas a pagar
+
+O bot replica o fluxo de trabalho de um ser humano, e é capaz de realizar tarefas repetitivas, como por exemplo copiar e colar dados, preencher formulários, etc.
+
+RPA é um funcionario digital.
+
+Categoria de RPA:
+
+-   RPA autonomo: bot é executado em segundo plano e so para quando encontra algo que não entende.
+
+-   RDA (Robotic Desktop Automation): bot é executado na area de trabalho do usuario. Serve para auxiliar o usuario.
+
+#### Prós e contras da RPA:
+
+Prós:
+
+-   Erros minimizados
+
+-   Eficiência
+
+-   Tempo: um bot funciona 24 horas por dia, 7 dias por semana.
+
+-   Satuisfação do cliente
+
+-   Escalabilidade
+
+-   Conformidade
+
+Desvantagens:
+
+-   Processos ineficientes que não sofrem melhorias geram mais ineficiência.
+
+-   A RPA não é capaz de aprender, e não é capaz de se adaptar a mudanças.
+
+-   Fragilidade
+
+-   Aplicativos virtuais: A RPA não é capaz de interagir com aplicativos virtuais, como por exemplo o Zoom.
+
+-   Especialização
+
+#### O que se pode esperar da RPA?
+
+Um relatorio de pesquisa indicou que 50% das empresas que implementaram a RPA, tiveram um retorno sobre o investimento em menos de um ano.
+
+A RPA é uma tecnologia que está em ascensão, e que está sendo utilizada para automatizar processos repetitivos.
+
+Contudo ainda está na fase inicial, e ainda não é capaz de substituir os seres humanos.
+
+#### Como implementar a RPA?
+
+-   Determine as funções certas a automatizar: A Tecnologia comporta-se melhor quando é utilizada para automatizar tarefas repetitivas, estruturados e rotineiros.
+
+-  Avalie os processos: É necessário avaliar os processos, e determinar quais processos são adequados para a RPA.
+
+-  Selecione o fornecedor de RPA e implante o software: Selecione o objetivo e com ele em mente selecione o fornecedor de RPA.
+
+-  Monte uma equipe para gerenciar a plataforma de RPA: É necessário montar uma equipe para gerenciar a plataforma de RPA, e que seja capaz de gerenciar os bots.
+
+#### RPA & IA:
+
+Como a RPA lida com dados, é possível utilizar a IA para melhorar a RPA.
+
+Atualmente vem sendo estudado tecnicas de utilização de machine learning e deep learning para melhorar a RPA.
+
+Aplicações em, por exemplo:
+
+-   Chatbots com atendimento personalizado
+
+-   Identificação de quando mandar um email
+
+
 
 ## Terminologia:
 
