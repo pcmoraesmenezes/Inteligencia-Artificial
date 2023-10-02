@@ -1141,6 +1141,76 @@ Aplicações em, por exemplo:
 -   Identificação de quando mandar um email
 
 
+### Capítulo 6 - Processamento de Linguagem Natural (NLP)
+
+Parte fundamental de como os computadores entendem e manipulam a lingugem.
+
+É um subconjunto da IA.
+
+#### Desafios do NLP:
+
+-   Ambiguidade: Uma palavra pode ter mais de um significado, e pode ser utilizada em mais de um contexto. Um sistema de NLP deve ser capaz de entender o contexto.
+
+-   Erros gramáticais: Um sistema de NLP não consegue fazer inferências, e não consegue entender erros gramáticais.
+
+-   Sarcasmo: Um sistema de NLP não consegue entender sarcasmo.
+
+-   As palavras podem ser vagas.
+
+-   As palavras podem ser polissêmicas.
+
+#### Entendendo como a IA traduz a linguagem:
+
+NLP foi alvo inicial do investimento em IA.
+
+Entretanto devido ao alto custo computacional, e a falta de dados, a IA não conseguiu avançar muito nessa área.
+
+Com o tempo, uma estrutura foi desenvolvida, tendo em vista que o NLP lida com dados não estruturados.
+
+As etaapas são:
+
+##### Limpeza e pré processamento de dados:
+
+Três coisas são feitas:
+
+- Tokenização: É o processo de dividir uma string em uma lista de tokens. Um token pode ser uma palavra, um caractere, etc. Por exemplo, a string "Olá, tudo bem?" pode ser dividida em ["Olá", ",", "tudo", "bem", "?"].
+
+Após a tokenização é feita a normalização de texto, que é o processo de converter o texto em um formato padrão. Por exemplo, converter todas as letras para minúsculas. Entretanto esse processo pode ser mais complexo, como por exemplo converter "não" para "nao", ou "us" para "US", estamos usando Estados Unidos ou estamos usando "nos"
+
+- Estemização: É o processo de remover sufixos e prefixos de uma palavra, e de converter a palavra para sua forma raiz. Por exemplo, a palavra "correndo" pode ser convertida para "corre".
+
+- Lematização: É o processo de converter uma palavra para sua forma base. Por exemplo, a palavra "correndo" pode ser convertida para "correr".
+
+##### Compreensão e Geração de Linguagem:
+
+O texto deve estar em um formato que as maquinas conseguem processar.
+
+Existem algumas abordagens:
+
+-   Marcação de Partes do Discurso (POS): É o processo de identificar e marcar palavras em uma frase, e que é utilizado para identificar a função gramatical de cada palavra. Por exemplo, a palavra "correndo" pode ser marcada como um verbo.
+
+-   Chunking: É o processo de identificar e marcar frases em uma frase, e que é utilizado para identificar frases. Por exemplo, a frase "O gato comeu o rato" pode ser marcada como "O gato" e "o rato".
+
+As redes neurais convolucionais são usadas para encontrar um grupo de palavras e transforma-las em um mapa de contexto.
+
+Entretanto as CNNs, tem dificuldade em texto que apresenta dependencia de longo prazo, como por exemplo "O gato comeu o rato, que comeu o queijo, que estava na casa, que Jack construiu".
+
+#### Reconhecimento de voz:
+
+Criado em 1952, a Bell Labs criou o primeiro sistema de reconhecimento de voz.
+
+O sistema destacou um dos principais desafios com o reconhecimento de voz: Frases complexas e rapidas
+
+Na decada de 1980, houve um progresso significativo com o uso do modelo oculto de Markov (HMM). Era utilizada tecnicas avançadas de estatistica, na qual era analisado letra por letra, ou seja sons individuais. Entretanto o modelo não era capaz de reconhecer frases complexas.
+
+Os desenvolvedores de software da decada de 1990, criaram sistemas comerciais, como o Dragon Dictate, que era capaz de reconhecer frases complexas.
+
+Algumas profissões sofreram beneficios, como a medicina, no processo de transcrição do diagnostico.
+
+Com o surgimento do machine Learning e do deep learning esse processo ficou cada vez mais preciso e otimizado. Alguns algoritmos até mesmo fazem uso de memoria de curto e longo prazo.
+
+
+
 
 ## Terminologia:
 
@@ -1171,3 +1241,5 @@ Aplicações em, por exemplo:
 - Analise preditiva: uso de dados para previsões. Dependem de algumas abordagens da IA como machine learning e deep learning.
 
 - Crowdsourcing: É um processo que é utilizado para obter informações de um grande número de pessoas. Por exemplo, uma empresa pode utilizar o crowdsourcing para obter informações sobre um produto.
+
+- Lei de Godwin: Quanto mais uma discussão online continua, maiores são as chances de alguém citar Hitler ou os nazistas.
