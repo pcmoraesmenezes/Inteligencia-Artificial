@@ -1209,6 +1209,55 @@ Algumas profissões sofreram beneficios, como a medicina, no processo de transcr
 
 Com o surgimento do machine Learning e do deep learning esse processo ficou cada vez mais preciso e otimizado. Alguns algoritmos até mesmo fazem uso de memoria de curto e longo prazo.
 
+Aplicações:
+
+- Melhoria nas vendas
+
+- Combate à depressão
+
+- OpenAI e GPT-3
+
+- Ánalise de sentimento
+
+#### Assistente virtual:
+
+Em 2003, no contexto da guerra do Oriente Médio, os EUA sentiram a necessidade de investir em tecnologia de reconhecimento de voz, então o Departamento de Defesa dos EUA investiu 150 milhões de dólares em um projeto de reconhecimento de voz. Esse projeto criou uma assistente virtual chamada Siri. A Siri foi comprada pela Apple em 2010, e foi re-lançada em 2011.
+
+A Siri foi a primeira assistente virtual, e foi a primeira assistente virtual a ser lançada em um smartphone.
+
+As assistentes virtuais possuem uma das grandes dificuldade das NLP que é a ambiguidade, e que é a dificuldade de entender o contexto. A inconsistencia da linguagem humana também é um problema, pois as pessoas não falam da mesma forma.
+
+As assistentes virtuais são capazes de entender comandos de voz, e são capazes de responder comandos de voz.
+
+#### Chatbots:
+
+Assistentes virtuais e Chatbots são tecnologias diferentes.
+
+Ambos usam o NLP para interpretar a linguagem e executar tarefas.
+
+Entretanto, em grande parte, os chatbots são utilizados principalmente por empresas para atendimento ao cliente. Os assistentes virtuais por outro lado, são usados para todo o público em geral para executar tarefas diarias.
+
+Alguns chatbots:
+
+- Ushur: Integrado a uma companhia de seguro.
+
+- Mya: Utilizado para recrutamento.
+
+- Jane.ai: Utilizado para gerenciamento de conhecimento.
+
+##### Algumas considerações:
+
+- Não finja que o chatbot é humano. Inice a conversa com uma mensagem que deixe claro que o chatbot é um bot, evitando assim frustrações.
+
+- O objetivo do chatbot não é substituir os humanos, mas sim auxilia-los, portanto é importante que o chatbot seja capaz de transferir a conversa para um humano.
+
+- Processos repetitivos e estruturados são os melhores para serem automatizados.
+
+- Personalização é importante, pois os clientes querem se sentir especiais.
+
+- Analise os dados, e utilize os dados para melhorar o chatbot.
+
+- Não se esqueça de treinar o chatbot.
 
 
 
