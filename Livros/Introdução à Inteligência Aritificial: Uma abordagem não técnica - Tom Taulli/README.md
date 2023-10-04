@@ -1260,6 +1260,71 @@ Alguns chatbots:
 - Não se esqueça de treinar o chatbot.
 
 
+### Capítulo 7 - Robôs físicos
+
+#### O que é um robô?
+
+A origem do nome remonta a 1921, quando o escritor tcheco Karel Capek escreveu uma peça chamada R.U.R (Rossum's Universal Robots), onde a palavra robô foi utilizada pela primeira vez.
+
+Robo vem do tcheco robota, que significa trabalho forçado.
+
+Algumas caracteristicas de um robô:
+
+- Fisico: Um robô é um dispositivo fisico, e que é capaz de interagir com o ambiente. Também necessita de energia para funcionar.
+
+- Ações: Um robô deve ser capaz de realizar certas ações, como por exemplo se mover, pegar objetos, etc.
+
+- Percerber o ambiente: Um robô deve ser capaz de perceber o ambiente, e deve ser capaz de tomar decisões com base nas informações que ele recebe.
+
+- Inteligencia: Um robô deve ser capaz de aprender com o ambiente, e deve ser capaz de se adaptar a mudanças.
+
+Sensores: o sensor tipico é uma câmera ou um LIDAR(Light Detection and Ranging), que é um sensor que é utilizado para medir distâncias. Os sensores podem ir além da capacidade humana, como por exemplo o infravermelho.
+
+Atuadores: São dispositivos que são utilizados para controlar o movimento do robô, como por exemplo motores, etc.
+
+Algoritmo A* é um algoritmo que é utilizado para encontrar o caminho mais curto entre dois pontos.
+
+#### Paradoxo de Moravec:
+
+O paradoxo de Moravec é um paradoxo que foi proposto pelos pesquisadores Hans Moravec, Rodney Brooks e Marvin Minsky, e que afirma que é mais fácil ensinar um computador a jogar xadrez do que ensinar um computador a reconhecer objetos.
+
+O paradoxo de Moravec é baseado na ideia de que as habilidades que são consideradas difíceis para os seres humanos são consideradas fáceis para os computadores, e que as habilidades que são consideradas fáceis para os seres humanos são consideradas difíceis para os computadores.
+
+Uma tendência é a utilização de cobos: humanos e robôs trabalhando juntos.
+
+Algumas aplicações no mundo real:
+
+- Segurança
+
+- Aspiradoes
+
+- Farmacia online
+
+- Robos cientistas
+
+Robos de consumo, ou seja robos que poderiam ser utilizados em casa, ainda não são uma realidade, pois ainda são muito caros.
+
+#### Três leis da robótica:
+
+As três leis da robótica são três leis que foram propostas pelo escritor de ficção científica Isaac Asimov, e que são utilizadas para regular a robótica.
+
+As três leis da robótica são:
+
+- Primeira lei: Um robô não pode ferir um ser humano ou, por inação, permitir que um ser humano sofra algum mal.
+
+- Segunda lei: Um robô deve obedecer as ordens que lhe são dadas por seres humanos, exceto nos casos em que tais ordens entrem em conflito com a Primeira Lei.
+
+- Terceira lei: Um robô deve proteger sua própria existência, desde que tal proteção não entre em conflito com a Primeira ou Segunda Leis.
+
+Também havia a lei zero, que foi proposta posteriormente, e que dizia que um robô não pode ferir a humanidade ou, por inação, permitir que a humanidade sofra algum mal. Essa era a lei mais importante, e que estava acima das outras leis.
+
+#### Cibersegurança:
+
+Está se tornando cada vez mais comum robos conectados a nuvem, e que são controlados por humanos.
+
+Esses robos podem ser alvos de ataques cibernéticos, e podem ser utilizados para espionagem, sabotagem, etc.
+
+
 
 ## Terminologia:
 
