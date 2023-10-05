@@ -1324,6 +1324,58 @@ Está se tornando cada vez mais comum robos conectados a nuvem, e que são contr
 
 Esses robos podem ser alvos de ataques cibernéticos, e podem ser utilizados para espionagem, sabotagem, etc.
 
+### Capítulo 8 - Implementação da IA
+
+É necessário um planejamento para implementar a IA.
+
+Além disso é crucial que os dados sejam limpos e estruturados.
+
+#### Planejamento:
+
+-   Defina o objetivo: É necessário definir o objetivo, e com ele em mente, definir quais dados serão utilizados, e quais algoritmos serão utilizados.
+
+-   Identifique o problema: É necessário identificar o problema, e determinar se a IA é a melhor solução.
+
+-   Selecione ferramentas: É necessário selecionar as ferramentas que serão utilizadas, e que são necessárias para implementar a IA.
+
+-   Monitore o progresso: É necessário monitorar o progresso, e determinar se a IA está funcionando corretamente.
+
+#### Identificando o problema:
+
+Com IA é possível tomar decisões orientada a dados, ou seja tem-se uma maior precisão.
+
+Além disso, conforme visto no capítulo 5, é possível automatizar tarefas repetitivas.
+
+#### Selecionando ferramentas:
+
+Há muitas ferramentas que podem ser utilizadas para implementar a IA, e que podem ser utilizadas para implementar a IA.
+
+Algumas ferramentas:
+
+-   Python: É uma linguagem de programação que é utilizada para implementar a IA. É uma linguagem de programação de alto nível, e que é utilizada para implementar a IA.
+
+    -   Scikit-learn: É uma biblioteca de aprendizado de máquina que é utilizada para implementar a IA.
+
+    -   NumPy: É uma biblioteca de computação numérica que é utilizada para implementar a IA.
+
+    -   Matplotlib: É uma biblioteca de visualização de dados que é utilizada para implementar a IA.
+
+    -   SimpleAI: É uma biblioteca de IA que é utilizada para implementar a IA.
+
+Frameworks:
+
+-   TensorFlow: É um framework de IA que é utilizado para implementar a IA.
+
+-   PyTorch: É um framework de IA que é utilizado para implementar a IA.
+
+-   Keras: É um framework de IA que é utilizado para implementar a IA.
+
+
+#### Monitore o progresso:
+
+É necessário monitorar o progresso, e determinar se a IA está funcionando corretamente.
+
+
 
 
 ## Terminologia:
