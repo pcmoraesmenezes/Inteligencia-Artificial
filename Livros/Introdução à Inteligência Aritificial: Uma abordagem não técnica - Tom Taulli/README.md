@@ -1376,8 +1376,85 @@ Frameworks:
 É necessário monitorar o progresso, e determinar se a IA está funcionando corretamente.
 
 
+### Capítulo 9 - Futuro da IA
 
+Em 2017, o fisico Stephen Hawking disse que a IA poderia ser o melhor ou o pior acontecimento da humanidade.
 
+Em 2018, o CEO da Tesla Elon Musk disse que a IA poderia ser mais perigosa que a Coreia do Norte.
+
+Apesar disso existem aqueles que são confiantes, e que acreditam que a IA será benéfica para a humanidade.
+
+#### Carros autônomos:
+
+Os carros autônomos são carros que são capazes de dirigir sem a intervenção humana.
+
+Não é uma tecnologia nova, e já vem sendo estudada desde a década de 1960.
+
+Alavancada em 2004 pela DARPA, que é uma agência do Departamento de Defesa dos EUA, que lançou o Grand Challenge, que era uma competição que tinha como objetivo criar um carro autônomo.
+
+A DARPA viabilizou a criação dos principais componentes dos carros autônomos, como:
+
+-   Sensores: São utilizados para perceber o ambiente, e são utilizados para identificar obstáculos, como por exemplo outros carros, pedestres, etc.
+
+-   Câmeras de vídeo: Podem detectar placas de transito.
+
+-   LIDAR: É um sensor que é utilizado para medir distâncias, e que é utilizado para criar um mapa 3D do ambiente.
+
+-   Computador: É utilizado para processar os dados, e é utilizado para tomar decisões.
+
+#### EUA X China:
+
+Dentro de alguns anos, a economia da China será maior que a economia dos EUA.
+
+A China planeja até 2030 investir 150 bilhões de dólares em IA.
+
+Um estudo do instituto Allen, que é um instituto de pesquisa, mostrou que a China está se tornando um líder em IA.
+
+A China possuí 1,3 bilhões de habitantes, e é o país mais populoso do mundo. Há muitos dados, e há muitos dados que podem ser utilizados para treinar algoritmos de IA.
+
+#### Desemprego causado pelas mudanças tecnológicas:
+
+A IA pode significar mais do que substituir empregos que requerem habilidades repetitivas, e pode significar a substituição de empregos que requerem habilidades cognitivas.
+
+Empregos com salarios mais elevados também são ameaçados.
+
+A IA pode significar a substituição de empregos que requerem habilidades cognitivas, como por exemplo advogados, médicos, etc.
+
+A IA é capaz de aprender com os dados, e é capaz de se adaptar a mudanças. Além disso é capaz de analisar grandes quantidades de dados, e é capaz de analisar dados de diversas perspectivas.
+
+#### Militarização da IA:
+
+A IA pode ser utilizada para fins militares.
+
+Os EUA, por exemplo estão desenvolvendo um robo assistente para os aviões de combate.
+
+A IA, não sangra, seria possível travar batalhas sem derramar sangue. Mas a que custo?
+
+#### Desenvolvimento de novos medicamentos:
+
+Desenvolvimento tradicional de medicamentos é um processo demorado e caro. Além de muitas vezes ser baseado em tentativa e erro.
+
+A IA pode ser utilizada para acelerar o processo de desenvolvimento de medicamentos.
+
+Sabe-se que o deep learning consegue identificar padrões complexos, e que consegue analisar grandes quantidades de dados. Portanto é possível utilizar IA para acelerar o desenvolvimento de medicamentos.
+
+#### Governo:
+
+Com o desenvolvimento de assistentes virtuais, como a Alexa, fica o questionamento se o que é dito é realmente privado.
+
+A Amazon já se pronunciou e disse que possuí um sistema com regras rigorosas. Além disso, a Amazon disse que os dados são criptografados, e que os dados são armazenados em um servidor seguro. Entretanto, os revisores da IA as vezes ouviam clipes que envolviam atividades criminosas, como por exemplo um assalto. A politica da Amazon é de não interferir.
+
+#### AGI(General Artificial Intelligence):
+
+Atualmente a IA é capaz de realizar tarefas especificas, como por exemplo reconhecimento de imagem, etc. Logo a IA está na fase fraca.
+
+A IA forte é capaz de realizar qualquer tarefa que um ser humano pode realizar. Chegar a esse nivel é um desafio, e é um desafio que ainda não foi superado.
+
+Isso também é chamado de AGI, ou seja a capacidade da máquina de rivalizar com o ser humano.
+
+Singularidade é o ponto em que a IA se torna mais inteligente que o ser humano. Teria um mundo hibrido, onde humanos e maquinas trabalhariam juntos.
+
+## FIM DO LIVRO
 ## Terminologia:
 
 - Geocerca (geofencing): É uma área virtual que pode ser definida por um conjunto de coordenadas geográficas. É utilizada para delimitar uma área de interesse, e quando um dispositivo entra ou sai dessa área, um alerta é disparado.
