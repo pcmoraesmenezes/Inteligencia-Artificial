@@ -575,7 +575,7 @@ Aplicações:
 
 -   Ressonância magnética
 
-![ALgoritmos](/Livros/Introdução%20à%20Inteligência%20Aritificial:%20Uma%20abordagem%20não%20técnica%20-%20Tom%20Taulli/images/algoritmoMachineLearning.jpeg)
+![Algoritmos](/Livros/Introdução%20à%20Inteligência%20Aritificial:%20Uma%20abordagem%20não%20técnica%20-%20Tom%20Taulli/images/algoritmoMachineLearning.jpeg)
 
 Todos os créditos da imagem para o autor do livro, o único intuito é de estudo e uma melhor compreensão do conteúdo.
 
