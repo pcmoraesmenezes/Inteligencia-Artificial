@@ -87,3 +87,11 @@ A imputação de dados pode ser feita de várias maneiras. Uma maneira simples �
 
 Para o exemplo é feito de duas maneiras, utilizando a classe `SimpleImputer` do `sklearn` e utilizando a mediana dos dados.
 
+### Normalize os dados
+
+A normalização de dados é o processo de transformar os dados em uma escala comum.
+
+Normalizar os dados ajudará muitos algoritmos de machine learning a convergir mais rapidamente.
+
+Padronizar significa traduzir os dados de modo que eles tenham uma média de 0 e um desvio padrão de 1.
+
