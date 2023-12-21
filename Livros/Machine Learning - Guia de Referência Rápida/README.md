@@ -95,3 +95,43 @@ Normalizar os dados ajudará muitos algoritmos de machine learning a convergir m
 
 Padronizar significa traduzir os dados de modo que eles tenham uma média de 0 e um desvio padrão de 1.
 
+### Pontuação AUC(Area Under the Curve) e ROC(Receiver Operating Characteristic)
+
+#### Curva ROC
+
+A curva ROC mostra o quão bom o modelo criado pode distinguir entre duas coisas. A comparaçõa pode ser realizada entre 0's e 1's ou entre positivo e negativo. Os melhores modelos distinguem com maior precisão esse tipo de comparação.
+
+A curva ROC tem dois parâmetros:
+
+- Taxa de verdadeiro positivo (TPR), ou seja (TP / (TP + FN)), onde TP é verdadeiro positivo e FN é falso negativo.
+
+- Taxa de falso positivo (TNR), ou seja (FP/ (FP+TN)) onde FP é falso positivo e TN é verdadeiro negativo.
+
+- A curva ROC é um gráfico de TPR vs FPR.
+
+#### Curva AUC
+
+A curva auc é uma derivada da curva ROC.
+
+O valor do AUC varia de 0,0 até 1,0
+
+Quanto maior o AUC melhor!
+
+Exemplo: 
+
+![Curva ROC E AUC](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/curva%20roc%20e%20auc.png)
+
+
+Um modelo com previsão 100% errada tem um AUC de 0.0, enquanto um modelo que tem previsão 100% correta em um AUC de 1.0.
+
+Cada modelo possuí um AUC!
+
+### Validação cruzada (k-fold cross-validation)
+
+A validação cruzada é uma técnica para avaliar modelos de machine learning, treinando vários modelos em subconjuntos dos dados disponíveis e avaliando-os nos subconjuntos retidos.
+
+Na validação cruzada k-fold, os dados são divididos em k subconjuntos. Um modelo é treinado usando k-1 subconjuntos e o outro subconjunto é usado para testar o modelo. Isso é repetido para cada subconjunto e, em seguida, a média dos resultados é calculada.
+
+Um modelo com uma pontuação média mais alta é melhor do que um modelo com uma pontuação média mais baixa.
+
+Entretanto, um modelo com uma pontuação média um pouco menor, mas com um désvio padrão menor, pode ser melhor do que um modelo com uma pontuação média mais alta, mas com um désvio padrão maior.
