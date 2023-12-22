@@ -135,3 +135,43 @@ Na validação cruzada k-fold, os dados são divididos em k subconjuntos. Um mod
 Um modelo com uma pontuação média mais alta é melhor do que um modelo com uma pontuação média mais baixa.
 
 Entretanto, um modelo com uma pontuação média um pouco menor, mas com um désvio padrão menor, pode ser melhor do que um modelo com uma pontuação média mais alta, mas com um désvio padrão maior.
+
+### Stack de modelos
+
+Um classificador de stack utiliza a saída de vários modelos como entrada para um modelo final. O modelo final é chamado de meta-modelo.
+
+A stack de modelos pode ser utilizada para melhorar a precisão de um modelo.
+
+Nem sempre a stack de modelos melhora a precisão do modelo.
+
+### Hiperparâmetros
+
+Os hiperparâmetros são parâmetros que não são aprendidos pelo modelo. Eles são definidos antes do treinamento do modelo.
+
+```python
+
+random_forest2 = ensemble.RandomForestClassifier()
+params = {
+    "max_features": [0.4, "auto"],
+    "n_estimators": [15,200],
+    "min_samples_leaf": [1, 0.1],
+    "random_state": [42],
+}
+
+```
+
+Pode-se utilizar o método `GridSearchCV` para encontrar os melhores hiperparâmetros.
+
+### Matriz de confusão
+
+A matriz de confusão é uma tabela que mostra as frequências de classificação para cada classe de um modelo.
+
+Através dela é possível verificar a quantidade de falsos positivos e falsos negativos.
+
+### Curva de aprendizado
+
+A curva de aprendizado é uma ferramenta para ver como o modelo está aprendendo. A curva de aprendizado mostra a pontuação de treinamento e a pontuação de validação para diferentes tamanhos de conjunto de treinamento.
+
+É possível verificar se o modelo está sofrendo de overfitting ou underfitting.
+
+Também é possível verificar se os dados de treinamento são suficientes para o modelo.
