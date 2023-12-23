@@ -175,3 +175,35 @@ A curva de aprendizado é uma ferramenta para ver como o modelo está aprendendo
 É possível verificar se o modelo está sofrendo de overfitting ou underfitting.
 
 Também é possível verificar se os dados de treinamento são suficientes para o modelo.
+
+## Capítulo 4 - Dados Ausentes
+
+O tratamento de dados ausentes deve ser feito, pois a maioria dos algoritmos de machine learning não aceitam dados ausentes, salve algumas exceções como os algoritmos de XGBoost.
+
+Além disso, não existe um melhor mecanismo para se lidar com dados ausentes, pois cada conjunto de dados é diferente. O principal seria identificar porque os dados estão ausentes, por exemplo, se os dados estão ausentes porque o usuário não preencheu o formulário, então é possível preencher os dados ausentes com a média dos dados existentes, entretanto se o dado está ausente porque o usuário não preencheu o formulário, mas o dado é importante, então é melhor remover a linha.
+
+Existem diversas maneiras de se lidar com dados ausentes, como por exemplo:
+
+- Remover a linha
+
+- Remover a coluna
+
+- Fazer a imputação de dados (substituir os dados ausentes por um valor substituto)
+
+Vamos dar uma olhada na prática, acesse aqui o [código](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo4.ipynb)
+
+A prática contém diversos gráficos para exibição de dados ausentes que pode ser extremamente útil para a análise exploratória de dados.
+
+Além disso nela contém informações sobre como lidar com dados ausentes em dados categóricos e numéricos.
+
+### Imputação de Dados
+
+A imputação de dados é o processo de substituir valores ausentes por valores substitutos. Utilizamos depois de termos feito o modelo de predição.
+
+A imputação de dados requer que os dados de treinamento e teste sejam imputados separadamente, para evitar leaks de dados.
+
+É necessário construir um pipeline para imputar os dados de treinamento e teste.
+
+Mais informações disponíveis na prática [código](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo4.ipynb)
+
+
