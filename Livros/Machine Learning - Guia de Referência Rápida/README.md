@@ -207,3 +207,31 @@ A imputação de dados requer que os dados de treinamento e teste sejam imputado
 Mais informações disponíveis na prática [código](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo4.ipynb)
 
 
+
+## Capítulo 5 - Fazendo uma Limpeza nos Dados
+
+A limpeza de dados é o processo de transformar dados brutos em dados limpos. Os dados brutos podem ser dados que foram coletados de uma fonte externa, como um banco de dados ou um arquivo CSV. 
+
+A limpeza de dados é um processo iterativo. É necessário verificar os dados, fazer alterações e verificar novamente os dados.
+
+A limpeza de dados pode ser feita de várias maneiras, como por exemplo:
+
+- Remover dados duplicados
+
+- Remover dados inconsistentes (por exemplo, um valor de idade de -1)
+
+- Remover dados irrelevantes
+
+- Remover dados que vazam (por exemplo, dados que não estariam disponíveis no momento da previsão)
+
+- Remover dados que não são necessários (por exemplo, dados que não são necessários para o modelo)
+
+- Remover outliers
+
+- Lidar com dados ausentes
+
+No geral a limpeza de dados é extremamente necessária, principalmente ao ler o capítulo 4, foi visto que a maioria dos algoritmos de machine learning não aceitam dados ausentes, então é necessário fazer a limpeza dos dados.
+
+Além disso a limpeza de dados está além do que simplesmente lidar com dados ausentes, pode ser feita uma melhora na forma como os dados estão sendo exibidos para assim, transmitir uma clareza maior sobre os dados. Como por exemplo, remover espaços em branco, remover caracteres especiais.
+
+Na prática desta seção estará as informações sobre como fazer a limpeza de dados, acesse [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo5.ipynb)
