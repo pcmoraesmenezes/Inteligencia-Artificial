@@ -240,3 +240,5 @@ Na prática desta seção estará as informações sobre como fazer a limpeza de
 
 Antes de criar o modelo de machine learning, é necessário explorar os dados. A exploração de dados é o processo de descobrir informações sobre os dados. Uma excelente forma de explorar os dados é através da análise exploratória de dados. Essa forma garante uma noção maior sobre os dados e descobrir insights que podem ser úteis para o modelo.
 
+Esse capítulo foi extremamente prático, pois foi utilizado de ferramentas visuais para a exploração de dados, como por exemplo, gráficos de barras, gráficos de pizza, gráficos de dispersão, gráficos de caixa, histogramas, etc.
+
