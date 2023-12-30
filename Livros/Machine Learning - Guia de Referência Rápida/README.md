@@ -26,7 +26,14 @@
     - [Código Fonte](#código-fonte-2)
 - [Capítulo 6 - Explorando os Dados](#capítulo-6---explorando-os-dados)
     - [Código Fonte](#código-fonte-3)
-
+- [Capítulo 7 - Pré Processamento de Dados](#capítulo-7---pré-processamento-de-dados)
+    - [Padronização de Dados](#padronização-de-dados)
+    - [Escale para um intervalo](#escale-para-um-intervalo)
+        - [Explicação do calculo de escalonamento de dados.](#explicação-do-calculo-de-escalonamento-de-dados)
+        - [Explicação por trás do calculo de escalonamento de dados.](#explicação-por-trás-do-calculo-de-escalonamento-de-dados)
+    - [Variáveis Dummy](#variáveis-dummy)
+    - [Codificação de Rótulos](#codificação-de-rótulos)
+    - [Código Fonte](#código-fonte-4)
 
 ## 1. Introdução
 
@@ -331,3 +338,7 @@ Esse procedimento é chamado de one-hot encoding.
 É uma técnica alternativa para as variaveis dummy. Nesse caso, cada categoria é atribuída a um numero. É extremante útil para variáveis com muitas categorias. Esse método impõe uma ordem nas categorias, o que pode não ser desejável. Alguns algoritmos como os em árvore são capazes de lidar com essa codificação.
 
 O codificador de rotulos consegue lidar com uma coluna por vez
+
+### Código Fonte
+
+Para a visualização da prática acesse [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo7.ipynb)
