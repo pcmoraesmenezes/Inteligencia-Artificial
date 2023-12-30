@@ -1,5 +1,29 @@
 # Machine Learning - Guia de Referência Rápida - Matt Harrison
 
+## Tabela de Conteúdos
+
+- [1. Introdução](#1-introdução)
+- [2. Visão geral do Machine Learning](#2-visão-geral-do-machine-learning)
+- [3. Descrição da classificação: conjunto de dados do Titanic](#3-descrição-da-classificação-conjunto-de-dados-do-titanic)
+  - [Termos para os dados](#termos-para-os-dados)
+  - [Crie os atributos](#crie-os-atributos)
+  - [Separe as amostras de treinamento e teste](#separe-as-amostras-de-treinamento-e-teste)
+  - [Faça a imputação de dados](#faça-a-imputação-de-dados)
+  - [Normalize os dados](#normalize-os-dados)
+  - [Pontuação AUC(Area Under the Curve) e ROC(Receiver Operating Characteristic)](#pontuação-aucarea-under-the-curve-e-rocreceiver-operating-characteristic)
+    - [Curva ROC](#curva-roc)
+    - [Curva AUC](#curva-auc)
+  - [Validação cruzada (k-fold cross-validation)](#validação-cruzada-k-fold-cross-validation)
+  - [Stack de modelos](#stack-de-modelos)
+  - [Hiperparâmetros](#hiperparâmetros)
+  - [Matriz de confusão](#matriz-de-confusão)
+  - [Curva de aprendizado](#curva-de-aprendizado)
+- [Capítulo 4 - Dados Ausentes](#capítulo-4---dados-ausentes)
+    - [Imputação de Dados](#imputação-de-dados)
+- [Capítulo 5 - Fazendo uma Limpeza nos Dados](#capítulo-5---fazendo-uma-limpeza-nos-dados)
+- [Capítulo 6 - Explorando os Dados](#capítulo-6---explorando-os-dados)
+
+
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
