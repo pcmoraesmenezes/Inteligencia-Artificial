@@ -18,10 +18,14 @@
   - [Hiperparâmetros](#hiperparâmetros)
   - [Matriz de confusão](#matriz-de-confusão)
   - [Curva de aprendizado](#curva-de-aprendizado)
+  - [Código Fonte](#código-fonte)
 - [Capítulo 4 - Dados Ausentes](#capítulo-4---dados-ausentes)
     - [Imputação de Dados](#imputação-de-dados)
+    - [Código Fonte](#código-fonte-1)
 - [Capítulo 5 - Fazendo uma Limpeza nos Dados](#capítulo-5---fazendo-uma-limpeza-nos-dados)
+    - [Código Fonte](#código-fonte-2)
 - [Capítulo 6 - Explorando os Dados](#capítulo-6---explorando-os-dados)
+    - [Código Fonte](#código-fonte-3)
 
 
 ## 1. Introdução
@@ -200,6 +204,10 @@ A curva de aprendizado é uma ferramenta para ver como o modelo está aprendendo
 
 Também é possível verificar se os dados de treinamento são suficientes para o modelo.
 
+### Código Fonte
+
+O código fonte pode ser encontrado [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo3.ipynb)
+
 ## Capítulo 4 - Dados Ausentes
 
 O tratamento de dados ausentes deve ser feito, pois a maioria dos algoritmos de machine learning não aceitam dados ausentes, salve algumas exceções como os algoritmos de XGBoost.
@@ -228,6 +236,8 @@ A imputação de dados requer que os dados de treinamento e teste sejam imputado
 
 É necessário construir um pipeline para imputar os dados de treinamento e teste.
 
+
+### Código Fonte
 Mais informações disponíveis na prática [código](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo4.ipynb)
 
 
@@ -258,6 +268,8 @@ No geral a limpeza de dados é extremamente necessária, principalmente ao ler o
 
 Além disso a limpeza de dados está além do que simplesmente lidar com dados ausentes, pode ser feita uma melhora na forma como os dados estão sendo exibidos para assim, transmitir uma clareza maior sobre os dados. Como por exemplo, remover espaços em branco, remover caracteres especiais.
 
+### Código Fonte
+
 Na prática desta seção estará as informações sobre como fazer a limpeza de dados, acesse [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo5.ipynb)
 
 ## Capítulo 6 - Explorando os Dados
@@ -266,4 +278,5 @@ Antes de criar o modelo de machine learning, é necessário explorar os dados. A
 
 Esse capítulo foi extremamente prático, pois foi utilizado de ferramentas visuais para a exploração de dados, como por exemplo, gráficos de barras, gráficos de pizza, gráficos de dispersão, gráficos de caixa, histogramas, etc.
 
+### Código Fonte
 Para a visualização da prática acesse [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo6.ipynb)
