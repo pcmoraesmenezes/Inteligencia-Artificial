@@ -280,3 +280,54 @@ Esse capítulo foi extremamente prático, pois foi utilizado de ferramentas visu
 
 ### Código Fonte
 Para a visualização da prática acesse [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo6.ipynb)
+
+## Capítulo 7 - Pré Processamento de Dados
+
+### Padronização de Dados
+
+Alguns algoritmos, como o SVM, são sensíveis à escala dos dados, ou seja, apresentam melhores desenvolvimentos quando os dados estão na mesma escala. Dados padronizados implica em dados com média 0 e desvio padrão 1.
+
+### Escale para um intervalo
+
+Escalonar os dados para um intervalo é uma técnica para transformar os dados para que eles estejam entre um intervalo específico. Por exemplo, pode-se transformar os dados para que eles estejam entre 0 e 1. Para valores discrepantes, deve-se ter cuidado ao usar essa técnica.
+
+#### Explicação do calculo de escalonamento de dados.
+
+A formula para o calculo de escalonamento de dados é:
+
+$$ x_{normalizado} = \frac{x - x_{min}}{x_{max} - x_{min}} $$
+
+Por exemplo, imagine que você tenha um conjunto de dados com os seguintes valores:
+
+$$ x = [2, 5, 10, 20, 30] $$
+
+$$ x_{min} = 2 $$
+$$ x_{max} = 30 $$
+
+$$ x_{normalizado} = \frac{[2, 5, 10, 20, 30] - 2}{30 - 2}$$
+
+$$ x_{normalizado} = \frac{[0, 3, 8, 18, 28]}{28}$$
+
+$$ x_{normalizado} = [0, 0.107, 0.286, 0.643, 1]$$
+
+#### Explicação por trás do calculo de escalonamento de dados.
+
+O escalonamento de dados é uma técnica de pré-processamento de dados que é usada para padronizar os dados de entrada.
+
+$ X - X_{min} $ É a distância do valor original até o valor minimo. Essa parte assegura que o menor valor seja 0.
+
+$ X_{max} - X_{min} $ É a distância entre o valor máximo e o valor mínimo. Essa parte assegura que o maior valor seja 1.
+
+Dividir a distância do valor original até o valor mínimo pela distância entre o valor máximo e o valor mínimo, assegura que os valores estejam entre 0 e 1.
+
+### Variáveis Dummy
+
+Variáveis dummy são variáveis categóricas que são transformadas em variáveis numéricas. Por exemplo, a variável categórica sexo pode ser transformada em duas variáveis numéricas: sexo masculino e sexo feminino. Se o sexo for masculino, a variável sexo masculino será 1 e a variável sexo feminino será 0. Se o sexo for feminino, a variável sexo masculino será 0 e a variável sexo feminino será 1.
+
+Esse procedimento é chamado de one-hot encoding.
+
+### Codificação de Rótulos
+
+É uma técnica alternativa para as variaveis dummy. Nesse caso, cada categoria é atribuída a um numero. É extremante útil para variáveis com muitas categorias. Esse método impõe uma ordem nas categorias, o que pode não ser desejável. Alguns algoritmos como os em árvore são capazes de lidar com essa codificação.
+
+O codificador de rotulos consegue lidar com uma coluna por vez
