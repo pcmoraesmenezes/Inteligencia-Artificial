@@ -339,6 +339,36 @@ Esse procedimento é chamado de one-hot encoding.
 
 O codificador de rotulos consegue lidar com uma coluna por vez
 
+### Codificador de Frequência
+
+Outra opção viável para variáveis com alta cardinalidade. Esta técnica implica em substituir cada categoria pelo número de vezes em que ela aparece.  Pode ser utilizado o pandas para fazer essa codificação.
+
+Lembre-se de armazenar o mapa de codificação para que seja possível fazer a codificação dos dados de teste.
+
+### Extraindo categorias a partir de strings
+
+Este método é útil e simples e pode aumentar a precisão dos modelos de machine learning. Ele envolve a extração de categorias de uma string. Por exemplo, se você tiver uma coluna de endereço, poderá extrair o estado e o país dessa coluna. 
+
+### Outras codificações
+
+A biblioteca `category_encoders` possui outras codificações que podem ser úteis para a criação de modelos de machine learning. Essa biblioteca retorna um DataFrame, o que, de modo geral, é mais fácil de trabalhar do que um array NumPy.
+
+Um algoritmo útil dessa biblioteca é o codificador de hash, principalmente quando não se sabe o número de categorias que uma variável pode ter.
+
+### Engenharia de Dados para Datas
+
+A biblioteca `fastai` possui uma classe `add_datepart` que pode ser usada para gerar novas colunas de data a partir de uma coluna de data existente. Essa classe pode ser usada para gerar novas colunas de data, como dia da semana, dia do ano, etc. Isso é útil, pos a maioria dos modelos de machine learning não aceitam dados de data.
+
+### Adição do atributo col_na
+
+Saber que um valor estava ausente pode ser útil para um modelo de machine learning. Por exemplo, se o valor de uma variável for ausente, o modelo pode atribuir um valor diferente a essa variável.
+
+Pode ser interessante adicionar uma coluna que indique se o valor estava ausente ou não.
+
+### Engenharia de dados manual
+
+O `pandas` pode ser utilizado para gerar novos atributos. Por exemplo, pode-se criar uma coluna que indique se o passageiro é criança ou adulto.Para obter dados agregados de um DataFrame, pode-se usar o método `groupby`. E para mesclar os dados agregados de volta ao DataFrame original, pode-se usar o método `merge`.
+
 ### Código Fonte
 
 Para a visualização da prática acesse [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo7.ipynb)
