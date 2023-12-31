@@ -3,6 +3,7 @@ asttokens==2.4.1
 blinker==1.7.0
 blis==0.7.11
 catalogue==2.0.10
+category-encoders==2.6.3
 certifi==2023.11.17
 charset-normalizer==3.3.2
 clarabel==0.6.0
@@ -77,6 +78,7 @@ pandas-flavor==0.6.0
 parso==0.8.3
 path==16.7.1
 pathlib==1.0.1
+patsy==0.5.5
 pexpect==4.9.0
 Pillow==10.1.0
 platformdirs==4.1.0
@@ -110,6 +112,7 @@ spacy-legacy==3.0.12
 spacy-loggers==1.0.5
 srsly==2.4.8
 stack-data==0.6.3
+statsmodels==0.14.1
 sympy==1.12
 thinc==8.2.2
 threadpoolctl==3.2.0
