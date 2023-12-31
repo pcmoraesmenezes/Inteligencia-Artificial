@@ -33,6 +33,12 @@
         - [Explicação por trás do calculo de escalonamento de dados.](#explicação-por-trás-do-calculo-de-escalonamento-de-dados)
     - [Variáveis Dummy](#variáveis-dummy)
     - [Codificação de Rótulos](#codificação-de-rótulos)
+    - [Codificador de Frequência](#codificador-de-frequência)
+    - [Extraindo categorias a partir de strings](#extraindo-categorias-a-partir-de-strings)
+    - [Outras codificações](#outras-codificações)
+    - [Engenharia de Dados para Datas](#engenharia-de-dados-para-datas)
+    - [Adição do atributo col_na](#adição-do-atributo-col_na)
+    - [Engenharia de dados manual](#engenharia-de-dados-manual)
     - [Código Fonte](#código-fonte-4)
 
 ## 1. Introdução
