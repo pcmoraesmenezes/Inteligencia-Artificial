@@ -40,6 +40,15 @@
     - [Adição do atributo col_na](#adição-do-atributo-col_na)
     - [Engenharia de dados manual](#engenharia-de-dados-manual)
     - [Código Fonte](#código-fonte-4)
+- [Capítulo 8 - Seleção de Atributos](#capítulo-8---seleção-de-atributos)
+    - [A Maldição da Dimensionalidade](#a-maldição-da-dimensionalidade)
+    - [Colunas colineares](#colunas-colineares)
+    - [Regressão Lasso](#regressão-lasso)
+    - [Eliminação Recursiva de atributos](#eliminação-recursiva-de-atributos)
+    - [Informações Mútuas](#informações-mútuas)
+    - [Principal Component Analysis (PCA)](#principal-component-analysis-pca)
+    - [Importância dos Atributos](#importância-dos-atributos)
+    - [Código Fonte](#código-fonte-5)
 
 ## 1. Introdução
 
