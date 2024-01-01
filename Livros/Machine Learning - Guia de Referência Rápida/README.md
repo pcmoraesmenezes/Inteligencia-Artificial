@@ -378,3 +378,57 @@ O `pandas` pode ser utilizado para gerar novos atributos. Por exemplo, pode-se c
 ### Código Fonte
 
 Para a visualização da prática acesse [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo7.ipynb)
+
+## Capítulo 8 - Seleção de Atributos
+
+A feature selection (seleção de atributos) é o processo de selecionar os atributos úteis ao model. Atributos irrelevantes e atributos correlacionados podem causar um efeito negativo ao modelo, podendo até mesmo deixar os coeficientes do modelo instáveis.
+
+### A Maldição da Dimensionalidade
+
+A maldição da dimensionalidade (curse of dimensionality) é um problema que ocorre quando os dados possuem muitas dimensões. Esse problema pode causar overfitting e tornar o modelo lento.
+
+A medida que o número de dimensões aumenta, o número de amostras necessárias para preencher o espaço aumenta exponencialmente. Cálculos de distância também se tornam mais difíceis com o aumento do número de dimensões.
+
+Com isso, o tempo de treinamento dos dados, que é uma função do número de colunas, aumenta exponencialmente. Tendo isso em mente, a seleção correta de atributos pode ser extremamente útil no quesito performance.
+
+### Colunas colineares
+
+Colunas colineares são colunas que estão altamente correlacionadas. Essas colunas podem causar instabilidade nos coeficientes do modelo. Além disso, elas não adicionam informações úteis ao modelo.
+
+Algumas funções para checar as colunas foram apresentadas, como por exemplo, a função `corr` do `pandas` e a função `heatmap` do `seaborn`.
+
+O `Rank2` do `yellowbrick` pode ser usado afim de verificar a correlação entre as colunas.
+
+O pacote `rfpimp` tem um recurso de visualização de multicolinearidade.
+
+A recomendação nestes gráficos é encontrar valores bem próximos de 1.
+
+### Regressão Lasso
+
+A regressão Lasso pode ser usada para definir um parametro alpha que atuará como um parametro de regularização. A medida que seu valor aumenta, menor é o peso.
+
+### Eliminação Recursiva de atributos
+
+A eliminação recursiva remove os atributos mais fracos e ajusta os modelos.
+
+### Informações Mútuas
+
+A informação mútua é uma medida de dependência entre duas variáveis. Ela mede a quantidade de informação que uma variável contém sobre a outra. 
+
+O `sklearn` possui uma função `mutual_info_classif` que pode ser usada para calcular a informação mútua entre duas variáveis. Os testes são feitos utilizando os k vizinhos mais próximos.
+
+### Principal Component Analysis (PCA)
+
+O PCA é uma técnica de redução de dimensionalidade. Ele reduz o número de dimensões de um conjunto de dados, mantendo o máximo de informações possível. O PCA é uma técnica não supervisionada. 
+
+O PCA pode ser usado para reduzir o número de dimensões de um conjunto de dados. Isso pode ser útil para reduzir o tempo de treinamento do modelo.
+
+### Importância dos Atributos
+
+A importância dos atributos é uma medida da importância de cada atributo para o modelo. Essa medida pode ser usada para selecionar os atributos mais importantes.
+
+A maioria dos modelos baseados em árvore possui um atributo `feature_importances_` que pode ser usado para calcular a importância dos atributos.
+
+### Código Fonte
+
+Para a visualização da prática acesse [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo8.ipynb)
