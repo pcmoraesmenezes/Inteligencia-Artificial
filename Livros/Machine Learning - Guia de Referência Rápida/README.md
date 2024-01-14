@@ -569,3 +569,7 @@ def inv_logit(x):
 O log odds é a probabilidade de um evento ocorrer dividido pela probabilidade de um evento não ocorrer.
 
 É possível inspecionar os coeficientes para ver quais atributos são mais importantes para o modelo.
+
+### Naive Bayes
+
+O naive Bayes é um classificador probabilistico que pressupõe uma independência entre os atributos. Ele é rápido e simples, usualmente utilizado para identificação de spam e classificação de texto. Uma das grandes antagens desse modelo é que, por supor uma indepência entre os atributos, ele é capaz de fazer o treinamento de um modelo com um numero pequeno de amostras. Entretanto uma desvantagem é que ele não consegue captar as iterações entre os atributos. Ele também é bom para dados com muitos atributos.
