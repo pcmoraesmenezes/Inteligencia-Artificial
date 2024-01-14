@@ -480,3 +480,92 @@ A biblioteca `imbalanced-learn` implementa `SMOTEENN` e `SMOTETomek`, que são c
 ### Código Fonte
 
 Para a visualização da prática acesse [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo9.ipynb)
+
+## Capítulo 10 - Classificação
+
+A classificação é um método de aprendizagem supervisionada para atribuir rótulo a uma amostra com base nos atributos. Por supervisionada, implica que haverá ou rotulos para a classificação; ou numeros para a regressão.
+
+O `sklearn` implementa diversos modelos úteis de classificação. Além disso possuem interfaces consistentes, o que facilita a utilização.
+
+No `sklearn`, cria-se uma instância de modelo e chama-se o método `fit` para treinar o modelo. Em seguida, chama-se o método `predict` para fazer previsões. Pode ser utilizado o `.score`` para verificar a precisão do modelo.
+
+O grande problema deste tipo de modelo é organizar os dados em um formato apropriado para o `Sklearn`. Os dados devem estar em um array $M$ com dimensão de $M_{n\dot m}$ ou em um DataFrame do `pandas`. O rótulo (target) deve ser um array $M$ com dimensão de $M_{n}$.
+
+Um outro problema é o método `.score`, ele por si só pode não ser suficiente para avaliar o modelo. É necessário utilizar outras métricas, como por exemplo, a matriz de confusão, a curva ROC e a curva AUC.
+
+Alguns dos métodos genéricos do `sklearn` são:
+
+- `fit(X, y[, sample_weight])` - Ajusta o estimador aos dados de treinamento.
+
+- `predict(X)` - Preveja os rótulos para X.
+
+- `predict_log_proba(X)` - Preveja o log-probabilidade de classes.
+
+- `predict_proba(X)` - Preveja probabilidades de classe para X.
+
+- `score(X, y[, sample_weight])` - Retorna a precisão média nos dados de teste e rótulos fornecidos.
+
+### Regressão Logística
+
+Apesar de possuir regressão no nome, ela não é uma técnica de regressão, mas sim de classificação. ELa estima as probabilidades usando uma função logística. Esse modelo é padrão para a maioria dos problemas de classificação.
+
+#### Parâmetros
+
+Eficiência na execução:
+
+- Pode ser usado o `n_jobs` caso não esteja utilizando o solucionador `liblinear`.
+
+Pré-processamento dos dados:
+Se `solver` estiver definido com `sag` ou `saga`, padronize para que a convergência funcione. É capaz de lidar com entradas esparsas.
+
+Para evitar superadequação:
+
+O parâmetro `C` controla a regularização. (Valores menores especificam uma regularização mais forte). É possível especificar `penalty` com `l1` ou `l2`
+
+Interpretação dos resultados:
+
+O atributo `.coef` do modelo apos a adequação mostra os coeficientes da função de decisão.
+
+Parâmetros da instância:
+`penalty` - Especifica a norma usada na penalidade. `l1` ou `l2` Padrão é `l2`.
+
+`dual` - Seleciona o algoritmo de otimização. `False` quando `n_samples > n_features`. Padrão é `False`.
+
+`tol` - Tolerância para critério de parada. Padrão é `1e-4`.
+
+`C` - Inverso da força de regularização. Padrão é `1.0`. Um valor menor especifica uma regularização mais forte.
+
+`fit_intercept` - Especifica se uma constante (viés) deve ser adicionada à função de decisão. Padrão é `True`.
+
+`intercept_scaling` - Quando `solver` é `liblinear` e `fit_intercept` é `True`, `intercept_scaling` especifica a escala do intercepto. Padrão é `1`.
+
+`class_weight` - Define o peso das classes. Padrão é `None`.
+
+`max_iter` - Número máximo de iterações. Padrão é `100`.
+
+`multi_class` - Especifica como o modelo deve lidar com uma classificação multiclasse. `ovr` ou `multinomial`. Padrão é `ovr`.
+
+`verbose` - Define o nível de verbosidade. Padrão é `0`.
+
+`warm_start` - Quando definido como `True`, reutiliza a solução da chamada anterior para ajustar como inicialização. Padrão é `False`.
+
+`solver` - Especifica o algoritmo de otimização. `newton-cg`, `lbfgs`, `liblinear`, `sag`, `saga`. Padrão é `liblinear`. `liblinear` para pequenos conjuntos de dados. `saga` `lbfgs` para dados de multiclasse. 
+
+`coef_` - Coeficientes da função de decisão.
+
+`njobs` - Número de trabalhos em paralelo. Padrão é `None`.
+
+`intercept_` - Constante (viés) adicionada à função de decisão.
+
+`n_iter_` - Número real de iterações para alcançar a convergência. Padrão é `None`.
+
+O intercepto é o log odds da condição de base. É possível converter o intercepto em probabilidades usando a função logística.
+
+```python
+def inv_logit(x):
+    return np.exp(x) / (1 + np.exp(x))`
+```
+
+O log odds é a probabilidade de um evento ocorrer dividido pela probabilidade de um evento não ocorrer.
+
+É possível inspecionar os coeficientes para ver quais atributos são mais importantes para o modelo.
