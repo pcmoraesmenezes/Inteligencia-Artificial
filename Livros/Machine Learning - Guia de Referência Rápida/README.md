@@ -441,3 +441,31 @@ A maioria dos modelos baseados em árvore possui um atributo `feature_importance
 ### Código Fonte
 
 Para a visualização da prática acesse [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo8.ipynb)
+
+## Classes Desbalanceadas
+
+Em casos de classificação pode ocorrer de encontrar classes desbalanceadas, ou seja, uma classe pode ter uma quantidade muito maior de amostras do que a outra. Isso pode causar um problema, pois o modelo pode aprender a prever apenas a classe com maior quantidade de amostras. Por exemplo, se tiver um caso positivo e 99 casos negativos, o modelo poderá ter 99% de precisão, prevendo apenas a classe negativa.
+
+### Use métricas diferentes
+
+A precisão não é uma boa métrica para classes desbalanceadas. Nesse caso, é melhor usar outras métricas, como a pontuação F1, a área sob a curva ROC (AUC) ou a precisão média de precisão (AP).
+
+### Algoritmos baseados em árvore e Ensemble
+
+Modelos baseados em árvore tendem a ter um melhor desempenho conforme a distribuição da classe menor. Além disso caso os dados estejam agrupados, podem ser utilizados algoritmos de ensemble, como o XGBoost.
+
+### Modelos de penalização
+
+A vasta maioria dos modelos do `scikit-learn`aceitam o parâmetro `class_weight`. Defini-lo como `balanced` tentará regularizar as classes mais desbalanceadas. Uma alternativa seria o `gridsearch` para encontrar o melhor valor para o parâmetro.
+
+A biblioteca `XGBoost` possuí um parametro `max_delta_step` que pode ser utilizado para penalizar o modelo. Além disso, parametros como `scale_pos_weight` define a razão entre as classes e `eval_metric` define a métrica de avaliação, que pode ser substituída por `auc` ou `aucpr`.
+
+O modelo KNN, tem o parâmetro `weights` que pode ser utilizado para penalizar o modelo. Além disso, `distance` pode ser utilizado para penalizar o modelo de acordo com a distância. Issso pode ser útil para classes desbalanceadas.
+
+### Gerando dados de minorias
+
+A biblioteca `imbalanced-learn` possui algumas tecnicas de amostragem que podem ser utilizadas para gerar dados de minorias. Por exemplo, o `RandomOverSampler` pode ser utilizado para gerar dados de minorias aleatórios. O `SMOTE` pode ser utilizado para gerar dados de minorias sintéticos. O `SMOTE` funciona selecionando uma amostra da classe minoritária e calculando os k vizinhos mais próximos para essa amostra. Em seguida, ele seleciona um dos vizinhos aleatoriamente e calcula um ponto intermediário entre a amostra e o vizinho. Esse ponto intermediário é um novo ponto de dados sintético.
+
+### Upsampling e depois downsampling
+
+A biblioteca `imbalanced-learn` implementa `SMOTEENN` e `SMOTETomek`, que são combinações de upsampling e downsampling. É inicialmente  aplicado um upsampling e depois um downsampling, afim de limpar os dados.
