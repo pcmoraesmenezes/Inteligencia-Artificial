@@ -49,6 +49,13 @@
     - [Principal Component Analysis (PCA)](#principal-component-analysis-pca)
     - [Importância dos Atributos](#importância-dos-atributos)
     - [Código Fonte](#código-fonte-5)
+- [Classes Desbalanceadas](#classes-desbalanceadas)
+    - [Use métricas diferentes](#use-métricas-diferentes)
+    - [Algoritmos baseados em árvore e Ensemble](#algoritmos-baseados-em-árvore-e-ensemble)
+    - [Modelos de penalização](#modelos-de-penalização)
+    - [Gerando dados de minorias](#gerando-dados-de-minorias)
+    - [Upsampling e depois downsampling](#upsampling-e-depois-downsampling)
+    - [Código Fonte](#código-fonte-6)
 
 ## 1. Introdução
 
@@ -469,3 +476,7 @@ A biblioteca `imbalanced-learn` possui algumas tecnicas de amostragem que podem 
 ### Upsampling e depois downsampling
 
 A biblioteca `imbalanced-learn` implementa `SMOTEENN` e `SMOTETomek`, que são combinações de upsampling e downsampling. É inicialmente  aplicado um upsampling e depois um downsampling, afim de limpar os dados.
+
+### Código Fonte
+
+Para a visualização da prática acesse [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo9.ipynb)
