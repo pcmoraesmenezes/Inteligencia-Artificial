@@ -573,3 +573,113 @@ O log odds é a probabilidade de um evento ocorrer dividido pela probabilidade d
 ### Naive Bayes
 
 O naive Bayes é um classificador probabilistico que pressupõe uma independência entre os atributos. Ele é rápido e simples, usualmente utilizado para identificação de spam e classificação de texto. Uma das grandes antagens desse modelo é que, por supor uma indepência entre os atributos, ele é capaz de fazer o treinamento de um modelo com um numero pequeno de amostras. Entretanto uma desvantagem é que ele não consegue captar as iterações entre os atributos. Ele também é bom para dados com muitos atributos.
+
+Existem três tipos de naive Bayes no `sklearn`:
+
+`GaussianNB` - Assume que os dados seguem uma distribuição normal e atributos continuos.
+
+`BernoulliNB` - Assume que os dados seguem uma distribuição de Bernoulli e atributos binários.
+
+`MultinomialNB` - Assume que os dados seguem uma distribuição multinomial e atributos discretos.
+
+#### Eficiência na execução
+
+Treinamento O(Nd) em que N é o número de exemplos para treinamento e d e a dimensão dos dados.
+
+#### Pré-processamento dos dados
+
+É pressuposto que os dados sejam independentes. O desempenho é aprimorado com a remoção de atributos correlacionados.
+
+#### Para evitar superadequação
+
+O parâmetro `alpha` controla a regularização. Um valor menor especifica uma regularização mais forte.
+
+#### Interpretação dos resultados
+
+A porcentagem é a probabilidade de uma amostra pertencer a uma classe específica.
+
+#### Parâmetros da instância
+
+`priors` - Probabilidades a priori de cada classe. Padrão é `None`.
+
+`var_smoothing` - Adiciona um valor para a variancia dos atributos. Padrão é `1e-9`.
+
+`class_prior` - Probabilidades a priori de cada classe. Padrão é `None`.
+
+`class_count_` - Número de amostras em cada classe.
+
+`theta_` - Média de cada atributo por classe.
+
+`sigma_` - Variância de cada atributo por classe.
+
+`epsilon_` - Valor adicionado à variancia dos atributos.
+
+#### Aviso:
+
+Esse tipo de modelo são suscetivos ao problema da probabilidade zero. Caso tente classificar uma nova amostra que não tenha sido vista no treinamento, o modelo irá retornar uma probabilidade zero. Para evitar esse problema, pode ser utilizado o `Laplace smoothing`, que adiciona um valor a variancia dos atributos. O `sklearn` implementa esse método através do parâmetro `var_smoothing`.
+
+### Máquinas de Vetores de Suporte (SVM)
+
+As máquinas de vetores de suporte são um modelo de classificação que encontra um hiperplano que separa os dados. Esse modelo é útil para dados com muitas dimensões. Ele também é útil para dados que não são linearmente separáveis, pois é possível usar um kernel para transformar os dados em um espaço de dimensão superior. Os vetores de suporte são os pontos de dados mais próximos do hiperplano. O hiperplano é definido por um vetor de pesos e um viés. O vetor de pesos é perpendicular ao hiperplano. O viés é o deslocamento do hiperplano da origem.
+
+Existem algumas implementações de SVM no `sklearn`, como por exemplo `SVC` encapsula a biblioteca `libsvm` e `LinearSVC` encapsula a biblioteca `liblinear`. Também há o `linear_model.SGDClassifier` que implementa o SVM com gradiente descendente estocástico.
+
+Em geral, a SVM tem um bom desempenho e oferece suporte para espaços lineares e não lineares usando truques de kernel. Entretanto, o treinamento pode ser lento para grandes conjuntos de dados. Além disso, é difícil interpretar os resultados. O kernel default é o `Radial Basis Function 'rbf' `, controlado pelo padrão `gamma`, o que permite mapear um espaço de entrada em um espaço com mais dimensões.
+
+#### Eficiência na execução
+
+A implementação do `scikit-learn` é $O(n^{4})$, o que pode ser dificil para tamanhos de dados grandes. Utilizando um kernel linear é possível utilizar o `LinearSVC` que é $O(n^{3})$. É válido mencionar que o desempenho é acompanhado da perda de precisão.
+
+#### Pré-processamento dos dados
+
+É necessário padronizar os dados para que o desempenho seja melhor. É possível utilizar o `StandardScaler` do `sklearn` para padronizar os dados.
+
+#### Para evitar superadequação
+
+O parâmetro `C` controla a regularização. Um valor menor especifica uma regularização mais forte. Um valor maior para `gamma` tenderá a uma superadequação. O modelo `LinearSVC` aceita parâmetros `penalty` e `loss` que podem ser utilizados para regularização.
+
+#### Interpretação dos resultados
+
+O atributo `coef_` do modelo após o ajuste mostra os coeficientes da função de decisão.
+
+Para obter probabilidades use `probability=True` ao criar o modelo. Isso pode ser útil para a calibração de probabilidades, entretanto, pode ser lento.
+
+#### Parâmetros da instância
+
+`C` - Parâmetro de regularização. Padrão é `1.0`, esse parametro de penalidade quanto menor, maior a fronteira para a superadequação.
+
+`kernel` - Especifica o kernel a ser utilizado. `linear`, `poly`, `rbf`, `sigmoid`, `precomputed` ou `callable`. Padrão é `rbf`.
+
+`cache_size` - Especifica o tamanho do cache em MB. Padrão é `200`. Aumentar esse valor pode ser útil em grandes conjuntos de dados.
+
+`class_weight` - Define o peso das classes. Padrão é `None`. Use dictionary para definir pesos diferentes para cada classe.
+
+`coef0` - Termo independente para kernels polinomiais e sigmoides. Padrão é `0.0`.
+
+`decision_function_shape` - Especifica a forma da função de decisão. `ovo` ou `ovr`. Padrão é `ovr`. `ovo`(one-vs-one) cria um classificador binário para cada par de classes. `ovr`(one-vs-rest) cria um classificador binário para cada classe.
+
+`degree` - Grau do kernel polinomial. Padrão é `3`.
+
+`gamma` - Coeficiente do kernel. Pode ser um número, `scale`default em $0.22),1/(num atributos * X.std())$. Um valor menor resulta na superadequação dos dados de treinamento
+
+`max_iter` - Número máximo de iterações. Padrão é `-1`.
+
+`probability` - Especifica se deve ser habilitado o cálculo de probabilidades. Padrão é `False`.
+
+`random_state` - Semente aleatória. Padrão é `None`.
+
+`shrinking` - Especifica se deve ser habilitado o uso de heurística de encolhimento. Padrão é `True`.
+
+`tol` - Tolerância para critério de parada. Padrão é `1e-3`.
+
+`verbose` - Define o nível de verbosidade. Padrão é `False`.
+
+#### Após a adequação
+
+`support_` - Índices dos vetores de suporte.
+
+`support_vectors_` - Vetores de suporte.
+
+`n_support_` - Número de vetores de suporte para cada classe.
+
+`coef_` - Coeficientes da função de decisão.
