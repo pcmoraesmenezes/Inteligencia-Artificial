@@ -72,6 +72,21 @@
         - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-1)
         - [Interpretação dos Resultados](#interpretac3a7c3a3o-dos-resultados-1)
         - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-1)
+    - [K-Nearest Neighbors](#k-vizinhos-mais-próximos)
+        - [Eficiência na Execução](#eficic3aancia-na-execuc3a7c3a3o-2)
+        - [Pré-processamento dos Dados](#prc3a9-processamento-dos-dados-2)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-2)
+        - [Interpretação dos Resultados](#interpretac3a7c3a3o-dos-resultados-2)
+        - [Atributos](#atributos)
+        - [Atenção](#atenção)
+    - [Árvores de Decisão](#árvores-de-decisão)
+        - [Atenção](#atenc3a7c3a3o-1)
+        - [Eficiência na Execução](#eficic3aancia-na-execuc3a7c3a3o-3)
+        - [Pré-processamento dos Dados](#prc3a9-processamento-dos-dados-3)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-3)
+        - [Interpretação dos Resultados](#interpretac3a7c3a3o-dos-resultados-3)
+        - [Atributos](#atributos-1)
+    
         
 ## 1. Introdução
 
