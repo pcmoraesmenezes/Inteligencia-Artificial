@@ -699,3 +699,148 @@ Para obter probabilidades use `probability=True` ao criar o modelo. Isso pode se
 `n_support_` - Número de vetores de suporte para cada classe.
 
 `coef_` - Coeficientes da função de decisão.
+
+### K vizinhos mais próximos
+
+O algortimo KNN (K-Nearest Neighbor, ou K Vizinhos Mais Pŕoximos) faz a classificação com base na distância até algumas amostras (k) de treinamento. A familia de algoritmos é chamada de aprendizado baseado em instâncias (instance-based learning), pois não há parâmetros para serem aprendidos. O modelo tem como base de que apenas a distância é suficiente para fazer uma inferência.
+
+A parte complicada desse tipo de algoritmo está na seleção de atributos, principalmente o atributo `k` que é o número de vizinhos mais próximos.
+
+#### Eficiência na execução
+
+O treinamento possuí complexidade de $O(1)$, mas precisa armazenar dados. Testes $O(Nd)$, em que $N$ é o número de exemplos de treinamento e $d$ é a dimensionalidade.
+
+#### Pré-processamento dos dados
+
+Cálculos baseados em distância tem melhor desempenho com dados padronizados.
+
+#### Para evitar superadequação
+
+Eleve o valor de `k` e mude `p` para a métrica `l1` ou `l2`.
+
+#### Interpretação dos resultados
+
+Interpreta os k vizinhos mais próximos para a amostra (método `.kneighboors`). Esses vizinhos explicam a classificação.
+
+#### Atributos
+
+`algorithm` Pode ser `brute`, `ball_tree` ou `kd_tree`. O padrão é `auto`. `auto` escolhe o algoritmo mais apropriado para o conjunto de dados.
+
+`leaf_size` Tamanho da folha da árvore. Padrão é `30`.
+
+`metric` Métrica de distância, padrão é `minkowski`. Pode ser `euclidean`, `manhattan`, `chebyshev`, `minkowski`, `wminkowski`, `seuclidean`, `mahalanobis`. Além disso aceita um callable, ou seja definido pelo usuário.
+
+`metric_params` Dicionário adicional de parâmetros para a métrica.
+
+`n_jobs` Número de trabalhos em paralelo. Padrão é `None`.
+
+`n_neighbors` Número de vizinhos. Padrão é `5`.
+
+`p` Parâmetro de potência para a métrica `minkowski`. Padrão é `2`.
+
+`weights` Pode ser `uniform` ou `distance`. Padrão é `uniform`. `uniform` atribui pesos iguais para todos os vizinhos. `distance` atribui pesos de acordo com a inversa da distância.
+
+#### Atenção:
+
+Se `k` for um número par e os vizinhos forem separados, o modelo irá retornar uma classe aleatória. Para evitar esse problema, utilize um número ímpar para `k`.
+
+### Árvores de Decisão
+
+Uma árvore de decisão é como ir a um médico que faz uma série de perguntas a fim de determinar a causa de seus sintomas. Pode-se usar um processo para criar uma árvore de decisão e ter uma série de perguntas para prever uma classe alvo. A vantagem é que ele possuí suporte em certos casos para dados não númericos, além disso é necessário pouca preparação dos dados (não há necessidade de escalar), possuí suporte para relacionamentos não lineares. A importância dos atributos é revelada e é de facil entendimento.
+
+O algoritmo padrão usado se chama CART (Classification and Regression Tree, Árvore de Classificação e Regressão). Ele usa a impureza de Gini ou medida de índices para toma de decisões. Isso é feito percorrendo os atributos em um laço e encontrando o valor que forneça a menor probabilidade de erro.
+
+#### Atenção:
+
+Os valores default tendem a resultar em uma superadequação. Utilize método como `max_depth` e validação cruzada para controlar.
+
+#### Eficiência na execução
+
+Para a criação, percorre cada um dos `m` atributos e ordena todas as n amostras, $O(mn log n)$. Para a predição percorre a árvore $O(altura)$.
+
+#### Pré-processamento dos dados
+
+Não tem necessiade do escalonamento. É preciso apenas lidar com os valores ausentes e transformar os dados categóricos em numéricos.
+
+#### Para evitar superadequação
+
+Controle `max_depth` com um numero menor e aumente `min_impurity_decrease`
+
+#### Interpretação dos resultados
+
+É possível percorrer a árvore de opções. Por haver passos, uma árvore não é adequada para relacionamentos lineares (mudanças pequenas tem grandes impactos). A árvore também é extremamente dependente dos dados de treinamento.
+
+#### Atributos
+
+`class_weight` Pesos das classes em um dicionário. `Balanced` definirá valores na proporção inversa das frequências das classes. O default é 1 para cada classe. O padrão é `none`.
+
+`criterion` Função de separação, pode ser `gini` ou `entropy`. O padrão é `gini`.
+
+`max_features` Numero de atributos a serem analisados para separação. Padrão é `None`.
+
+`max_leaf_nodes` Limita o número de folhas, o padrão é `None`.
+
+`min_impurity_decrease` Um nó será dividido se essa divisão diminuir a impureza em pelo menos esse valor. Padrão é `0.0`.
+
+`min_samples_leaf` Número mínimo de amostras em um nó folha. Padrão é `1`.
+
+`min_samples_split` Número mínimo de amostras para dividir um nó. Padrão é `2`.
+
+`min_weight_fraction_leaf` Fração mínima de amostras em um nó folha. Padrão é `0.0`.
+
+`presort` Especifica se deve ser feita uma pré-ordenação dos dados para acelerar o treinamento. Padrão é `False`.
+
+`random_state` Semente aleatória. Padrão é `None`.
+
+`splitter` Estratégia de divisão. Pode ser `best` ou `random`. Padrão é `best`.
+
+#### Atributos após a adequação
+
+`classes_` Classes de destino.
+
+`feature_importances_` Importância dos atributos.
+
+`n_classes_` Número de classes.
+
+`n_features_` Número de atributos.
+
+`tree_`
+
+A visualização da arvore pode ser feita utilizando
+
+```python
+
+import pydotplus
+from sklearn.tree import export_graphviz
+from io import StringIO
+
+dot_data = StringIO()
+
+export_graphviz(
+    tree,
+    out_file=dot_data,
+    feature_names=iris.feature_names,
+    class_names=iris.target_names,
+    rounded=True,
+    filled=True
+)
+
+
+graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
+graph.write_png('tree.png')
+```
+
+
+![Exemplo](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/titanic.png)
+
+O pacote `dtreeviz` é útil para compreender as árvores de decisão. ELe cria histogramas contendo rótulos, facilitando a compreensão.
+
+No jupyter é possível exibir um objeto `viz` diretamente
+
+Utilizando o `dtreeviz` é possível visualizar a importância dos atributos.
+
+![Exemplo](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/titanic.svg)
+
+A importância dos atributos pode ser feita utilizando o `feature_importances_` do modelo.
+
+Ou utilizar o `yellowbrick.features` para visualizar a importância dos atributos. (FeatureImportances)
