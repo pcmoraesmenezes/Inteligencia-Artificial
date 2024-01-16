@@ -56,7 +56,23 @@
     - [Gerando dados de minorias](#gerando-dados-de-minorias)
     - [Upsampling e depois downsampling](#upsampling-e-depois-downsampling)
     - [Código Fonte](#código-fonte-6)
-
+- [Capítulo 10 - Classificação](#capítulo-10---classificação)
+    - [Regressão Logística](#regressão-logística)
+        - [Parâmetros](#parâmetros)
+    - [Naive Bayes](#naive-bayes)
+        - [Eficiência na Execução](#eficiência-na-execução)
+        - [Pré-processamento dos Dados](#pré-processamento-dos-dados)
+        - [Para evitar superadequação](#para-evitar-superadequação)
+        - [Interpretação dos Resultados](#interpretação-dos-resultados)
+        - [Parâmetros da instância](#parâmetros-da-instância)
+        - [Aviso](#aviso)
+    - [Máquinas de Vetores de Suporte](#máquinas-de-vetores-de-suporte-svm)
+        - [Eficiência na Execução](#eficic3aancia-na-execuc3a7c3a3o-1)
+        - [Pré-processamento dos Dados](#prc3a9-processamento-dos-dados-1)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-1)
+        - [Interpretação dos Resultados](#interpretac3a7c3a3o-dos-resultados-1)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-1)
+        
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
