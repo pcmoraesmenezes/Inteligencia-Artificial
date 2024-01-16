@@ -9,6 +9,7 @@ charset-normalizer==3.3.2
 clarabel==0.6.0
 click==8.1.7
 cloudpathlib==0.16.0
+colour==0.1.5
 comm==0.2.0
 confection==0.1.4
 contourpy==1.2.0
@@ -18,6 +19,7 @@ cycler==0.12.1
 cymem==2.0.8
 debugpy==1.8.0
 decorator==5.1.1
+dtreeviz==2.2.2
 ecos==2.0.12
 exceptiongroup==1.2.0
 executing==2.0.1
@@ -31,8 +33,11 @@ Flask==3.0.0
 fonttools==4.45.1
 fsspec==2023.12.2
 gevent==23.9.1
+graphviz==0.20.1
 greenlet==3.0.3
 idna==3.6
+imbalanced-learn==0.11.0
+imblearn==0.0
 iniconfig==2.0.0
 ipykernel==6.28.0
 ipython==8.19.0
@@ -91,6 +96,7 @@ pure-eval==0.2.2
 pybind11==2.11.1
 pydantic==2.5.3
 pydantic_core==2.14.6
+pydotplus==2.0.2
 Pygments==2.17.2
 pyjanitor==0.26.0
 pyparsing==3.1.1
