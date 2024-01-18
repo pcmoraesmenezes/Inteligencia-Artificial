@@ -941,3 +941,115 @@ Tem suporte para importância de atributos, porém não há uma única árvore d
 O classificador de floresta aleatória calcula a importância dos atributos determinando a diminuição média da impureza para cada atributo (ou seja importância de Gini). A importância de Gini é calculada para cada nó da árvore e ponderada pela probabilidade de atingir esse nó. A importância de Gini é calculada para cada árvore e depois é calculada a média.
 
 Esses valores poderão se tornar imprecisos se os atribtos variarem em escala ou na cardinalidade das colunas de categorias. Uma pontuação mais confiavel é a importância da permutação. Um método mais confiavel é a importância da coluna descartada, entretanto para isso é exigido um novo modelo para cada coluna descartada
+
+### XGboost
+
+O `sklearn` possuí um `GradientBoostedClassifier`, entretanto uma implementação de terceiros consegue ter resultados mais favoraveis.
+
+O XGBoost é uma biblioteca popular, ele cria uma árovre fraca inicialmente e então melhora as àrvores subsequentes. A melhora é feito reduzindo os erros residuais através do `boosting`.
+
+O algoritmo visa capturar qualquer padrão nos erros, até os que parecem aleatoriedade.
+
+#### Eficiência na execução
+
+XGBoost consegue executar em paralelo. Utilizando `n_jobs`, é possivel controlar o numero de CPUs. Caso tenha interesse em um desempenho maior use GPU.
+
+#### Pré-processamento dos dados
+
+Não é necessário o escalonamento com modelos baseados em árvores, entretanto é necessário a codificação de variáveis categóricas.
+
+#### Para evitar superadequação
+
+O parâmetro `early_stopping_rounds=N`, pode ser utilizado para interromper o treinamento caso não haja melhoras após N rodadas. As regularizações L1 e L2 são controladas por `reg_alpha` e `reg_lambda`.
+
+#### Interpretação dos resultados
+
+Exibe a importância dos atributos.
+
+---
+
+O XGBoost tem um parâmetro extra no modelo `fit`. O parâmetro `early_stopping_rounds` pode ser combinado com o parâmetro `eval_set` para interromper o treinamento caso não haja melhoras após N rodadas. `eval_metric` pode ser utilizado para definir a métrica de avaliação.
+
+#### Parâmetros da instância
+
+`max_depth` - Profundidade máxima da árvore. Padrão é `3`.
+
+`learning_rate` - Taxa de aprendizado. Padrão é `0.1`. Também conhecida como ETA. Após cada passo de boosting, os pesos recém adicionados são escalados de acordo com essa taxa. Um valor menor resulta em um modelo mais conservador, mas gasta mais árvores para convergir. Na chamada `.train`, é possível passar parâmetro `learning_rates` para especificar a taxa de aprendizado para cada árvore.
+
+`n_estimators` - Número de árvores. Padrão é `100`.
+
+`silent` - Especifica se deve ser habilitado o modo silencioso. Padrão é `True`.
+
+`objective` - Especifica o objetivo de treinamento. Padrão é `reg:linear`. Pode ser `reg:linear`, `reg:logistic`, `binary:logistic`, `binary:logitraw`, `count:poisson`, `multi:softmax`, `multi:softprob`, `rank:pairwise`, `reg:gamma`, `reg:tweedie`.
+
+`booster` - Especifica o tipo de modelo. Padrão é `gbtree`. Pode ser `gbtree`, `gblinear`, `dart`.
+
+`n_jobs` - Número de trabalhos em paralelo. Padrão é `1`.
+
+`gamma` - Controla a prunning (poda). Varia de 0 a infinito. Padrão é `0`. Essa é a redução de perda mínima necessária para separar mais uma folha. Quanto maior o valor de gama, mais conservador o algoritmo. Caso o a pontuação de treino e teste divergirem, aumente o valor de gama. Caso a pontuação de treino e teste estiverem semelhantes, diminua o valor de gama.
+
+`min_child_weight` - Controla a prunning (poda). Padrão é `1`. Essa é a soma mínima de pesos necessária para separar mais uma folha. Quanto maior o valor, mais conservador o algoritmo.
+
+`max_delta_step` - Deixa as atualizações mais conservadoras. Padrão é `0`.
+
+`subsample` - Fração das amostas a serem utilizadas. Padrão é `1`. Um valor menor resulta em um modelo mais conservador.
+
+`colsample_bytree` - Fração dos atributos a serem utilizados, por rodada. Padrão é `1`.
+
+`colsample_bylevel` - Fração dos atributos a serem utilizados, por nível. Padrão é `1`.
+
+
+`colsample_bynode` - Fração dos atributos a serem utilizados, por nó. Padrão é `1`.
+
+`reg_alpha` - Regularização L1. Padrão é `0`. Aumente para um modelo mais conservador.
+
+`reg_lambda` - Regularização L2. Padrão é `1`. Aumente para um modelo mais conservador. Essa regularização incentiva pesos menores.
+
+`scale_pos_weight` - Razão entre as classes. Padrão é `1`.
+
+`base_score` - Especifica o valor inicial de todas as previsões. Padrão é `0.5`.
+
+`random_state` - Semente aleatória. Padrão é `0`.
+
+`missing` - Especifica o valor ausente. Padrão é `np.nan`.
+
+`importance_type` - Especifica o tipo de importância. Padrão é `gain`. Pode ser `gain`, `weight`, `cover`, `total_gain`, `total_cover`.
+
+#### Atributos
+
+`coef_` - Coeficientes da função de decisão.
+
+`feature_importances_` - Importância dos atributos.
+
+A importância dos atributos é o ganho médio em todos os nós em que o atributo é usado
+
+O XGBoost é capaz de gerar um gráfico da importância dos atributos. Ele tem um parâmetro `importance_type` cujo valor default é `weight`, entretanto é psosível ajustar para o ganho médio (`gain`) ou `cover`. É bem simples de ser utilizado, basta usar `xgb.plot_importance(model)`. Uma outra opção seria atrvés do yellowbrick com `FeatureImportances`.
+
+Além disso o XGBoost possuí uma representação tanto textual como gráfica das árvores.
+
+O pacote `xgbfir` é uma biblioteca desenvolvida com base no XGBoost, essa biblioteca oferta diversas medidas relacionadas à importância dos atributos.
+
+As medidas fornecidas são:
+
+- `Gain` - O ganho médio em todos os nós em que o atributo é usado.
+
+- `FScore` - O número de vezes que o atributo é usado para dividir os dados em todos os nós.
+
+`wFScore` - Quantidade de possíveis separações em um atributo ou interação entre atributos.
+
+`Avarege wFScore` - `wFScore` dividido pelo número de possíveis separações (FScore).
+
+`Average Gain` - `Gain` dividido pelo número de possíveis separações (FScore).
+
+`Expected Gain` - `Gain` multiplicado pela probabilidade de um nó ser alcançado.
+
+A interface consiste em exportar dados para uma planilha, portanto é recomendavel usar o `pandas`.
+
+![Tabela gerada pelo Xgbfir](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/xgbfir%20output.png)
+
+A partir dessa tabela, pode-se verificar que `sex_male` tem uma posição elevada quanto ao ganho. Enquanto `fare` se destaca pela `WFScore`.
+
+![Interação entre as variáveis](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/interação%20com%20as%20variaveis%20na%20profundidade%201.png)
+
+Com essa tabela é possível verificar a interação entre as variáveis. As duas principais interações ocorrem com `sex_male` e as outras duas variáveis `pclass` e `age`. Esses com certeza são os atributos mais importantes.
+
