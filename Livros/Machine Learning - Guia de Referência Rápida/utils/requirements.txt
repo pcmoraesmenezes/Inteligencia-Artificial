@@ -140,7 +140,9 @@ weasel==0.3.4
 Werkzeug==3.0.1
 wsgi-oauth2==0.2.2
 xarray==2023.12.0
+xgbfir==0.3.1
 xgboost==2.0.3
+XlsxWriter==3.1.9
 yellowbrick==1.5
 zope.event==5.0
 zope.interface==6.1
