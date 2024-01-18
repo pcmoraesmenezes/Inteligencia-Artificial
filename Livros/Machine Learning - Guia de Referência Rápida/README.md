@@ -86,8 +86,20 @@
         - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-3)
         - [Interpretação dos Resultados](#interpretac3a7c3a3o-dos-resultados-3)
         - [Atributos](#atributos-1)
-    
-        
+    - [Florestas Aleatórias](#florestas-aleatórias)
+        - [Eficiência na Execução](#eficic3aancia-na-execuc3a7c3a3o-4)
+        - [Pré-processamento dos Dados](#prc3a9-processamento-dos-dados-4)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-4)
+        - [Interpretação dos Resultados](#interpretac3a7c3a3o-dos-resultados-4)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-2)
+        - [Atributos-pós adequação](#atributos-apc3b3s-a-adequac3a7c3a3o-1) 
+    - [XGBoost](#xgboost)  
+        - [Eficiência na Execução](#eficic3aancia-na-execuc3a7c3a3o-5)
+        - [Pré-processamento dos Dados](#prc3a9-processamento-dos-dados-5)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-5)
+        - [Interpretação dos Resultados](#interpretac3a7c3a3o-dos-resultados-5)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-3)
+        - [Atributos-pós adequação](#atributos-2)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
