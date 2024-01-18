@@ -859,3 +859,85 @@ Utilizando o `dtreeviz` é possível visualizar a importância dos atributos.
 A importância dos atributos pode ser feita utilizando o `feature_importances_` do modelo.
 
 Ou utilizar o `yellowbrick.features` para visualizar a importância dos atributos. (FeatureImportances)
+
+### Florestas Aleatórias
+
+Uma floresta aleatória (Random Forest) é um conjunto de árvores de decisão. Faz uso de bagging para corrigir a tendência das árvores de decisão à superadequação.
+
+Por criar várias árvores treinadas com subamostras e atributos aleatório a variância é reduzida.
+
+Como o treinmaneto é feito em subamostras dos dados, as florestas aleatoriás são capazes de avaliar o erro OOB e o desempenho. Podem também exibir a importância dos atributos
+
+A intuição de compreender baging vem de um artigo de 1785 do Marquês de Condorcet. Essenialmente, se você tiver um grupo de pessoas que são boas em prever o resultado de um evento, a média de suas previsões será melhor do que a previsão de qualquer indivíduo. Um resumo mais aprofundado pode ser encontrado [aqui](https://en.wikipedia.org/wiki/Wisdom_of_the_crowd). Além disso sempre que uma nova pessoa é adicionada ao grupo, a precisão aumenta.
+
+A ideia das florestas aleatórias é criar uma "floresta" de árvores de decisão treinadas em diferentes colunas dos dados de treinamento. Caso a árvore tenha uma chance melhor que 50% de fazer uma classificação correta, ela deve ser incorporada a predição.
+
+Ela é uma ótima forte para classificação e regressão, entretanto vem perdendo espaço para a gradient boosting
+
+#### Eficiência na execução
+
+Deve criar `j` árvores aleatórias. Isso pode ser feito em paralelo usando `n_jobs`. A complexidade de cada árvore é de $O(mn log n)$, em que cada $n$ é o numero de mostras e `m` o numero de atributos. Para a criação percorre cada um dos `m` atributos em um laço e ordena todas as `n` amostras, $O(mn log n)$. Para a predição percorre a árvore $O(altura)$.
+
+#### Pré-processamento dos dados
+
+Não é necessário.
+
+#### Para evitar superadequação
+
+Adicione mais árvores `n_estimators` e use um valor menor para `max_depth`
+
+#### Interpretação dos resultados
+
+Tem suporte para importância de atributos, porém não há uma única árvore de decisão para percorrer.
+
+#### Parâmetros da instância
+
+`bootstrap` - Especifica se deve ser feita a amostragem com reposição. Padrão é `True`.
+
+`class_weight` - Define o peso das classes. Padrão é `None`. Use dictionary para definir pesos diferentes para cada classe.
+
+`criterion` - Função de separação, pode ser `gini` ou `entropy`. O padrão é `gini`.
+
+`max_depth` - Profundidade máxima da árvore. Padrão é `None`.
+
+`max_features` - Numero de atributos a serem analisados para separação. Padrão é `auto`.
+
+`max_leaf_nodes` - Limita o número de folhas, o padrão é `None`.
+
+`min_impurity_decrease` - Um nó será dividido se essa divisão diminuir a impureza em pelo menos esse valor. Padrão é `0.0`.
+
+`min_samples_leaf` - Número mínimo de amostras em um nó folha. Padrão é `1`.
+
+`min_samples_split` - Número mínimo de amostras para dividir um nó. Padrão é `2`.
+
+`min_weight_fraction_leaf` - Fração mínima de amostras em um nó folha. Padrão é `0.0`.
+
+`n_estimators` - Número de árvores. Padrão é `10`.
+
+`n_jobs` - Número de trabalhos em paralelo. Padrão é `None`.
+
+`oob_score` - Especifica se deve ser habilitado o cálculo do erro OOB. Padrão é `False`.
+
+`random_state` - Semente aleatória. Padrão é `None`.
+
+`verbose` - Define o nível de verbosidade. Padrão é `0`.
+
+`warm_start` - Quando definido como `True`, reutiliza a solução da chamada anterior para ajustar como inicialização. Padrão é `False`.
+
+#### Atributos após a adequação
+
+`classes_` - Classes de destino.
+
+`feature_importances_` - Importância dos atributos.
+
+`n_classes_` - Número de classes.
+
+`n_features_` - Número de atributos.
+
+`0ob_score_` - Erro OOB.
+
+É possível utilizar a importância de Gini para visualizar a importância dos atributos.
+
+O classificador de floresta aleatória calcula a importância dos atributos determinando a diminuição média da impureza para cada atributo (ou seja importância de Gini). A importância de Gini é calculada para cada nó da árvore e ponderada pela probabilidade de atingir esse nó. A importância de Gini é calculada para cada árvore e depois é calculada a média.
+
+Esses valores poderão se tornar imprecisos se os atribtos variarem em escala ou na cardinalidade das colunas de categorias. Uma pontuação mais confiavel é a importância da permutação. Um método mais confiavel é a importância da coluna descartada, entretanto para isso é exigido um novo modelo para cada coluna descartada
