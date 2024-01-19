@@ -100,6 +100,20 @@
         - [Interpretação dos Resultados](#interpretac3a7c3a3o-dos-resultados-5)
         - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-3)
         - [Atributos-pós adequação](#atributos-2)
+    - [LightGBM](#gradient-boosting-com-lightgbm)
+        - [Eficiência na Execução](#eficic3aancia-na-execuc3a7c3a3o-6)
+        - [Pré-processamento dos Dados](#prc3a9-processamento-dos-dados-6)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-6)
+        - [Interpretação dos Resultados](#interpretac3a7c3a3o-dos-resultados-6)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-4)
+    - [TPOT](#tpot)
+        - [Eficiência na Execução](#eficic3aancia-na-execuc3a7c3a3o-7)
+        - [Pré-processamento dos Dados](#prc3a9-processamento-dos-dados-7)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-7)
+        - [Interpretação dos Resultados](#interpretac3a7c3a3o-dos-resultados-7)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-5)
+        - [Atributos-pós adequação](#atributos-3)
+
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
@@ -1205,4 +1219,8 @@ Depende dos resultados. O TPOT pode ser utilizado para encontrar o melhor modelo
 `evaluated_individuals_` - Indivíduos avaliados.
 
 `fitted_pipeline_` - Pipeline ajustado. Com o seu uso é possivel exportar o pipeline com o método `export`.
+
+### Códigos
+
+Os códigos deste capítulo podem ser encontrados [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo10.ipynb).
 
