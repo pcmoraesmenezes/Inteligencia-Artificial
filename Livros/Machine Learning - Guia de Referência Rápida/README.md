@@ -1065,3 +1065,144 @@ A partir dessa tabela, pode-se verificar que `sex_male` tem uma posição elevad
 
 Com essa tabela é possível verificar a interação entre as variáveis. As duas principais interações ocorrem com `sex_male` e as outras duas variáveis `pclass` e `age`. Esses com certeza são os atributos mais importantes.
 
+
+
+### Gradient Boosting com LightGBM
+
+O LightGBM é uma implementação da Microsoft. Ele utiliza um método de amostragem para lidar com valores contínuos. Com isso a criação das árvores é rápida, e o tempo de memória e bem menor.
+
+O LighhGBM também cria árvores em profundidade antes. Com isso para evitar a superadequação utilize `num_leaves`.
+
+#### Eficiência na execução
+
+Consegue utilizar várias CPUs, caso utilize binning pode ser até 15x mais rápido que o XGBoost.
+
+#### Pré-processamento dos dados
+
+Possuí suporte para cofificação de colunas de categorias. AUC costuma ser pior em comparação com codificação one-hot.
+
+#### Para evitar superadequação
+
+Utilize `num_leaves` para controlar a profundidade das árvores. Utilize `min_data_in_leaf` para controlar o número mínimo de amostras em um nó folha. Utilize `max_bin` para controlar o número de bins. Utilize `main_gain_to_split` para controlar a quantidade de ganho necessária para dividir um nó.
+
+#### Interpretação dos resultados
+
+Está disponível, mas costuma ser difíceis de interpretar devido a individualidade fraca das árvores.
+
+#### Parâmetros da instância
+
+`boosting_type` - Especifica o tipo de modelo. Padrão é `gbdt`. Pode ser `gbdt`, `dart`, `goss`.
+
+`class_weight` - Define o peso das classes. Padrão é `None`. Use dictionary para definir pesos diferentes para cada classe. Para problemas de várias classes utilize dicionário, mas para problemas binários utilize `is_unbalance` ou `scale_pos_weight`.
+
+`colsample_bytree` - Fração dos atributos a serem utilizados, por árvore. Padrão é `1`. Isso seleciona uma porcentagem de atributos para cada árvore.
+
+`importance_type` - Especifica o tipo de importância. Padrão é `split`. Pode ser `split`, `gain`. `split` é o número de vezes que o atributo é usado para dividir os dados em todos os nós. `gain` é o ganho médio em todos os nós em que o atributo é usado.
+
+`learning_rate` - Intervalo de (0,10). Esse parâmetro indica a taxa de aprendizado para boosting. Um valor menor pode atrasar a superadequação devido as rodadas possuírem menos 'impacto', mas um numero menor resulta em um desempenho melhor o que pode aumentar o numero de iterações. O padrão é `0.1`.
+
+`max_depth` - Profundidade máxima da árvore. Padrão é `-1`. O valor padrão é -1, o que significa que não há limite de profundidade. Um valor maior resulta em um modelo mais complexo e mais propenso a superadequação.
+
+`min_child_samples` - Número mínimo de amostras em um nó folha. Padrão é `20`. Um valor maior resulta em um modelo mais conservador. Numeros menores podem resultar em superadequação.
+
+`min_child_weight` - Controla a prunning (poda). Padrão é `1`. Essa é a soma mínima de pesos necessária para separar mais uma folha. Quanto maior o valor, mais conservador o algoritmo.
+
+`min_split_gain` - Redução mínima de perda necessária para dividir um nó. Padrão é `0`. Um valor maior resulta em um modelo mais conservador.
+
+`n_estimators` - Número de árvores. Padrão é `100`.
+
+`n_jobs` - Número de trabalhos em paralelo. Padrão é `1`.
+
+`num_leaves` - Número de folhas. Padrão é `31`. Um valor maior resulta em um modelo mais complexo e mais propenso a superadequação.
+
+
+`objective` - Especifica o objetivo de treinamento. Padrão é `regression`. Pode ser `regression`, `regression_l1`, `huber`, `fair`, `poisson`, `quantile`, `mape`, `gamma`, `tweedie`, `binary`, `multiclass`, `multiclassova`, `cross_entropy`, `cross_entropy_lambda`, `lambdarank`.
+
+`random_state` - Semente aleatória. Padrão é `None`.
+
+`reg_alpha` - Regularização L1. Padrão é `0`. Aumente para um modelo mais conservador.
+
+`reg__lambda` - Regularização L2. Padrão é `0`. Aumente para um modelo mais conservador. Essa regularização incentiva pesos menores.
+
+`silent` - Especifica se deve ser habilitado o modo silencioso. Padrão é `True`.
+
+`subsample` - Fração das amostas a serem utilizadas. Padrão é `1`. Um valor menor resulta em um modelo mais conservador.
+
+`subsample_for_bin` - Número de amostras para construir bins. Padrão é `200000`.
+
+`subsample_freq` - Frequência de amostragem. Padrão é `0`.
+
+---
+
+A importância com o numero de atributos (numero de vezes utilizado) pode ser feita utilizando (`.feature_importances_`).
+
+A biblioteca `LightGBM` é capaz de gerar um gráfico da importância dos atributos com o método `plot_importance`. É possível utilizar o parâmetro `importance_type` para especificar o tipo de importância. O padrão é `split`, mas pode ser `gain`.
+
+Também é possível gerar uma árvore de decisões com o método `plot_tree`. É possível utilizar o parâmetro `num_tree` para especificar o número da árvore. O padrão é `0`.
+
+### TPOT 
+
+O TPOT usa um algoritmo genético para testar diferentes modelos e ensembles (conjuntos). Pode demorar muito tempo para executar, pois o algoritmo considera diversos modelos e passos de pré-processamento, além de testar os hiperparâmetros.
+
+#### Eficiência na execução
+
+O TPOT pode demorar muito tempo para executar, pois o algoritmo considera diversos modelos e passos de pré-processamento, além de testar os hiperparâmetros. Utilize `n_jobs` para controlar o número de CPUs. Para usar todas use `-1`.
+
+#### Pré-processamento dos dados
+
+Deve ser feita a remoção de `NaN` e a codificação de variáveis categóricas.
+
+#### Para evitar superadequação
+
+O ideal é utilizar validação cruzada para minimizar a superadequação.
+
+#### Interpretação dos resultados
+
+Depende dos resultados. O TPOT pode ser utilizado para encontrar o melhor modelo e depois utilizar esse modelo para interpretar os resultados.
+
+#### Parâmetros da instância
+
+`generations` - Número de gerações. Padrão é `100`.
+
+`population_size` - Tamanho da população para o algoritmo genético. Padrão é `100`. Quanto maior o valor, mais tempo leva para executar.
+
+`offspring_size` - Define o número de descendentes para cada geração. Padrão é `100`.
+
+`mutation_rate` - Define a taxa de mutação. Padrão é `0.9`.
+
+`crossover_rate` - Define a taxa de cruzamento(quantidade de pipelines criados em cada geração). Padrão é `0.1`.
+
+`scoring` - Especifica a métrica de avaliação. Padrão é `accuracy`. Pode ser `accuracy`, `adjusted_rand_score`, `average_precision`, `balanced_accuracy`, `f1`, `f1_macro`, `f1_micro`, `f1_samples`, `f1_weighted`, `neg_log_loss`, `neg_mean_absolute_error`, `neg_mean_squared_error`, `neg_mean_squared_log_error`, `neg_median_absolute_error`, `precision`, `precision_macro`, `precision_micro`, `precision_samples`, `precision_weighted`, `r2`, `recall`, `recall_macro`, `recall_micro`, `recall_samples`, `recall_weighted`, `roc_auc`.
+
+`cv` - Especifica a estratégia de validação cruzada. Padrão é `5`. Pode ser `None`, `kfold`, `stratifiedkfold`, `groupkfold`, `timeseriesplit`, `shuffle`, `stratifiedshuffle`, `groupshuffle`, `timeseriessplit`.
+
+`subsample` - Fração das amostas a serem utilizadas. Padrão é `1`. Um valor menor resulta em um modelo mais conservador.
+
+`max_time_mins` - Tempo máximo em minutos. Padrão é `None`.
+
+`max_eval_time_mins` - Tempo máximo em minutos para avaliação de um pipeline. Padrão é `5`.
+
+`random_state` - Semente aleatória. Padrão é `None`.
+
+`config_dict` - Dicionário de configuração. Padrão é `None`.
+
+`warm_start` - Quando definido como `True`, reutiliza a solução da chamada anterior para ajustar como inicialização. Padrão é `False`. As chamadas dizem respeito ao método `fit`.
+
+`memory` - Especifica se deve ser habilitado o uso de memória. Padrão é `None`.
+
+`use_dask` - Especifica se deve ser habilitado o uso de dask. Padrão é `False`.
+
+`periodic_checkpoint_folder` - Especifica o diretório para salvar os checkpoints. Padrão é `None`.
+
+`early_stop` - Especifica se deve ser habilitado o uso de early stop. Padrão é `None`.
+
+`verbosity` - Define o nível de verbosidade. Padrão é `0`.
+
+`disable_update_check` - Especifica se deve ser habilitado o uso de atualização. Padrão é `False`.
+
+#### Atributos
+
+`evaluated_individuals_` - Indivíduos avaliados.
+
+`fitted_pipeline_` - Pipeline ajustado. Com o seu uso é possivel exportar o pipeline com o método `export`.
+
