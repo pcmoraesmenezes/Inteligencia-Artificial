@@ -113,7 +113,11 @@
         - [Interpretação dos Resultados](#interpretac3a7c3a3o-dos-resultados-7)
         - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-5)
         - [Atributos-pós adequação](#atributos-3)
-
+    - [Código Fonte](#códigos)
+- [Capítulo 11 - Seleção de Modelo](#capítulo-11---seleção-do-modelo)
+    - [Validation Curve](#curva-de-validação)
+    - [Learning Curve](#curva-de-aprendizagem)
+    - [Código Fonte](#cc3b3digos-1)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
@@ -1224,3 +1228,34 @@ Depende dos resultados. O TPOT pode ser utilizado para encontrar o melhor modelo
 
 Os códigos deste capítulo podem ser encontrados [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo10.ipynb).
 
+## Capítulo 11 - Seleção do Modelo
+
+### Curva de Validação
+
+Uma curva de validação é uma representação visual de determinar um valor apropriado para um hiperparâmetro. Essa curva é um gráfico que mostra como o desenpenho do modelo muda com o valor do hiperparâmetro.
+
+![Validation Curve](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/validation%20curve.png)
+
+O gráfico mostra tanto os dados de treinamento como de validação. Dessa forma é possivel estimar como o modelo reage a diferentes valores de hiperparâmetros. No geral a escolha e sempre visando a maxima pontuação dos dados de validação
+
+O gráfico acima foi gerado utilizado o `Yellowbrick`, o foco foi na verificação do hiperparâmetro `max_depth`, além disso é possível fornecer um parÂmetro `scoring` para especificar a métrica de avaliação.
+
+### Curva de Aprendizagem
+
+Uma curva de aprendizagem é uma representação visual de determinar se um modelo está sofrendo de superadequação ou subadequação. Essa curva é um gráfico que mostra como o desenpenho do modelo muda com o tamanho do conjunto de treinamento.
+
+O gráfico mostra as instâncias de treinamento e a pontuação para validação cruzada à medida que cria-se modelos com mais amostras. 
+
+Caso a pontuação da validação cruzada tenda a ser incrementada, é um sinal de que mais dados podem ajudar.
+
+![Learning Curve](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/learning%20curve.png)
+
+Se houver variailidade (uma área sombreada grande) na pontuação dos dados, significa que o modelo sofre de erros de bias e é simples demais (subadequação).
+
+Se houver variabilidade na pontuação para validação cruzada, é porque o modelo está sujeito a erros de variância e é muito complexo (superadequação).
+
+Um outro fator que pode mostrar uma superadequação está no fato de que o desempenho para conjunto de dados de validação é muito pior do que o desempenho para o conjunto de dados de treinamento.
+
+### Códigos
+
+Os códigos deste capítulo podem ser encontrados [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo11.ipynb).
