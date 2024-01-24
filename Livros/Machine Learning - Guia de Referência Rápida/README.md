@@ -884,7 +884,7 @@ No jupyter é possível exibir um objeto `viz` diretamente
 
 Utilizando o `dtreeviz` é possível visualizar a importância dos atributos.
 
-![Exemplo](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/titanic.svg)
+
 
 A importância dos atributos pode ser feita utilizando o `feature_importances_` do modelo.
 
@@ -1259,3 +1259,185 @@ Um outro fator que pode mostrar uma superadequação está no fato de que o dese
 ### Códigos
 
 Os códigos deste capítulo podem ser encontrados [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo11.ipynb).
+
+## Capítulo 12 - Métricas e Avaliação de Classificação
+
+### Matriz de Confusão
+
+Uma matriz de confusão é extremamente relevante para auxiliar na compreensão do desempenho de um classificador. Um classificador binário pode ter quatro resultados de classificação:
+
+- Verdadeiro Positivo (TP) - O modelo previu corretamente a classe positiva.
+
+- Verdadeiro Negativo (TN) - O modelo previu corretamente a classe negativa. 
+
+- Falso Positivo (FP) - O modelo previu incorretamente a classe positiva. Em outras palavras, o modelo previu que era positivo quando na verdade era negativo.
+
+- Falso Negativo (FN) - O modelo previu incorretamente a classe negativa. Em outras palavras, o modelo previu que era negativo quando na verdade era positivo.
+
+Supondo que positivo é ter câncer e negativo é não ter câncer, um falso negativo seria um paciente que tem câncer, mas o modelo previu que não tinha. Um falso positivo seria um paciente que não tem câncer, mas o modelo previu que tinha. Esses erros são os mais comuns, chamados de erro do tipo I e erro do tipo II.
+
+|Real | Previsto como negativo | Previsto como positivo |
+|-----|------------------------|------------------------|
+|Negativo | Verdadeiro Negativo | Falso Positivo tipo I|
+|Positivo | Falso Negativo tipo II | Verdadeiro Positivo|
+
+```python
+
+tp=( # true postive
+    (y_test == 1) & (y_test == y_pred)
+).sum()
+
+tn=( # true negative
+    (y_test == 0) & (y_test == y_pred)
+).sum()
+
+fp=( false positive
+    (y_test == 0) & (y_test != y_pred)
+).sum()
+
+fn=( # false negative
+    (y_test == 1) & (y_test != y_pred)
+).sum()
+
+```
+
+Usando `scikit-learn`, é possível utilizar a função `confusion_matrix` para gerar a matriz de confusão.
+
+Usando o `Yellowbrick`, é possível utilizar a função `ConfusionMatrix` para gerar a matriz de confusão. 
+
+![Confusion Matrix](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/confusion%20matrix.png)
+
+### Métricas
+
+O `scikit-learn` possuí diversas métricas muito comuns para classificação como:
+
+- `accuracy:` A acurácia é a proporção de previsões corretas. É a métrica mais comum para classificação binária. A acurácia é calculada como a proporção de previsões corretas em relação ao número total de previsões. A acurácia é uma métrica útil quando as classes estão bem equilibradas.
+
+- `average_precision:` A precisão média é a área sob a curva de precisão-recall. A precisão média é uma métrica útil quando as classes estão desequilibradas. É um resumo da curva de precisão e recall.
+
+- `f1:` O F1 é a média harmônica da precisão e do recall. O F1 é uma métrica útil quando as classes estão desequilibradas. É uma métrica útil quando as classes estão desequilibradas.
+
+- `neg_log_loss:` A perda logarítmica negativa é uma métrica de perda. A perda logarítmica negativa é útil quando as classes estão desequilibradas.
+
+- `precision:` A precisão é a proporção de previsões corretas positivas. 
+
+
+- `recall:` O recall é a proporção de previsões corretas positivas. 
+
+- `roc_auc:` A área sob a curva ROC. 
+
+Essas strings, pdem ser usadas no parâmetro scoring em uma busca de grade, por exemplo.
+
+#### Acurácia
+
+Porcentagem de classificações corretas:
+
+$$
+\frac{TP + TN}{TP + TN + FP + FN}
+$$
+
+Nem sempre um modelo com alta acurácia é o melhor. Por exemplo, se o modelo prevê que todos os pacientes não têm câncer, a acurácia será alta, mas o modelo não é útil.
+
+Conforme mencionado o `scikit-learn` possuí a função `accuracy_score` para calcular a acurácia.
+
+#### Recall
+
+Porcentagem de positivos corretamente classificados:
+
+$$
+\frac{TP}{TP + FN}
+$$
+
+Possuí implementação no `scikit-learn` com a função `recall_score`.
+
+#### Precisão
+
+Porcentagem de positivos corretamente classificados:
+
+$$
+\frac{TP}{TP + FP}
+$$
+
+Possuí implementação no `scikit-learn` com a função `precision_score`.
+
+#### F1
+
+Média harmônica entre precisão e recall:
+
+$$
+pre = \frac{TP}{TP + FP}
+$$
+
+$$
+rec = \frac{TP}{TP + FN}
+$$
+
+$$
+F1 = 2 \times \frac{pre \times rec}{pre + rec}
+$$
+
+Possuí implementação no `scikit-learn` com a função `f1_score`.
+
+### Relatório de Classificação
+
+O `Yellowbrick` possuí uma função para gerar um relatório de classificação. O relatório de classificação é uma tabela que mostra as métricas de classificação para cada classe. O relatório de classificação é útil quando as classes estão desequilibradas.
+
+O relatório é colorido e quanto mais próximo do vermelho(mais próximo de um), melhor será.
+
+![Classification Report](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/classification%20report.png)
+
+### ROC (Receiver Operating Characteristic)
+
+A curva ROC mostra o desempenho do classificador, exibindo a taxa de verdadeiros positivos (recall/sensibilidade) à medida que a taxa de falsos-positivos (especificidade inversa) é variada. A curva ROC é extremamente útil
+
+Uma regra geral é que o gráfico deve ter uma protuberância em direção ao canto superior esquerdo. Quanto mais próximo o gráfico estiver do canto superior esquerdo, melhor será o desempenho do classificador.
+
+Usando o `sklearn` é possível obter o valor com `sklearn.metrics import roc_auc_score`, já com o `Yellowbrick ` é possível utilizar a função `ROCAUC` para gerar o gráfico.
+
+![ROC](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/ROC.png)
+
+### Curva de precisão-recall
+
+A curva ROC pode ser enganosa quando as classes estão desequilibradas. A curva de precisão-recall é uma alternativa útil quando as classes estão desequilibradas.
+
+Uma classificação é uma tarefa de balanceamento de modo a encontrar tudo de que é necessário (recall), ao mesmo tempo que limita os resultados ruins (precisão). A curva de precisão-recall mostra a precisão e o recall para diferentes limiares de probabilidade.
+
+Utilizando `sklearn.metrics import average_precision_score` é possível obter o valor da área sob a curva. Já com o `Yellowbrick` é possível utilizar a função `PrecisionRecallCurve` para gerar o gráfico.
+
+![Curva precisão recall](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/Curva%20precisão%20recall.png)
+
+### Gráfico de Elevação
+
+O gráfico de elevação (lift curve) é outra forma de olhar a informação que está em um gráfico de ganhos cumulativos. A elevação, demonstra o quão melhor é o nosso desempenho em relação ao modelo de base. O modelo de base é aquele que não faz nenhuma previsão, ele simplesmente prevê a classe mais frequente. A própria biblioteca do `scikitplot` tem uma função para gerar o gráfico de elevação.
+
+`scikitplot.metrics.plot_lift_curve(y_test, y_probas)`
+
+![Gráfico de Elevação](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/gráfico%20de%20elevação.png)
+
+### Balanceamento das classes
+
+O `Yellowbrick` tem um gŕafico de barras simples para visualizar os tamanhos das classes. Quando os tamanhos relativos das classes são diferentes, o modelo pode ter dificuldade em aprender a classe minoritária. O gráfico de barras é uma maneira rápida de verificar se as classes estão desequilibradas.
+
+Ao realizar a separação dos dados em conjunto de treinamento e de teste, é recomendavél utilizar amostragem estratificada, de modo a manter a proporção das classes.
+
+A própria função `test_train_split` do `sklearn` já possui um parâmetro `stratify` para realizar a amostragem estratificada.
+
+![Balancemaneto das classes](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/balanceamento%20de%20classes.png)
+
+### Erro de predição de classe
+
+O gráfico de erro de predição de classe do `Yellowbrick` é um gráfico em barras para exibir uma matriz de confusão. 
+
+![Erro de predição de classe](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/Erro%20de%20predição%20de%20classe.png)
+
+Na parte superior da barra a esquerda estão as pessoas que morreram, mas para as quais foi previsto que sobreviveram (falsos-positivos). Na parte inferior da barra a direita estão as pessoas que sobreviveram, mas para as quais foi previsto que morreram (falsos-negativos).
+
+### Limiar de Discriminação
+
+A maioria dos classificadores binarios que fazem a predição de probabilidades tem um limiar de discriminação de 50%. Caso a probabilidade prevista esteja acima de 50%, o classificador irá atribuir um rótulo positivo. Caso a probabilidade prevista esteja abaixo de 50%, o classificador irá atribuir um rótulo negativo.
+
+Este gráfico pode ser útil para visualizar a relação de compromisso entre precisão e recall. A taxa de fila é a porcentagem de previsões acima do limiar. Ela pode ser considerada como a porcentagem de casos a serem analisados.
+
+O `Yellowbrick` disponibiliza essa visualização, ele faz o embaralhamento dos dados e executa 50 tentativas por padrão, separando 10% para validação. Use `yellowbrick.classifier import DiscriminationThreshold` para gerar o gráfico.
+
+![Limiar de discriminação](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/limiar%20de%20discriminação.png)
