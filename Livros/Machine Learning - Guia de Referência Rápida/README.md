@@ -118,6 +118,22 @@
     - [Validation Curve](#curva-de-validação)
     - [Learning Curve](#curva-de-aprendizagem)
     - [Código Fonte](#cc3b3digos-1)
+
+- [Capítulo 12 - Métricas e avaliação de classificação](#capítulo-12---métricas-e-avaliação-de-classificação)
+    - [Matriz de Confusão](#matriz-de-confusc3a3o-1)
+    - [Métricas](#métricas)
+        - [Acurácia](#acurácia)
+        - [Recall](#recall)
+        - [Precisão](#precisão)
+        - [F1](#f1)
+    - [Relatório de classificação](#relatório-de-classificação)
+    - [Curva ROC](#roc-receiver-operating-characteristic)
+    - [Curva precisão recall](#curva-de-precisão-recall)
+    - [Gráfico de elevação](#gráfico-de-elevação)
+    - [Balanceamento das classes](#balanceamento-das-classes)
+    - [Erro de predição de classe](#erro-de-predição-de-classe)
+    - [Limiar de discriminação](#limiar-de-discriminação)
+    - [Código fonte](#cc3b3digos-2)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
@@ -1441,3 +1457,7 @@ Este gráfico pode ser útil para visualizar a relação de compromisso entre pr
 O `Yellowbrick` disponibiliza essa visualização, ele faz o embaralhamento dos dados e executa 50 tentativas por padrão, separando 10% para validação. Use `yellowbrick.classifier import DiscriminationThreshold` para gerar o gráfico.
 
 ![Limiar de discriminação](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/limiar%20de%20discriminação.png)
+
+### Códigos
+
+Os códigos deste capítulo podem ser encontrados [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo12.ipynb).
