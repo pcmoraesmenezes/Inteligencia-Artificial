@@ -1461,3 +1461,49 @@ O `Yellowbrick` disponibiliza essa visualização, ele faz o embaralhamento dos 
 ### Códigos
 
 Os códigos deste capítulo podem ser encontrados [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo12.ipynb).
+
+## Capítulo 13 - Explicando os Modelos
+
+### Coeficientes de Regressão
+
+Os interceptos e os coeficientes de regressão explicam o valor esperado e como os atributos causam impacto na predição. Um coeficiente positivo indica que, à medida que o valor de um atributo aumento, o valor esperado também aumenta. Um coeficiente negativo indica que, à medida que o valor de um atributo aumenta, o valor esperado diminui.
+
+Uma explicação mais completa sobre como funciona o método de Least Squares pode ser encontrada [aqui](https://github.com/pcmoraesmenezes/Data-Science-and-Machine-Learning-Course/blob/main/Machine%20Learning%20Crash/practice/model_/linear_regression.ipynb)
+
+### Importância dos Atributos
+
+Modelos baseados em árvore do `scikit-learn`, incluem atributos como `.feature_importances_` para inspecionar como os atributos de um conjunto de dados afetam o modelo. A inspeção pode ser realizada tanto de forma gráfica quanto de forma textual.
+
+### LIME (Local Interpretable Model-Agnostic Explanations)
+
+O LIME, consegue ser de grande ajuda na explicação de modelos caixa-preta. Ele realiza uma interpretação local, em vez de uma interpretação global. O LIME é um método de interpretação de modelo agnóstico, ou seja, pode ser aplicado a qualquer modelo.
+
+Para um determinado ponto de dado ou amostra, o LIME consegue mostrar os atributos importantes para determinar o resultado. O método para ele realizar isto é causando uma perturbação nos dados e observando como o modelo reage. O LIME é capaz de explicar modelos de classificação e regressão.
+
+![LIME](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/LIME.png)
+
+É possível também usar o `matplotlib` para exportar a explicação do `LIME`
+
+Uma coisa interessante sobre esses dados, que como mencionado, o LIME analisa a importância dos atributos, ou seja, pequenas modificações que forem feitas, podem ser de grande efeito no modelo no geral, como por exemplo alterando o sexo dos passageiros, o modelo pode ter uma grande mudança.
+
+### Interpretação de Árvores
+
+Para os modelos baseados em árvore do `sklearn`, é possível usar o pacote `treeinterpreter`. Através desse pacote, é possível calcular o bias(víes) e a contribuição de cada atributo para cada previsão. O bias é a média de todas as previsões. A contribuição de cada atributo é a diferença entre a previsão com o atributo e a previsão sem o atributo.
+
+Cada contribuição lista como o atributo contribui com cada um dos rotulos.
+
+![Interpretação de árvores](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/interpretação%20de%20árvores.png)
+
+`Prediction` - Isso indica que o modelo previu duas classes  e fornece as probabilidades associadas a cada classe. No caso a classe 0 tem uma probabilidade de cerca de 82% enquanto a classe 1 tem a probabilidade de cerca de 18%.
+
+`Bias` - Ele apresenta a média das saídas do conjunto de treinamento
+
+`Feature contributions`: Essa parte mostra a contribuição de cada recurso para a predição, onde cada linha representa um recurso e as contribuições positivas e negativas para cada classe, por exemplo pclass, onde teve uma contribuição de aproximadamente 0.028 para a classe 0 e -0.028 para a classe 1.
+
+### Gráficos de Dependência Parcial
+
+É notavél que os atributos causam um impacto nos modelos, mas não se é sabido como o impacto varia à medida que o valor do atributo muda. Os gráficos de dependência parcial, são extremamente uteis para preencher essa lacuna.
+
+Utilizando o `pdpbox` é possível gerar os gráficos de dependência parcial.
+
+![Dependência parcial](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/dependencia%20parcial.png)
