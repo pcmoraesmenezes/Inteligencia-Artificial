@@ -1507,3 +1507,39 @@ Cada contribuição lista como o atributo contribui com cada um dos rotulos.
 Utilizando o `pdpbox` é possível gerar os gráficos de dependência parcial.
 
 ![Dependência parcial](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/dependencia%20parcial.png)
+
+### Modelos Substitutos
+
+No caso de modelos não interpretaveis como uma rede neural ou SVM (Support Vector Machine), é possível utilizar modelos substitutos para interpretar o modelo. O modelo substituto é um modelo simples que é treinado para imitar o modelo complexo. O modelo substituto pode ser interpretado para entender o modelo complexo.
+
+O `sklearn` possuí o `DecisionTreeClassifier` que pode ser utilizado como modelo substituto.
+
+### SHAP (SHapley Additive exPlanations)
+
+Esse pacote é capaz de exibir as contribuições dos atributos para qualquer modelo. É um pacote bem interessante!
+
+Ele funciona tanto para classificação quanto para regressão e gera valores `SHAP`. Para modelos de classificação, o valor SHAP é a soma dos log odds(logaritmo das chances) em uma classificação binaria.Para regressão os valores SHAP são os valores preditos.
+
+![SHAP](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/SHAP.png)
+
+Este é um exemplo de gráfico de forças, para a amostra 20
+
+#### Atenção
+
+O SHAP precisa de iniciar o `js` atraves de `shap.initjs()`, isso permitira a geração de gráficos e o código não ficará pesado
+
+---
+
+![SHAP](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/SHAP%202.png)
+
+Visualização completa das importâncias
+
+![SHAP](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/shap%203.png)
+
+![SHAP](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/shap4.png)
+
+Uma pontuação baixa de sexo masculino impulsiona a sobrevivência por exemplo.
+
+### Códigos
+
+Os códigos deste capítulo podem ser encontrados [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo13.ipynb).
