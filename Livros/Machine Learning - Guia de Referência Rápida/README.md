@@ -134,6 +134,15 @@
     - [Erro de predição de classe](#erro-de-predição-de-classe)
     - [Limiar de discriminação](#limiar-de-discriminação)
     - [Código fonte](#cc3b3digos-2)
+- [Capítulo 13 - Explicando os Modelos](#capítulo-13---explicando-os-modelos)
+    - [Coeficientes de Regressão](#coeficientes-de-regressão)
+    - [Importância dos Atributos](#importc3a2ncia-dos-atributos-1)
+    - [LIME](#lime-local-interpretable-model-agnostic-explanations)
+    - [Interpretação de árvores](#interpretação-de-árvores)
+    - [Gráficos de dependência parcial](#gráficos-de-dependência-parcial)
+    - [Modelos Substitutos](#modelos-substitutos)
+    - [SHAP](#shap-shapley-additive-explanations)
+    - [Código Fonte](#cc3b3digos-3)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
