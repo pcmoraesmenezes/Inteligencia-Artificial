@@ -1552,3 +1552,87 @@ Uma pontuação baixa de sexo masculino impulsiona a sobrevivência por exemplo.
 ### Códigos
 
 Os códigos deste capítulo podem ser encontrados [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo13.ipynb).
+
+## Capítulo 14 - Regressão
+
+A regressão é um processo de machine learning supervisionado. É bem semelhante ao modelo de classificação, a diferença está em que enquanto em um modelo de classificação a predição é realizada através de um rotulo, em um modelo de regressão a predição é realizada através de um valor numérico.
+
+Ou seja, caso se deseja realizar uma predição númerica, como o valor de uma casa, uma ação no mercado, o modelo de regressão é mais indicado.
+
+O `sklearn` se mostra incrível mais uma vez nesse quiesito pois, é capaz de aplicar muitos dos mesmos modelos de classificação em problemas de regressão. Os metódos são praticamente o mesmo, usa-se `.fit`, `.score` e `.predict`. O mesmo para as bibliotecas de boosting da próxima geração como `XGBoost` e `LigthGBM`.
+
+Outra grande diferença está nas métricas de avaliação, que serão abordadas posteriormente. O conjunto utilizado para este estudo sera o conjunto de dados habitacionais de Boston.
+
+Foi realizado o download deste dataset pois o `sklearn`, devido a questões eticas desconsiderou o uso deste dataset.
+
+O target deste dataset é a variável `MEDV` que representa o valor mediano das casas ocupadas pelos proprietários em milhares de dólares.
+
+Uma breve descrição dos atributos pode ser encontrada no código `capitulo14.ipynb`, ele será disponilizado ao fim da sessão.
+
+### Modelo de base
+
+Um modelo de regressão básico, dará algo com o qual pode ser comparado aos outros modelos. 
+
+O `sklearn`, o resultado default do método `.score` é o coeficiente de determinação $(r^{2})$ ou $(R^{2})$. Esse valor serve para explicar o percentual de variação dos dados de entrada capturado pela predição. No geral, o valor estará entre $0$ e $1$, mas pode ser negativo se o modelo for muito ruim.
+
+A estratégia de `DummyRegressor` é prever o valor médio do conjunto de treinamento. Esse modelo geralmente não tem um bom desempenho, mas é um bom ponto de partida para comparação.
+
+### Regressão Linear
+
+Uma regressão linear é uma técnica relativamente simples que utiliza o método de mínimos quadrados para ajustar uma linha aos dados. O método de mínimos quadrados é um método de otimização que minimiza a soma dos quadrados das diferenças entre os valores reais e os valores previstos.
+
+Eu ja desenvolvi um repositorio explicando sobre o método de minimos quadrados e uma aplicação usando python, pode ser acessada [aqui](https://github.com/pcmoraesmenezes/Calculo/blob/main/Explica%C3%A7%C3%A3o%20de%20Modelos/Regress%C3%A3o%20Linear.md)
+
+Retomando ao modelo de Regressão Linear, ele tenta realizar uma adequação da fórmula da reta $y = mx+b$, ao mesmo tempo que minimiza o quadrado dos erros.
+
+Quando o modelo encontra os valores, tem-se o intercepto e um coeficiente. O intercepto entrega um valor de base para uma predição, modificado pela soma do produto entre o coeficiente e o dado de entrada.
+
+Esse formato é facilmente generalizado para dimensões maiores. Nesse caso, cada atributo terá um coeficiente. Quanto maior o valor absoluto do coeficiente, mais impacto terá o atributo no alvo.
+
+Esse modelo pressupõe que a predição é uma combinação linear dos dados de entrada. Em alguns casos a predição será perfeita, esses casos são os que não encontra-se "ruídos" nso dados, ou seja, os dados são perfeitamente lineares. Por exemplo uma formula da reta $y = 2x + 1$.
+
+Entretanto para alguns dados, isso não será suficiente, e na verdade a complexidade pode ser forçada utilizando a transformação dos atributos `preprocessing`.
+
+Tem-se também a `PolynomialFeatures` do `sklearn`, que é capaz de criar combinações polinomiais dos atributos, pode resultar em uma superadequação em alguns casos. Já debati também sobre esse problema da superadequação, principalmente no caso da regressão linear, pode ser acessado [aqui](https://github.com/pcmoraesmenezes/Data-Science-and-Machine-Learning-Course/blob/main/Machine%20Learning%20Crash/practice/high_capacity_problem/overfitting.ipynb). Nesse exemplo ficou bem claro que quanto maior o `degree` do modelo, melhor ele consegue se ajustar aos dados já presentes, entretanto ele não consegue generalizar para novos dados. Uma saída seria utilizar os regressores `ridge` e `lasso` para regularizar o estimador.
+
+Um dos outros defeitos deste modelo é a ideia de `heterocedasticidade`. A heterocedasticidade nada mais é que: A medida que os valores de entrada mudam, o erro da predição geralmente mudam também. Se colocar os dados de entrada e os resíduos(predição) em um gráfico, é possível ver que os resíduos aumentam à medida que os valores de entrada aumentam. Isso é um problema porque o modelo não consegue prever com precisão os valores de entrada maiores. O gráfico ficará em um formato de leque ou cone.
+
+Um outro fator é a questão da multicolinearidade, na qual se as colunas forem altamente correlacionadas, será mais dificil de interpretar os coeficientes, mas isso não trará impacto no modelo, apenas nos coeficientes.
+
+#### Eficiência na execução
+
+Utilize `n_jobs` para controlar o número de CPUs. Para usar todas use `-1`.
+
+#### Pré processamento dos dados
+
+É necessário uma padronização dos dados antes do treinamento.
+
+#### Para evitar superadequação
+
+Simplificação no modelo costuma ser a forma mais eficiente, mas no geral evitando o uso de atributos polinomiais costuma ser efetivo.
+
+#### Interpretação dos resultados
+
+É possível interpretar os resultados como pesos para contribuição dos atributos, mas é feito uma suposição de que os atributos tenham uma distribuição normal e sejam independentes, ou seja mais uma vez a questão da multicolinearidade.
+
+É possível remover atributos colineares para facilitar a interpretação.
+
+$R^2$ informará até que ponto a variância total do resultado é explicada pelo modelo.
+
+#### Parâmetros da instância
+
+- `n_jobs = None` - Número de trabalhos em paralelo. Padrão é `None`.
+
+#### Atributos após a adequação
+
+- `coef_` - Coeficientes para cada atributo.
+
+- `intercept_` - Intercepto.
+
+O valor de `.intercept_` é o valor médio esperado. Aqui é onde tem-se o maior peso do escalonamento dos dados, pois o escalonamento dos dados afeta os coeficientes. O sinal destes, explica a direção da relação entre o atributo e o target. Um sinal positivo, indica que o atributo e o target aumentam juntos. Um sinal negativo, indica que o atributo e o target diminuem juntos. Ou seja são proporcionais.
+
+Os coeficientes podem ser vistos utilizando `Yellowbrick`.
+
+![Imagem](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/atributos_linear.png)
+
+Esse é o gráfico da importância dos atributos. Pode ser visto que RM, aumenta o preço, a idade não impacta muito, mas o LSTAT, diminui o preço.
