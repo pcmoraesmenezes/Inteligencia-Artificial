@@ -143,6 +143,15 @@
     - [Modelos Substitutos](#modelos-substitutos)
     - [SHAP](#shap-shapley-additive-explanations)
     - [Código Fonte](#cc3b3digos-3)
+- [Capítulo 14 - Regressão](#capítulo-14---regressão)
+    - [Modelo de base](#modelo-de-base)
+    - [Regressão Linear](#regressão-linear)
+        - [Eficiência na execução](#eficic3aancia-na-execuc3a7c3a3o-8)
+        - [Pré processamento dos dados](#prc3a9-processamento-dos-dados-8)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-8)
+        - [Interpretação dos resultados](#interpretac3a7c3a3o-dos-resultados-8)
+        - [Parâmetros de instância](#parc3a2metros-da-instc3a2ncia-6)
+        - [Atributos após a adequação](#atributos-apc3b3s-a-adequac3a7c3a3o-2)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
