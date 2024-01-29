@@ -152,6 +152,13 @@
         - [Interpretação dos resultados](#interpretac3a7c3a3o-dos-resultados-8)
         - [Parâmetros de instância](#parc3a2metros-da-instc3a2ncia-6)
         - [Atributos após a adequação](#atributos-apc3b3s-a-adequac3a7c3a3o-2)
+    - [SVMs](#svms)
+        - [Eficiência na execução](#eficic3aancia-na-execuc3a7c3a3o-9)
+        - [Pré processamento dos dados](#prc3a9-processamento-dos-dados-9)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-9)
+        - [Interpretação dos resultados](#interpretac3a7c3a3o-dos-resultados-9)
+        - [Parâmetros de instância](#parc3a2metros-da-instc3a2ncia-7)
+        - [Atributos após a adequação](#atributos-apc3b3s-a-adequac3a7c3a3o-3)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
@@ -1645,3 +1652,101 @@ Os coeficientes podem ser vistos utilizando `Yellowbrick`.
 ![Imagem](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/atributos_linear.png)
 
 Esse é o gráfico da importância dos atributos. Pode ser visto que RM, aumenta o preço, a idade não impacta muito, mas o LSTAT, diminui o preço.
+
+### SVMs
+
+As SVMs (Support Vector Machines) também podem ser utilizadas para fazer regressão.
+
+Elas possuem as seguintes propriedades:
+
+#### Eficiência na execução
+
+A implementação do `scikit-learn` é $O(n^{4})$, ou seja a medida que a quantidade de dados aumenta, ela não terá um bom desempenho. Há opções para lidar com esse problema, como utilizar um kernel linear ou o modelo `LinearSVR`, dessa forma é possível melhorar o desempenho da execução, claro que talvez a acurácia sofra um pouco. Uma outra saída seria utilizar o `cache_size` para reduzir a ordem para $O(n^{3})$.
+
+#### Pré processamento dos dados
+
+O algoritmo não é invariante a escala, portanto é necessário realizar a padronização dos dados antes do treinamento.
+
+#### Para evitar superadequação
+
+É possível utilizar o parâmetro `C` para controlar a complexidade do modelo. Quanto maior o valor de `C`, mais complexo será o modelo. Um valor menor permite uma margem menor no huperplano. Um valor maior para `gamma` tenderá a uma superadequação nos dados de treinamento. O modelo de `LinearSVR` aceita parâmetros `loss` e `penalty` para controlar a complexidade. Além disso o parâmetro `epsilon` pode ser aumentado.
+
+#### Interpretação dos resultados
+
+Realize a inspeção `.support_vectors_`, a interpretação pode ser um pouco confusa. Já para kernels lineares, é possível inspecionar os coeficientes `.coef_` e o intercepto `.intercept_`.
+
+#### Parâmetros da instância
+
+- `C = 1.0` - Parâmetro de regularização. Padrão é `1.0`. Quanto menor o valor, mais estreita sera a fronteira de decisão, podendo aumentar a superadequação
+
+- `cache_size = 200` - Especifica o tamanho do cache em MB. Padrão é `200`. Aumentar esse valor pode melhorar o tempo de treinamento.
+
+- `coef0 = 0.0` - Parâmetro para kernels polinomiais e sigmoid. Padrão é `0.0`.
+
+- `epsilon = 0.1` - Especifica a margem de erro. Padrão é `0.1`.
+
+- `degree = 3` - Grau do polinômio para kernels polinomiais. Padrão é `3`.
+
+- `gamma = auto` - Coeficiente do kernel. Pode ser um numero, `scale` ou `auto`. Padrão é `auto`. Um valormneor resulta em superadequação.
+
+- `kernel = rbf` - Especifica o kernel. Padrão é `rbf`. Pode ser `linear`, `poly`, `rbf`, `sigmoid`, `precomputed`.
+
+- `max_iter = -1` - Número máximo de iterações. Padrão é `-1`, ou seja, sem limite.
+
+- `probability = False` - Especifica se deve ser habilitado o uso de probabilidade. Padrão é `False`.
+
+- `random_state = None` - Semente aleatória. Padrão é `None`.
+
+- `shrinking = True` - Especifica se deve ser habilitado o uso de shrinking. Padrão é `True`.
+
+- `tol = 0.001` - Tolerância para critério de parada. Padrão é `0.001`.
+
+- `verbose = False` - Especifica se deve ser habilitado o uso de verbosidade. Padrão é `False`.
+
+#### Atributos após a adequação
+
+- `coef_` - Coeficientes para cada atributo.
+
+- `intercept_` - Intercepto.
+
+- `support_vectors_` - Vetores de suporte.
+
+- `support_` - Índices dos vetores de suporte.
+
+### K-Nearest Neighbors
+
+KNN(K-Nearest Neighboors, ou K vizinhos mais próximos) também aceita regressão, e encontra k vizinhos alvos para a amostra sobre a qual se deseja fazer uma predição. A predição é a média dos valores alvos dos vizinhos.
+
+#### Eficiência na execução
+
+O tempo de treinamento é $O(1)$, mas os dados das amostras devem ser armazenados. O tempo de teste é $O(Nd)$, em que $N$ é o numero de exemplos de treinamento e $d$ a dimensionalidade.
+
+#### Pré processamento dos dados
+
+Por ser calculo baseado nas distancias entre os dados, estes costumam ter melhores desenvolvimentos quando os dados são padronizados.
+
+#### Para evitar superadequação
+
+Eleve `n_neighbors` para reduzir a complexidade do modelo. Mude `p` para métrica `L1` ou `L2` para controlar a complexidade.
+
+#### Interpretação dos resultados
+
+Utilize o método `.kneighboors`, esses vizinhos podem explicar a predição.
+
+#### Parâmetros da instância
+
+- `algorithm = auto` - Pode ser `brute`, `ball_tree` ou `kd_tree`
+
+- `leaf_size = 30` - Para algoritmos baseados em árvores.
+
+- `metric = minkowski` - Métrica de distância.
+
+- `metric_params = None` - Dicionario adicional de parametros para métrica personalizada.
+
+- `n_jobs = 1` - Numero de CPUs
+
+- `n_neighboors = 5` - Número de vizinhos.
+
+- `p = 2` - Parâmetro de potência de Minkowski: 1 = manhattan (L1); 2 = euclidiana
+
+- `weights = 'uniform'` - Pode ser `distance`, caso em que pontos mais próximos terão mais influencia.
