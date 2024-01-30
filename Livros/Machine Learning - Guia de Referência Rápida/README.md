@@ -165,6 +165,21 @@
         - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-10)
         - [Interpretação dos resultados](#interpretac3a7c3a3o-dos-resultados-10)
         - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-8)
+    - [Árvores de Decisão](#árvore-de-decisão)
+        - [Eficiência na execução](#eficic3aancia-na-execuc3a7c3a3o-11)
+        - [Pré processamento dos dados](#prc3a9-processamento-dos-dados-11)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-11)
+        - [Interpretação dos resultados](#interpretac3a7c3a3o-dos-resultados-11)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-9)
+        - [Atributos após a adequação](#atributos-apc3b3s-a-adequac3a7c3a3o-4)
+
+    - [Random Forest](#random-forest)
+        - [Eficiência na execução](#eficic3aancia-na-execuc3a7c3a3o-12)
+        - [Pré processamento dos dados](#prc3a9-processamento-dos-dados-12)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-12)
+        - [Interpretação dos resultados](#interpretac3a7c3a3o-dos-resultados-12)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-10)
+        - [Atributos após a adequação](#atributos-apc3b3s-a-adequac3a7c3a3o-5)
 
 ## 1. Introdução
 
