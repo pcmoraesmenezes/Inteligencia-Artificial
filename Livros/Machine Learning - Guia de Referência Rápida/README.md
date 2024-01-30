@@ -1757,3 +1757,75 @@ Utilize o método `.kneighboors`, esses vizinhos podem explicar a predição.
 - `p = 2` - Parâmetro de potência de Minkowski: 1 = manhattan (L1); 2 = euclidiana
 
 - `weights = 'uniform'` - Pode ser `distance`, caso em que pontos mais próximos terão mais influencia.
+
+### Árvore de Decisão
+
+As árvores de decisão também aceitam os modelos de regressão. Em cada nível da árvore, várias separações nos atributos são avaliadas. A separação que gerar o menor erro de regressão é escolhida. O erro de regressão é a soma dos quadrados das diferenças entre os valores reais e os valores previstos.
+
+O parâmetro `criterion` pode ser ajustado para estabelecer uma métrica de erro (impureza).
+
+#### Eficiência na execução
+
+Para a criação, é percorrido cada um dos $m$ atributos e ordenadado todas as $n$ amostras. Portanto a complexidade de execução na criação é de $O(m n log n).$
+
+#### Pré processamento dos dados
+
+Não é necessario o escalonamento, entretanto é crucial a imputação dos dados faltantes.
+
+#### Para evitar superadequação
+
+Altere o atributo `max_depth` com um número menor e aumente `min_impurity_decrease`.
+
+#### Interpretação dos resultados
+
+É possível percorrer a árvore de opções. Por haver passos, uma árvore pode ser ruim para lidar com relacionamentos lineares, ou seja uma pequena alteração nos atributos pode gerar uma árvore completamente nova. A árvore também depende muito de dados de treinamento, ou seja, se os dados de treinamento forem alterados, a árvore também será.
+
+#### Parâmetros da instância
+
+- `criterion = mse` - Pode ser `mse` ou `friedman_mse` ou `mae`. Essa seria a função de separação. O padrão é o erro quadrado médio (Mean Squared Error).
+
+- `max_depth = None` - Profundidade máxima da árvore. Padrão é `None`. O default é sempre construir a árvore até que todas as folhas sejam puras ou até que todas as folhas contenham menos que `min_samples_split` amostras.
+
+- `max_features = None` - Número máximo de atributos a serem considerados para a separação. Padrão é `None`.
+
+- `max_leaf_nodes = None` - Número máximo de folhas. Padrão é `None`.
+
+- `min_impurity_decrease = 0.0` - Um nó será dividido se essa divisão diminuir a impureza em pelo menos esse valor. Padrão é `0.0`.
+
+`min_samples_leaf = 1` - Número mínimo de amostras em uma folha. Padrão é `1`.
+
+- `min_samples_split = 2` - Número mínimo de amostras para dividir um nó. Padrão é `2`.
+
+- `min_weight_fraction_leaf = 0.0` - Fração mínima de amostras em uma folha. Padrão é `0.0`. Esse seria o mínimo de pesos para uma folha.
+
+- `presort = False` - Especifica se deve ser habilitado o uso de presort. Padrão é `False`. Isso pode agilizar o treinamento com um conjunto de dados menor ou com uma profundidade restrita se definido como `True`.
+
+- `random_state = None` - Semente aleatória. Padrão é `None`.
+
+- `splitter = best` - Pode ser `best` ou `random`. Padrão é `best`.
+
+#### Atributos após a adequação
+
+- `feature_importances_` - Importância dos atributos. Vem em formato de array de Gini.
+
+- `max_features_` - Número de atributos.
+
+- `n_features_` - Número de atributos.
+
+- `n_outputs_` - Número de saídas.
+
+- `tree_` - Estrutura da árvore.
+
+---
+
+É possível realizar a visualização da árvore com o `pydotplus`.
+
+Limitando a quantidade de nós da árvore tem-se a seguinte representação:
+
+![Árvore de Decisão](/images/arvore2.png)
+
+Além disso com a ajuda do pacote `dtreeviz` é possível visualizar um gráfico de dispersão em cada um dos nós da árvore.
+
+![Árvore de Dispersão](/images/arvore3.svg)
+
+Além disso a importância dos atributos pode ser encontrada utilizando `dtr.feature_importances_`.
