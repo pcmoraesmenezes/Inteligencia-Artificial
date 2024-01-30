@@ -1829,3 +1829,73 @@ Além disso com a ajuda do pacote `dtreeviz` é possível visualizar um gráfico
 ![Árvore de Dispersão](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida//images/arvore3.svg)
 
 Além disso a importância dos atributos pode ser encontrada utilizando `dtr.feature_importances_`.
+
+### Random Forest
+
+As árvores de decisão conseguem ser boas devido ao fato de explicarem bem os dados, entretanto elas costumam ocasionar a superadequação. Uma floresta aleatória consegue fazer uma troca entre a explicação para a generalização. Ou seja ela consegue generalizar bem os dados em vez de explicar bem os dados. 
+
+Além disso elas podem sim ser usadas para modelos de regressão.
+
+#### Eficiência na execução
+
+Deve criar $j$ árvores aleatórias. Isso pode ser feito em paralelo utilizando o parâmetro `n_jobs`. A complexidade de cada árvore é de $O(m n log n)$, na qual $n$ é o numero de amostras e $m$ é o número de atributos. Durante a criação dos nós,  é percorrido cada um dos $m$ atributos em um laço e ordena todas as $n$ amostras: $O(m n log n)$. A complexidade para a predição, devido a ter de percorrer toda a floresta é de $O(Altura)$.
+
+#### Pré processamento dos dados
+
+O mesmo visto nas árvores de decisão. Não é necessário a padronização, entretanto é crucial a imputação dos dados faltantes.
+
+#### Para evitar superadequação
+
+Aumente `n_estimators` para reduzir a superadequação. Aumente `min_samples_leaf` e `max_features`. Diminua `max_depth`.
+
+#### Interpretação dos resultados
+
+Tem suporte para importância de atributos, porém não há uma única árvore de decisão para percorrer. É possível, porém inspecionar as árvores individualmente.
+
+#### Parâmetros da instância
+
+- `bootstrap = True` - Especifica se deve ser habilitado o uso de bootstrap. Padrão é `True`. Bootstrap é uma técnica de amostragem que permite a reutilização de dados.
+
+- `criterion = mse` - Pode ser `mse` ou `friedman_mse` ou `mae`. Essa seria a função de separação. O padrão é o erro quadrado médio (Mean Squared Error).
+
+- `max_depth = None` - Profundidade máxima da árvore. Padrão é `None`. O default é sempre construir a árvore até que todas as folhas sejam puras ou até que todas as folhas contenham menos que `min_samples_split` amostras.
+
+- `max_features = auto` - Número máximo de atributos a serem considerados para a separação. Padrão é `auto`.
+
+- `max_leaf_nodes = None` - Número máximo de folhas. Padrão é `None`.
+
+- `min_impurity_decrease = 0.0` - Um nó será dividido se essa divisão diminuir a impureza em pelo menos esse valor. Padrão é `0.0`.
+
+- `min_samples_leaf = 1` - Número mínimo de amostras em uma folha. Padrão é `1`.
+
+- `min_samples_split = 2` - Número mínimo de amostras para dividir um nó. Padrão é `2`.
+
+- `min_weight_fraction_leaf = 0.0` - Fração mínima de amostras em uma folha. Padrão é `0.0`. Esse seria o mínimo de pesos para uma folha.
+
+- `n_estimators = 100` - Número de árvores na floresta. Padrão é `100`.
+
+- `n_jobs = None` - Numero de CPUs
+
+- `oob_score = False` - Especifica se deve ser habilitado o uso de out-of-bag. Padrão é `False`.
+
+- `random_state = None` - Semente aleatória. Padrão é `None`.
+
+- `verbose = 0` - Especifica se deve ser habilitado o uso de verbosidade. Padrão é `0`.
+
+- `warm_start = False` - Especifica se deve ser habilitado o uso de warm start. Padrão é `False`. Esse parâmetro indica se deve ser reutilizado a solução da chamada anterior para ajustar e adicionar mais estimadores à floresta, caso contrário, a floresta será construída do zero.
+
+#### Atributos após a adequação
+
+- `estimators_` - Estimadores da floresta.
+
+- `feature_importances_` - Importância dos atributos. Vem em formato de array de Gini.
+
+- `n_features_` - Número de atributos.
+
+- `n_classes_` - Número de classes.
+
+`ooob_score_` - Score out-of-bag.
+
+--- 
+
+É possível verificar a importância dos dados utilizando `rf.feature_importances_`. Onde `rf` é o modelo de floresta aleatória.
