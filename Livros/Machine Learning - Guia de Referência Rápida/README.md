@@ -1822,10 +1822,10 @@ Altere o atributo `max_depth` com um número menor e aumente `min_impurity_decre
 
 Limitando a quantidade de nós da árvore tem-se a seguinte representação:
 
-![Árvore de Decisão](/images/arvore2.png)
+![Árvore de Decisão](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/arvore2.png)
 
 Além disso com a ajuda do pacote `dtreeviz` é possível visualizar um gráfico de dispersão em cada um dos nós da árvore.
 
-![Árvore de Dispersão](/images/arvore3.svg)
+![Árvore de Dispersão](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida//images/arvore3.svg)
 
 Além disso a importância dos atributos pode ser encontrada utilizando `dtr.feature_importances_`.
