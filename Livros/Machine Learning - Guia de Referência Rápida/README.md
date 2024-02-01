@@ -187,7 +187,12 @@
         - [Interpretação dos resultados](#interpretac3a7c3a3o-dos-resultados-13)
         - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-11)
         - [Atributos após a adequação](#atributos-apc3b3s-a-adequac3a7c3a3o-6)
-
+    - [Regressão LightGBM](#regressão-ligthgbm)
+        - [Eficiência na execução](#eficic3aancia-na-execuc3a7c3a3o-14)
+        - [Pré processamento dos dados](#prc3a9-processamento-dos-dados-14)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-14)
+        - [Interpretação dos resultados](#interpretac3a7c3a3o-dos-resultados-14)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-12)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
