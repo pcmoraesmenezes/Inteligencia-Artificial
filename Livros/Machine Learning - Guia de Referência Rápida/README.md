@@ -180,6 +180,13 @@
         - [Interpretação dos resultados](#interpretac3a7c3a3o-dos-resultados-12)
         - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-10)
         - [Atributos após a adequação](#atributos-apc3b3s-a-adequac3a7c3a3o-5)
+    - [Regressão XGBoost](#regressão-xgboost)
+        - [Eficiência na execução](#eficic3aancia-na-execuc3a7c3a3o-13)
+        - [Pré processamento dos dados](#prc3a9-processamento-dos-dados-13)
+        - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-13)
+        - [Interpretação dos resultados](#interpretac3a7c3a3o-dos-resultados-13)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-11)
+        - [Atributos após a adequação](#atributos-apc3b3s-a-adequac3a7c3a3o-6)
 
 ## 1. Introdução
 
@@ -1994,3 +2001,69 @@ Usando o `Yellowbrick` a importância será normalizada e apresentada em um grá
 ![XGBoost](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/xgboost.png)
 
 Além disso ele possibilita também uma representação textual da árvore. Os valores das folhas podem ser interpretadas como a soma de base_score e da folha.
+
+### Regressão LigthGBM
+
+A biblioteca de Gradient Boosting, também aceita regressão e classificação. Ela é uma biblioteca de código aberto que é capaz de lidar com grandes conjuntos de dados e é extremamente eficiente. Relembrando que ela pode ser mais rápida que o `XGBoost` pois o metodo de amostragem é feito por nível e não por árvore.
+
+Além disso é importante frisar que ela cria árvores inicialmente de acordo com a profundidade, ou seja limitar a profundidade pode não ser uma boa ideia.
+
+#### Eficiência na execução
+
+Consegue utilizar várias CPUs, além disso pode usar o `binning` para acelerar o treinamento.
+
+#### Pré processamento dos dados
+
+Oferece um suporte para a codificação de colunas de categorias, mas o AUC fica inferior se comparado com a one-hot encoding.
+
+#### Para evitar superadequação
+
+Reduza o numero de folhas com `num_leaves` e utilize `min_gain_to_split` para controlar a complexidade.
+
+#### Interpretação dos resultados
+
+A interpretação dos atributos também está disponível. Árvores individuais podem ser mais difíceis de interpretar.
+
+#### Parâmetros da instância
+
+- `boosting_type = 'gbdt'` - Pode ser `gbdt`, `dart`, `goss` ou `rf`. Padrão é `gbdt`. O `gbdt` é o método de gradient boosting, `rf` é o metodo de floresta aleatória.
+
+- `num_leaves = 31` - Número de folhas. Padrão é `31`.
+
+- `max_depth = -1` - Profundidade máxima da árvore. Padrão é `-1`. Lembrando que quanto maior a profundidade maior o risco de superadequação.
+
+- `n_estimators = 100` - Número de árvores na floresta. Padrão é `100`.
+
+- `subsample_for_bin = 200000` - Número de amostras para binning. Padrão é `200000`.
+
+- `objective = None` - Objetivo. Padrão é `None`.
+
+- `min_split_gain = 0.0` - Padrão é `0.0`. O parâmetro `min_split_gain` é o valor mínimo necessário para criar um novo nó.
+
+- `min_child_weight = 0.001` - Padrão é `0.001`. O parâmetro `min_child_weight` é o peso mínimo necessário para criar um novo nó.
+
+- `min_child_samples = 20` - Padrão é `20`. O parâmetro `min_child_samples` é o número mínimo de amostras em uma folha.
+
+- `subsample = 1.0` - Padrão é `1.0`. O parâmetro `subsample` é a fração de amostras a serem usadas para treinamento.
+
+- `subsample_freq = 0` - Padrão é `0`. O parâmetro `subsample_freq` é a frequência de amostragem.
+
+- `colsample_bytree = 1.0` - Padrão é `1.0`. O parâmetro `colsample_bytree` é a fração de atributos a serem usados para treinamento.
+
+- `reg_alpha = 0.0` - Padrão é `0.0`. O parâmetro `reg_alpha` é a regularização L1. Numeros maiores são mais conservadores.
+
+- `reg_lambda = 0.0` - Padrão é `0.0`. O parâmetro `reg_lambda` é a regularização L2. Numeros maiores são mais conservadores.
+
+- `random_state = 42` - Semente aleatória. Padrão é `42`.
+
+- `n_jobs = -1` - Numero de CPUs
+
+- `silent = True` - Especifica se deve ser habilitado o uso de verbosidade. Padrão é `True`.
+
+- `importance_type = 'split'` - Pode ser `split` ou `gain`. Padrão é `split`. A importância é calculada por padrão como `split`, ou seja, o número de vezes que um atributo é usado para dividir um nó.
+
+O LightGBM aceita importância de atributos, utilize `importance_type`, dessa forma será exibido como é calculada a importância dos atributos.
+
+Também é possível fazer uma representação visual da importância dos atributos. Utilize `.plot_importance` para isso.
+
+![Tree LightGBM](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/tree_lightgbm.svg)
