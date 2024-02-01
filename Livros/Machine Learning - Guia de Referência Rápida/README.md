@@ -1914,3 +1914,83 @@ Tem suporte para importância de atributos, porém não há uma única árvore d
 --- 
 
 É possível verificar a importância dos dados utilizando `rf.feature_importances_`. Onde `rf` é o modelo de floresta aleatória.
+
+### Regressão XGBoost
+
+Outra biblioteca que aceita tanto regressão quanto classificação. Ela constrói uma árvore de decisão simples e depois faz uma "melhoria", melhoria essa que da nome ao modelo (boosting). Essa melhoria adiciona árvores subsequentes. Cada árvore visa corrigir os resíduos da saída anterior. O modelo funciona extremamente bem para dados estruturados.
+
+#### Eficiência na execução
+
+O `XGBoost` pode executar em paralelo utilizando o parâmetro `n_jobs`. Use a GPU para um desempenho ainda melhor.
+
+#### Pré processamento dos dados
+
+Não é necessário escalonar os dados para modelos baseados em árvores. Uma novidade é que esse modelo aceita dados austentes, mas é preciso codificar os dados de categoria.
+
+#### Para evitar superadequação
+
+O parâmetro `early_stopping_rounds = N` pode ser definido para interromper o treinamento se a pontuação não melhorar por `N` rodadas. As regularizações L1 e L2 são controlados por `reg_alpha` e `reg_lambda`. Numeros maiores são mais conservadores.
+
+#### Interpretação dos resultados
+
+É possível inspecionar a importância dos atributos.
+
+#### Parâmetros da instância
+
+- `max_depth = 3` - Profundidade máxima da árvore. Padrão é `3`.
+
+- `learning_rate = 0.1` - Taxa de aprendizado. Padrão é `0.1`. O parâmetro vai no intervalo de 0 a 1. Após cada passo de treinamento, o modelo ajusta os pesos dos atributos. O peso é ajustado conforme o valor passado como parâmetro. Quanto menor o valor, mais conservador será, mas também serão necessárias mais árvores para convergir. É possível passar na `.train`como um dicionário, além disso também é possível passar `learning_rates` na chamada de `.train`.
+
+- `n_estimators = 100` - Número de árvores na floresta. Padrão é `100`.
+
+- `n_jobs = 1` - Numero de CPUs
+
+- `silent = True` - Especifica se deve ser habilitado o uso de verbosidade. Padrão é `True`.
+
+- `objective = 'reg:linear'` - Objetivo. Padrão é `reg:linear`.
+
+- `booster = 'gbtree'` - Pode ser `gbtree`, `gblinear` ou `dart`. Padrão é `gbtree`. A opção `dart` adiciona descartes para evitar superadequação. Já a opção `gblinear` cria um modelo linear regularizado.
+
+- `gamma = 0` - Padrão é `0`. O parâmetro `gamma` é um valor de corte para dividir um nó. Quanto maior o valor, mais conservador será.
+
+- `min_child_weight = 1` - Padrão é `1`. O parâmetro `min_child_weight` é o peso mínimo necessário para criar um novo nó.
+
+- `max_delta_step = 0` - Padrão é `0`. O parâmetro `max_delta_step` é o valor máximo permitido para cada passo de ajuste.
+
+- `subsample = 1` - Padrão é `1`. O parâmetro `subsample` é a fração de amostras a serem usadas para treinamento.
+
+- `colsample_bytree = 1` - Padrão é `1`. O parâmetro `colsample_bytree` é a fração de atributos a serem usados para treinamento.
+
+- `colsample_bylevel = 1` - Padrão é `1`. O parâmetro `colsample_bylevel` é a fração de atributos a serem usados para treinamento.
+
+- `colsample_bynode = 1` - Padrão é `1`. O parâmetro `colsample_bynode` é a fração de atributos a serem usados para treinamento.
+
+- `reg_alpha = 0` - Padrão é `0`. O parâmetro `reg_alpha` é a regularização L1. Numeros maiores são mais conservadores.
+
+- `reg_lambda = 1` - Padrão é `1`. O parâmetro `reg_lambda` é a regularização L2. Numeros maiores são mais conservadores.
+
+- `base_score = 0.5` - Padrão é `0.5`. O parâmetro `base_score` é o valor inicial da previsão.
+
+- `random_state = 0` - Semente aleatória. Padrão é `0`.
+
+- `missing = None` - Valor para dados faltantes. Padrão é `None`.
+
+- `importance_type = 'gain'` - Pode ser `gain`, `weight`, `cover`, `total_gain` ou `total_cover`. Padrão é `gain`.
+
+#### Atributos após a adequação
+
+- `coef_` - Coeficientes para cada atributo. Esses coeficientes são para learners gblinear.
+
+- `intercept_` - Intercepto. Esse intercepto é para learners gblinear.
+
+- `feature_importances_` - Importância dos atributos. A importância dos atributos é o ganho médio em todos os nós em que o atributo é usado. É possível usar o padrão de um for para percorrer os atributos e os valores de importância.
+
+---
+
+O `XGBoost` inclui recursos de geração de gráficos de importância de atributos.
+
+Usando o `Yellowbrick` a importância será normalizada e apresentada em um gráfico de barras.
+
+![XGBoost](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/xgboost.png)
+
+Além disso ele possibilita também uma representação textual da árvore. Os valores das folhas podem ser interpretadas como a soma de base_score e da folha.
