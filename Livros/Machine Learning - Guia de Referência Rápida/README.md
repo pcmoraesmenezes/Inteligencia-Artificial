@@ -193,6 +193,14 @@
         - [Para evitar superadequação](#para-evitar-superadequac3a7c3a3o-14)
         - [Interpretação dos resultados](#interpretac3a7c3a3o-dos-resultados-14)
         - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-12)
+    - [Código Fonte](#cc3b3digos-3)
+- [Métricas e Avaliação de Regressão](#capítulo-15---métricas-e-avaliação-de-regressão)
+    - [Métricas](#mc3a9tricas-1)
+    - [Gráfico de Resíduos](#gráfico-de-resíduos)
+    - [Heterocedasticidade](#heterocedasticidade)
+    - [Resíduos com Distribuição Normal](#resíduos-com-distribuição-normal)
+    - [Gráficos de Erro de Predição](#gráfico-de-erros-de-predição)
+    - [Código Fonte](#cc3b3digo-fonte-8)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
@@ -2073,6 +2081,9 @@ Também é possível fazer uma representação visual da importância dos atribu
 
 ![Tree LightGBM](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/tree_lightgbm.svg)
 
+### Código Fonte
+
+O código fonte pode ser acessado [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo14.ipynb)
 
 ## Capítulo 15 - Métricas e Avaliação de Regressão
 
@@ -2141,3 +2152,7 @@ Além disso o teste de **Kolmogorob-Smirnov** é capaz de avaliar se uma distrib
 Um gráfico de erros de predição mostra os alvors reais em relação aos valores previstos. Num modelo perfeito esses pontos estariam alinhados em 45 graus. Entretanto, é comum que os valores previstos sejam menores que os valores reais. Isso é um sinal de que o modelo está subestimando os valores. Além disso, é possível que o modelo esteja superestimando os valores.
 
 ![Gráfico de erros de Predição](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/grafico%20de%20erro%20de%20predição.png)
+
+### Código fonte
+
+O código fonte para a avaliação de regressão pode ser encontrado [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo15.ipynb)
