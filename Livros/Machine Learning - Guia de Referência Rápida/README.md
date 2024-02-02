@@ -2072,3 +2072,72 @@ O LightGBM aceita importância de atributos, utilize `importance_type`, dessa fo
 Também é possível fazer uma representação visual da importância dos atributos. Utilize `.plot_importance` para isso.
 
 ![Tree LightGBM](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/tree_lightgbm.svg)
+
+
+## Capítulo 15 - Métricas e Avaliação de Regressão
+
+As métricas seram consideradas utilizando os dados habitacionais de Boston.
+
+### Métricas
+
+O módulo `sklearn.mectrics` oferece suporte para avaliar os modelos de regressão. As funções de métrica terminadas com `loss` ou `error` devem ser minimizadas. As funções de métrica terminadas com `score` ou `accuracy` devem ser maximizadas.
+
+O *coeficiente de determinação* $r^{2}$ é uma métrica de regressão bastante comum. Em geral esse valor estará entre $0$ e $1$ e irá representar o percentual da variância da variavel target com o qual os atributos contribuem. No geral valores maiores são melhores, entretantofica mais dificil avaliar o modelo exclusivamente dessa métrica. No geral a pontuação dependerá bastante do problema. Geralmente usa-se outras métricas e visualizações para avaliar um modelo.
+
+Um modelo bem comum é o de avaliar predição dos preços de ações, no geral esses modelos conseguem facilmente um $r^{2}$ de $0.9$, entretanto isso não significa que o modelo é bom, pois ele pode estar superadequado.
+
+Essa métrica é default e é usada durante as buscas em grade (`GridSearchCV`).
+
+Outras métricas podem ser especificadas com o `scoring`. O método `.score` calcula esse valor para modelos de regressão.
+
+---
+
+O erro médio absoluto quando usado na busca em grade, consegue expressar o erro da previsão médio absoluto do modelo. Um modelo perfeito teria uma pontuação igual a 0, mas essa métrica não tem limites superiores. Entretanto, como está em unidades do alvo é mais facil de ser interpretadas. Essa métrica é recomendada quando se deseja ignorar outliers. Além disso essa métrica pode ser usada para comparar modelos.
+
+---
+
+A raiz do erro quadratico medio também avalia o erro do modelo em termos do alvo. Entretanto observe: Ele calcula a média do quadrado dos erros antes de calcular a raiz quadradada, ou seja erros maiores são penalizados. Se for do interesse penalizar erros maiores essa métrica é excelente. Exemplo: As vezes estar errado em oito vezes é pior que estar errado em quatro vezes. Essa medida em si não é o suficiente para informar sobre o nível do modelo, mas pode ser útil em comparações.
+
+---
+
+O erro logaritmico quadrado penaliza a subprevisão, ou seja a previsão de valores menores que o real, mais do que a superprevisão. Caso tenha alvos que apresente crescimento exponencial, como populações, açoes, etc, essa métrica pode ser útil.
+
+### Gráfico de Resíduos
+
+Resíduo de um ponto e o local onde um $y$ correspondente a um valor $x$ se encontra no ponto atual - o $y_{esperado}$ com base na linha de regressão linear. Essa plotagem é boa para informar o quão boa a regressão é para explicar a relação das variaveis.
+
+Bons modelos, ou seja, aqueles com pontuações $R2$ apropriadas exibirão homocedasticidade. Isso significa que a variância é a mesma para todos os valores dos alvos, independente da entrada. Quando plotado, os valores parecerão distribuidos aleatoriamente, mas caso apresentem padrões, isso indica que o modelo não está capturando a relação entre os atributos e o alvo.
+
+Além disso os gráficos de resíduos também mostram valores discrepantes, ou seja, valores que estão muito longe da linha de regressão. Esses valores podem ser outliers ou podem ser valores que o modelo não consegue explicar.
+
+Utilizando o `Yellowbrick` é possível fazer a plotagem dos resíduos.
+
+Uma breve explicação sobre $R^2:$ ele mede quanto do erro de previsão é eliminado quando usamos a regressão nos minimos quadrados
+
+![Gŕafico de resiudos](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/grafico%20de%20residuos.png)
+
+### Heterocedasticidade
+
+A heterocedasticidade é um fenômeno estatístico em que a variância dos resíduos de uma regressão não é constante ao longo dos valores das variáveis independentes
+
+Utilizando a biblioteca `statsmodel` é possível incluir o teste de `Breusch-Pagan` para verificar a heterocedasticidade. Ou seja, isso significa que a variância dos residuos varia nos valores previstos. Nesse teste, se os valores p forem significativos, a hipotese da homocedasticidade será rejeitada. Isso mostra que os resíduos são heterocedásticos e que as previsões apresentam distorções.
+
+### Resíduos com Distribuição Normal
+
+A biblioteca `scipy` inclui um gráfico de probabilidades e o teste de **Kolmogorob-Smirnov** Para verificar se os residuos tem distribuição normal.
+
+É possível gerar um histograma para visualizar os residuos a fim de verificar a distribuição normal:
+
+![Histograma dos Resíduos](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/histograma%20dos%20residuos.png)
+
+![Gráfico de probabilidade dos residuos](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/grafico%20da%20probabilidade.png)
+
+Caso no gráfico de probabilidades as amostras representadas em relação aos quantis estiverem alinhadas, é sinal de que os resíduos tem distribuição normal. É possível ver isso acima.
+
+Além disso o teste de **Kolmogorob-Smirnov** é capaz de avaliar se uma distribuição é normal. Caso o valor $p$ for significativo é sinal de que os valores não apresentam uma distribuição normal. O valor é ( < 0,05)
+
+### Gráfico de Erros de Predição
+
+Um gráfico de erros de predição mostra os alvors reais em relação aos valores previstos. Num modelo perfeito esses pontos estariam alinhados em 45 graus. Entretanto, é comum que os valores previstos sejam menores que os valores reais. Isso é um sinal de que o modelo está subestimando os valores. Além disso, é possível que o modelo esteja superestimando os valores.
+
+![Gráfico de erros de Predição](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/grafico%20de%20erro%20de%20predição.png)
