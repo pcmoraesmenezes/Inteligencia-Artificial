@@ -201,6 +201,9 @@
     - [Resíduos com Distribuição Normal](#resíduos-com-distribuição-normal)
     - [Gráficos de Erro de Predição](#gráfico-de-erros-de-predição)
     - [Código Fonte](#cc3b3digo-fonte-8)
+- [Capitulo 16](#capítulo-16---explicando-os-modelos-de-regressão)
+    - [Shapley](#shapley)
+    - [Código Fonte](#cc3b3digo-fonte-9)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
