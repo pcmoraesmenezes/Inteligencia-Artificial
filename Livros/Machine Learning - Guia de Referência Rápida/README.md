@@ -2156,3 +2156,43 @@ Um gráfico de erros de predição mostra os alvors reais em relação aos valor
 ### Código fonte
 
 O código fonte para a avaliação de regressão pode ser encontrado [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo15.ipynb)
+
+## Capítulo 16 - Explicando os Modelos de Regressão
+
+A maioria das técnicas empregadas para explicar os modelos de classificação podem ser aplicadas para os modelos de regressão. 
+
+Nesse capítulo será abordado o uso da biblioteca `SHAP`, na qual pode ser usada para interpretar os modelos de regressão. Além disso, o modelo base será o `XGBoost`.
+
+### Shapley
+
+Uma das grandes vantagem do `Shapley` está no fato de ele não depender do modelo. Essa biblioteca também consegue dar visualizações impressionantes sobre o modelo e explicar as predições individuais.
+
+Para usar o  modelo é necessário criar um `TreeExplainer` a partir do modelo criado e estimar os valores `SHAP` para as amostras.
+
+Relembrando de que para a interface interativa é necessário utilizar `shap.initjs()`.
+
+Um force plot pode ser criado para explicar a predição. Nesse gráfico é visto que a previsão base é de $23.02$, e que o status da população (LSTAT) e a taxa de imposto da propriedade (TAX) empurram o preço para cima, enquanto o número de cômodos por residência (RM) empurra o preço para baixo.
+
+![Gráfico de força](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/grafico%20de%20força.png)
+
+Além disso é possível visualizar o gráfico de forças para todas as variáveis, pois o gráfico acima é feito uma escolha de uma amostragem, no caso selecionando o index 5.
+
+![Gráfico de força para todas as amostras](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/grafico%20de%20força%20para%20todas%20amostras.png)
+
+Vale bastante a pena checar o código fonte desse capítulo, nele é possível passar pelo mouse nesse gráfico para checar os valores de cada variável.
+
+![Gráfico de dependencia para LSTAT](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/grafico%20de%20dependecia%20para%20lstat.png)
+
+Já nesse gráfico acima, é possível verificar que a medida que LSTAT aumenta, o valor SHAP diminui. Isso significa que um valor muito baixo de LSTAT força SHAP para cima. Ao observar as cores de TAX, é possível perceber que à medida que a taxa diminui (mais azul) o valor de shap diminui.
+
+Também é possível verificar o efeito global dos atributos usando o gráfico de resumo.
+
+![Gráfico de resumo](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/grafico%20de%20resumo.png)
+
+Nesse gráfico é possível perceber que na parte superior os atributos causam mais impacto no modelo. Além disso através deta visualização é possível notar que valores maiores de RM emurram bastante o valor do alvo para cima.
+
+Essa biblioteca novamente é extremamente útil para explicar os modelos de regressão.
+
+### Código Fonte
+
+O código fonte para a explicação dos modelos de regressão pode ser encontrado [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo16.ipynb)
