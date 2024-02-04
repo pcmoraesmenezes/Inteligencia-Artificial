@@ -194,14 +194,14 @@
         - [Interpretação dos resultados](#interpretac3a7c3a3o-dos-resultados-14)
         - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-12)
     - [Código Fonte](#cc3b3digos-3)
-- [Métricas e Avaliação de Regressão](#capítulo-15---métricas-e-avaliação-de-regressão)
+- [Capítulo 15 - Métricas e Avaliação de Regressão](#capítulo-15---métricas-e-avaliação-de-regressão)
     - [Métricas](#mc3a9tricas-1)
     - [Gráfico de Resíduos](#gráfico-de-resíduos)
     - [Heterocedasticidade](#heterocedasticidade)
     - [Resíduos com Distribuição Normal](#resíduos-com-distribuição-normal)
     - [Gráficos de Erro de Predição](#gráfico-de-erros-de-predição)
     - [Código Fonte](#cc3b3digo-fonte-8)
-- [Capitulo 16](#capítulo-16---explicando-os-modelos-de-regressão)
+- [Capitulo 16 - Explicando os Modelos de Regressão](#capítulo-16---explicando-os-modelos-de-regressão)
     - [Shapley](#shapley)
     - [Código Fonte](#cc3b3digo-fonte-9)
 ## 1. Introdução
@@ -2199,3 +2199,98 @@ Essa biblioteca novamente é extremamente útil para explicar os modelos de regr
 ### Código Fonte
 
 O código fonte para a explicação dos modelos de regressão pode ser encontrado [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo16.ipynb)
+
+## Capítulo 17 - Redução da Dimensionalidade
+
+Existem algumas técnicas que podem ser empregadas para decompor atributos em um subconjunto menor. Essas técnicas podem ser interessantes para diversos cenários como por exemplo: Análise de dados exploratória, redução de ruído, redução de tempo de treinamento, criação de modelos preditivos, clustering, etc...
+
+### PCA
+
+A principal técnica empregada nesse processo de redução da dimensionalidade é a PCA (Principal Component Analysis, ou Análise de Componentes Principais), nessa técnica, é utilizado uma matriz $X$ de linhas (chamado de amostras) e colunas (chamado de atributos). Nessa técnica é feita combinações lineares para maximizar a variância dos dados. Cada coluna é ortogonal às demais colunas. Uma coisa importante de se ter em mente é que a ordenação das colunas são de acordo com a variância decrescente.
+
+Um ponto positivo é que o `scikit-learn` possuí uma implementação dessa técnica. É recomendavél padronizar os dados antes de executar o algoritmo.
+
+Após chamar o método `.fit` é possível utilizar o atributo `.explained_variance_ratio_` que irá listar o percentual de variância em cada coluna.
+
+A PCA é conveniente para visualizar dados em duas (ou três) dimensões. É usada também como um passo de pré-processamento para filtrar ruídos aleatórios nos dados. Funciona consideravelmente com dados lineares.
+
+Para utilizar a implementação do `scikit-learn` basta chamar `from sklearn.decomposition import PCA` 
+
+#### Parâmetros da instância
+
+- `n_components = None` - Número de componentes a serem gerados. Para o caso padrão ou seja `none` é devolvido o mesmo numero correspondente ao número de colunas. O valor pode ser de ponto flutuante.
+
+- `copy = True` - Modifica os dados em `.fit`.
+
+- `whiten = False` - Especifica se deve ser habilitado o uso de branqueamento. Padrão é `False`. Esse branqueamento garante que será feito uma limpeza dos dados após a transformação para garantir componentes não correlacionados.
+
+- `svd_solver = 'auto'` - Pode ser `auto`, `full`, `arpack`, `randomized`. Padrão é `auto`. Esse parâmetro é o solucionador de SVD.
+
+- `tol = 0.0` - Tolerância. Padrão é `0.0`. Essa tolerância é para valores únicos
+
+- `iterated_power = 'auto'` - Pode ser `auto` ou um número inteiro. Padrão é `auto`. Esse parâmetro é o número de iterações para o solucionador de SVD.
+
+- `random_state = None` - Semente aleatória. Padrão é `None`.
+
+#### Atributos
+
+- `components_` - Componentes principais.
+
+- `explained_variance_` - Variância explicada.
+
+- `explained_variance_ratio_` - Variância explicada.
+
+- `singular_values_` - Valores singulares.
+
+- `mean_` - Média.
+
+- `n_components_` - Número de componentes.
+
+- `noise_variance_` - Variância do ruído.
+
+---
+
+É possível verificar um gráfico da soma cumulativa da razão de variância explicada. Esse gráfico é chamado de gráfico de declive (scree plot)
+
+![Scree plot](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/scree%20plot.png)
+
+
+Outra maneira de visualizar esses dados é utilizando um gráfico cumulativo.
+
+![Gráfico cumulativo](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/grafico%20cumulativo.png)
+
+É importante destacar que para os exemplos, tem-se 8 atributos. Nota-se no gráfico que se mantivermos 6 componentes a variância é próxima de 0.9, ou seja, 90% da variância é explicada. 
+
+#### Em que medida os atributos causam impacto nos componentes?
+
+Através da função `imshow` do `matplotlib` é possível gerar um gráfico com os componentes no eixo X e os atributos originais no eixo y. Quanto mais escura for a cor, maior será a contribuição da coluna original ao componente.
+
+![Impacto dos atributos](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/impacto%20dos%20atributos.png)
+
+Observe que o primeiro componente é extremamente influenciavel pela coluna `pclass`.
+
+Uma outra alternativa de visualização é observar um gráfico de barras, onde cada componente é exibido com as contribuições dos dados originais
+
+![Impacto dos Atributos em Barras](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/impacto%20no%20grafico%20de%20barras.png)
+
+Observe que como se tem poucos atributos não é necessário realizar limitações nos gráficos anteriores. É possível elaborar um código para encontrar todos os atributos nos dois primeiros componentes, cujo valores absolutos sejam maiores que um limiar estabelecido.
+
+---
+
+A PCA é usualmente utilizada para visualizar conjuntos de dados com muitas dimensões em dois componentes. 
+
+![PCA PLOT](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/pca%20plot.png)
+
+Observe que esse gráfico está colorido de acordo com a sobrevivência dos passageiros.
+
+Caso tenha interesse em colorir o gráfico de dispersão de acordo com uma coluna e acrescentar uma legenda, é necessário realizar um laço de repetição e percorrer cada cor neste laço e gerar o gráfico desse grupo individualmente. É possível gerar os gráficos usando `pandas` ou `matplotlib` ou até mesmo o `saeborn`
+
+![PCA COM LEGENDA](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/PCA%20COM%20LEGENDA.png)
+
+É possível tornar esse gráfico ainda mais impressionando expandindo ele a um gráfico de dispersão, mostrando um gráfico de carga (loading plot) sobre ele. Esse gráfico é chamado de gráfico duplo (biplot).
+
+![Biplot](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/biplot.png)
+
+Observe que as cargas mostram a força dos atributos e como estão correlacionados. Caso estejam formando angulos agudos é um sinal de que provavelmente estão correlacionados. Entretanto 90 graus indicam uma forte possibilidade de que não estão correlacionados. E por fim, angulos obtusos indicam correlação negativa.
+
+Com base nos modelos de árvore é sabido que `age`, `fare` e `sex` são importantes para determinar se um passageiro sobreviveu ou não. O primeiro componente principal é extremamente influenciado por `pclass`, `age` e `fare`, enquanto o quarto é influenciado por `sex`.
