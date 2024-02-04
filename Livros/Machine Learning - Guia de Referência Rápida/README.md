@@ -204,6 +204,10 @@
 - [Capitulo 16 - Explicando os Modelos de Regressão](#capítulo-16---explicando-os-modelos-de-regressão)
     - [Shapley](#shapley)
     - [Código Fonte](#cc3b3digo-fonte-9)
+- [Capítulo 17 - Redução da Dimensionalidade](#capítulo-17---redução-da-dimensionalidade)
+    - [PCA](#pca)
+        - [Atributos após a instância](#atributos-4)
+        - [Em que Medida os Atributos Causam Impacto nos Componentes](#em-que-medida-os-atributos-causam-impacto-nos-componentes)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
@@ -2294,3 +2298,21 @@ Caso tenha interesse em colorir o gráfico de dispersão de acordo com uma colun
 Observe que as cargas mostram a força dos atributos e como estão correlacionados. Caso estejam formando angulos agudos é um sinal de que provavelmente estão correlacionados. Entretanto 90 graus indicam uma forte possibilidade de que não estão correlacionados. E por fim, angulos obtusos indicam correlação negativa.
 
 Com base nos modelos de árvore é sabido que `age`, `fare` e `sex` são importantes para determinar se um passageiro sobreviveu ou não. O primeiro componente principal é extremamente influenciado por `pclass`, `age` e `fare`, enquanto o quarto é influenciado por `sex`.
+
+Por mais que o `matplotlib` seja extremamente interessante e útil para criar gráficos para visualizar os dados, ele é menos útil quando se trata de gráficos interativos. Quando se está utilizando PCA, no geral visualizar dados em gráficos de dispersão é uma boa ideia.
+
+Para isso é possível utilizar `bokeh` ou `plotly` para criar gráficos interativos. Essas bibliotecas funcionam bem com o jupyter
+
+![PCA Bokeh](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/pca%20bokeh.png)
+
+Visualize melhor as informações no código fonte da seção, é possível passar o mouse pelos pontos e verificar as informações.
+
+O `Yellowbrick` é capaz de gerar gráficos interessantes também, principalmente gráficos de três dimensões
+
+Entretanto uma biblioteca extremamente interessante para visualizações 3d interativas é a `scprep`. Ela é capaz de gerar gráficos de dispersão 3d interativos.
+
+![PCA 3D](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/3d%20scatter%20plot.png)
+
+É aconselhavél visitar o código fonte para visualizar melhor as informações.
+
+É possível ainda modificar o modo mágico de celula da `matplotlib` no Jupyter para notebook, criando um gráfico 3d interativo da `matplotlib`
