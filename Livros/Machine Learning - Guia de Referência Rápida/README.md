@@ -218,6 +218,10 @@
         - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-16)
         - [Atributos após a instância](#atributos-7)
     - [Código Fonte](#cc3b3digo-fonte-9)
+- [Capítulo 18 - Clustering](#capítulo-18---clustering)
+    - [KMeans](#k-means)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-17)
+        - [Atributos após a instância](#atributos-8)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
@@ -2512,3 +2516,74 @@ Na imagem acima é claro a diferença dos hiperparametros. O hiperparâmetro uti
 ### Código Fonte
 
 O código fonte para a redução da dimensionalidade pode ser encontrado [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo17.ipynb)
+
+## Capítulo 18 - Clustering
+
+Clustering (agrupamento) é uma técnica de aprendizado de máquina e diferente das ténicas vistas até então como Regressão ou Classificação, a técnica de Clustering se diferencia no quiesito de que não há um alvo a ser previsto. O objetivo é encontrar grupos de dados similares. Dessa forma a técnica declustering é uma técnica de aprendizado de máquina não supervisionada, usada para dividir um grupo em conjuntos. O próprio modelo selecionará e inspecionará os padrões nos dados.
+
+### K-Means
+
+O algoritmo `k-means (k-médias)` exige que o usuario selecione o número de clusters, ou seja o valor de `k`. Com o valor do cluster definido, ele escolherá aleatoriamente `k` centroides e atribuirá cada amostra a um cluster com base na métrica de distância a partir do centroide. Após a atribuição, os centroides são recalculados com base no centro de todas as amostras atribuídas a um rótulo. Após algumas iteracões, o algoritmo convergirá e os centroides não mudarão mais.
+
+Como o clustering utiliza métricas de distância para determinar quais amostras são semelhantes, o comportamento poderá mudar dependendo da escala dos dados. Pode ser feita uma padronização dos dados e coloca-los todos na mesma escala. É debativel essa questão da padronização dos dados. Para os exemplo do livro, foi feita a padronização dos dados.
+
+Após o treino do modelo, é possível chamar o método `.predict` para atribuir novas amostras a um cluster
+
+#### Parâmetros da instância
+
+- `n_clusters = 8` - Número de clusters. Padrão é `8`. O número de clusters a serem formados.
+
+- `init = 'k-means++'` - Pode ser `k-means++`, `random`. Padrão é `k-means++`. A inicialização dos centroides.
+
+- `n_init = 10` - Padrão é `10`. O número de inicializações máxima do algoritmo com diferentes centroides, a melhor pontuação encontrada nessas inicializações é usada.
+
+- `max_iter = 300` - Padrão é `300`. O número máximo de iterações do algoritmo k-means para uma única execução.
+
+- `tol = 0.0001` - Padrão é `0.0001`. A tolerância para a convergência.
+
+- `precompute_distances = 'auto'` - Pode ser `auto`, `True`, `False`. Padrão é `auto`. Especifica se deve ser habilitado o uso de distâncias pré-computadas.
+
+- `verbose = 0` - Especifica se deve ser habilitado o uso de verbosidade. Padrão é `0`.
+
+- `random_state = None` - Semente aleatória. Padrão é `None`.
+
+- `copy_x = True` - Padrão é `True`. Especifica se deve ser habilitado o uso de cópia de dados.
+
+- `n_jobs = 1` - Padrão é `1`. O número de trabalhos. A quantidade de trabalhos a serem executados em paralelo.
+
+- `algorithm = 'auto'` - Pode ser `auto`, `full`, `elkan`. Padrão é `auto`. O algoritmo a ser utilizado.
+
+#### Atributos
+
+- `cluster_centers_` - Coordenadas dos centroides.
+
+- `labels_` - Rótulos de cluster para cada amostra.
+
+- `inertia_` - Soma das distâncias quadradas das amostras para o centro do cluster mais próximo.
+
+- `n_iter_` - Número de iterações.
+
+---
+
+Como é de se esperar o parâmetro de klusters é o mais importante, e a principio pode ser complicado estabelecer o melhor valor para esse parâmetro. Uma maneira de fazer isso é utilizando o gráfico elbow (gráfico de cotovelo), pois dessa forma evita a execução do algoritmo incansavelmente até encontrar o melhor valor. Esse gráfico deve ser utilizado através do cálculo de `.inertia_`. Procure o ponto em que a curva dobra, pois geralmente é a melhor opção.
+
+![KMeans](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/kmeans.png)
+
+Observe no gráfico que a curva é suave, mas após o valor 8 não parece haver muita melhoria. 
+
+É claro que não se deve ficar apenas limitado a esse tipo de gráfico, existem diversas outras opções e metricas disponiveis para avaliar o modelo.
+
+Por exemplo o próprio `scikit-learn` tem outras métricas de clustering quando os verdadeiros rotulos não são conhecidos. O coeficiente de silhueta (silhouette coefficient) é um valor entre $1$ e $-1$. Quanto maior o valor, melhor é. O valor $1$ indica valores claros e bem separados, enquanto o valor $-1$ indica que os clusters estão se sobrepondo.
+
+O indice de Calenski-Harabasz é a razão entre a dispersão interclusters e a dispersão intraclusters. Uma pontuação maior será melhor. 
+
+O indice de Davies-Bouldin é a semelhança média entre cada cluster e o cluster mais próxio. As pontuações variam de $0$ ou mais. O mais próximo de $0$ melhor.
+
+![Métricas](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/kmeans%20metricas.png)
+
+Observe que embora o melhor valor de `k` encontrado no gráfico de cotovelo seja $8$, as métricas no geral indicam que o valor de $2$ é superior.
+
+Entretanto há outras formas ainda de gerar e visualizar pontuações, como por exemplo utilizando o `yellowbrick`. A linha vermelha pontilhada vertical nesse gráfico é a pontuação média. Um modo de interpretar isso é garantir que cada cluster se destauqe acima da média, e as pontualçoes do cluster pareçam razoaveis. É válido setar um limite de $x$ com `ax.set_xlim` para visualizar melhor os clusters.
+
+![Yellowbrick com KMeans](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/kmeans%20yellowbrick.png)
+
