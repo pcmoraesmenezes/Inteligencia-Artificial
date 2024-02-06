@@ -208,6 +208,9 @@
     - [PCA](#pca)
         - [Atributos após a instância](#atributos-4)
         - [Em que Medida os Atributos Causam Impacto nos Componentes](#em-que-medida-os-atributos-causam-impacto-nos-componentes)
+    - [UMAP](#umap)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-14)
+        - [Atributos após a instância](#atributos-5)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
