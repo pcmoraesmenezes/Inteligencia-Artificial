@@ -2316,3 +2316,77 @@ Entretanto uma biblioteca extremamente interessante para visualizações 3d inte
 É aconselhavél visitar o código fonte para visualizar melhor as informações.
 
 É possível ainda modificar o modo mágico de celula da `matplotlib` no Jupyter para notebook, criando um gráfico 3d interativo da `matplotlib`
+
+### UMAP
+
+UMAP (Uniform Manifold Approximation and Projection ou Aproximação e Projeção Uniforme de Variedades) é uma técnica de redução de dimensionalidade que tem como caracteristica o uso do `manifold learning`, ou seja aprendizado de variedades.Essa técnica tende a manter itens similares topologicamente juntos e procura preserar tanto a estrutura global como local. Esse modelo entra em contraposição com o `t-SNE` que tende a preservar a estrutura local.
+
+É recomendável fazer a normalização dos atributos para te-los na mesma escala.
+
+Além disso ele é extremamente sensível a hiperparâmetros, por isso é recomendável fazer uma busca em grade para encontrar os melhores hiperparâmetros.
+
+#### Parâmetros da instância
+
+- `n_neighbors = 15` - Número de vizinhos. Padrão é `15`. Valores maiores implicam em uma visão direcionada a escala global, enquanto valores menores implicam em uma visão direcionada a escala local.
+
+- `n_components = 2` - Número de componentes. Padrão é `2`. O número de dimensões para a projeção.
+
+- `metric = 'euclidean'` - Pode ser `euclidean`, `manhattan`, `chebyshev`, `minkowski`, `canberra`, `braycurtis`, `mahalanobis`, `wminkowski`, `seuclidean`, `cosine`, `correlation`, `haversine`, `hamming`, `jaccard`, `dice`, `russellrao`, `kulsinski`, `rogerstanimoto`, `sokalmichener`, `sokalsneath`, `yule`. Padrão é `euclidean`. A métrica de distância.
+
+- `n_epochs = None` - Número de épocas. Padrão é `None`. O número de épocas para treinamento. 
+
+- `learning_rate = 1.0` - Taxa de aprendizado. Padrão é `1.0`. A taxa de aprendizado para o algoritmo. Essa é a taxa de otimização de embedding(incorporação).
+
+- `init = 'spectral'` - Pode ser `spectral`, `random`. Padrão é `spectral`. A inicialização do embedding.
+
+- `min_dist = 0.1` - Distância mínima. Padrão é `0.1`. A distância mínima entre pontos no espaço de embedding. Valores menores por lógica induz a uma aglomeração mais densa.
+
+- `spread = 1.0` - Espalhamento. Padrão é `1.0`. O espalhamento da distribuição de probabilidade.
+
+- `set_op_mix_ratio = 1.0` - Padrão é `1.0`. O mix de operações de conjunto. Entre 0 e 1.
+
+- `local_connectivity = 1` - Padrão é `1`. A conectividade local. A medida que esse valor aumenta mais conectividade local é induzida.
+
+- `repulsion_strength = 1.0` - Padrão é `1.0`. A força de repulsão.
+
+- `negative_sample_rate = 5` - Padrão é `5`. A taxa de amostragem negativa.
+
+- `transform_queue_size = 4.0` - Padrão é `4.0`. O tamanho da fila de transformação.
+
+- `a=None` - Padrão é `None`. O parâmetro `a` para a distribuição de cauda longa. 
+
+- `b=None` - Padrão é `None`. O parâmetro `b` para a distribuição de cauda longa.
+
+- `random_state = None` - Semente aleatória. Padrão é `None`.
+
+- `metric_kwds = None` - Padrão é `None`. Argumentos de palavra-chave para a métrica.
+
+- `angular_rp_forest = False` - Padrão é `False`. Especifica se deve ser habilitado o uso de floresta de projeção angular.
+
+- `target_n_neighbors = -1` - Padrão é `-1`. O número de vizinhos para o espaço de destino.
+
+- `target_metric = 'categorical'` - Padrão é `categorical`. A métrica de destino. Use para usar redução supervisionada, tambem pode ser `L1`, `L2`, `cosine`, `manhattan`, `euclidean`, `hamming`, `jaccard`, `dice`, `matching`, `kulsinski`, `rogerstanimoto`, `russellrao`, `sokalmichener`, `sokalsneath`, `yule`.
+
+- `target_metric_kwds = None` - Padrão é `None`. Argumentos de palavra-chave para a métrica de destino.
+
+- `target_weight = 0.5` - Padrão é `0.5`. O peso do espaço de destino. O valor de 0 significa se basear apenas nos dados enquanto que 1 significa se basear apenas no espaço de destino.
+
+- `transform_seed = 42` - Semente aleatória para a transformação. Padrão é `42`.
+
+- `verbose = False` - Especifica se deve ser habilitado o uso de verbosidade. Padrão é `False`.
+
+#### Atributos
+
+- `embedding_` - Incorporação.
+
+![Umap default](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/umap%20default.png)
+
+Através da imagem acima é possível verificar o resultado default do UMAP no conjunto de dados de titanic.
+
+![Hiperparametros](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/umap%20hiperparametros.png)
+
+Já na imagem acima é possível verificar o que acontece com o UMAP quando se ajusta o hiperparâmetro `n_neighbors`.
+
+![Hiperparametros](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/umap%20hiperparametros%202.png)
+
+Já na imagem acima é possível verificar o que acontece quando se modifica o hiperparâmetro `min_dist`.
