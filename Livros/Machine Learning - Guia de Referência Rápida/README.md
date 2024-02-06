@@ -211,6 +211,13 @@
     - [UMAP](#umap)
         - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-14)
         - [Atributos após a instância](#atributos-5)
+    - [t-SNE](#t-sne)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-15)
+        - [Atributos após a instância](#atributos-6)
+    - [Phate](#phate)
+        - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-16)
+        - [Atributos após a instância](#atributos-7)
+    - [Código Fonte](#cc3b3digo-fonte-9)
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
@@ -2501,3 +2508,7 @@ Conforme evidenciado nos exemplos de outras tecnicas, a modificação de hiperpa
 ![Phate com HIperparametros](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/phate%20hiperparametro.png)
 
 Na imagem acima é claro a diferença dos hiperparametros. O hiperparâmetro utilizado é o `knn` que é o número de vizinhos mais próximos.
+
+### Código Fonte
+
+O código fonte para a redução da dimensionalidade pode ser encontrado [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo17.ipynb)
