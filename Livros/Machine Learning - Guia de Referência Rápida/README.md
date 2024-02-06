@@ -2393,3 +2393,111 @@ Já na imagem acima é possível verificar o que acontece com o UMAP quando se a
 ![Hiperparametros](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/umap%20hiperparametros%202.png)
 
 Já na imagem acima é possível verificar o que acontece quando se modifica o hiperparâmetro `min_dist`.
+
+### t-SNE 
+
+A técnica de `t-SNE` (t-Distributed Stochastic Neighboring Embedding ou Incorporação Estocástica de Vizinhança Distribuída t) é uma técnica de visualização e de redução de dimensionalidade. Utiliza da distribução dos dados de entrada e de embedding para ter menos dimensões. Além disso ela atua minimizando as probabilidades de junções entre elas. Um grande ponto negativo desta técnica está na questão do processamento, devido utilizar bastante ela pode não ser aplicavél para grandes conjuntos de dados.
+
+Uma outra caracteristica do `t-SNE` é a questão da sensitividade a hiperparâmetros. Além disso, embora ocorra a preservação de clusters locais muito bem, as informações globais não são preservadas. Desse modo, a distância entre os clusters não é significativa. Outra caracteristica está na questão do algoritmo, ele não é deterministico, ou seja pode não encontrar convergência.
+
+Padronizar os dados é recomendado antes de utilizar o `t-SNE`.
+
+#### Parâmetros da instância
+
+- `n_components = 2` - Número de componentes. Padrão é `2`. O número de dimensões para a projeção.
+
+- `perplexity = 30` - Padrão é `30`. A perplexidade é um parâmetro que controla a quantidade de vizinhos que são considerados para a redução de dimensionalidade. Numeros menores tendem a criar aglomerações mais densas.
+
+- `early_exaggeration = 12.0` - Padrão é `12.0`. A exageração inicial. Valores maiores implicam em espaçaços maiores entre clusters.
+
+- `learning_rate = 200.0` - Padrão é `200.0`. A taxa de aprendizado. Hiperparâmetro aconselhavél para ser ajustado, caso os dados estejam em formato de "bola" ou "aglomeração" é recomendado diminuir o valor. Caso os dados estejam em formato de "linha" é recomendado aumentar o valor.
+
+- `n_iter = 1000` - Padrão é `1000`. O número de iterações.
+
+- `n_iter_without_progress = 300` - Padrão é `300`. O número de iterações sem progresso.
+
+- `min_grad_norm = 1e-07` - Padrão é `1e-07`. O gradiente mínimo.
+
+- `metric = 'euclidean'` - Pode ser `euclidean`, `manhattan`, `chebyshev`, `minkowski`, `canberra`, `braycurtis`, `mahalanobis`, `wminkowski`, `seuclidean`, `cosine`, `correlation`, `haversine`, `hamming`, `jaccard`, `dice`, `russellrao`, `kulsinski`, `rogerstanimoto`, `sokalmichener`, `sokalsneath`, `yule`. Padrão é `euclidean`. A métrica de distância.
+
+- `init = 'random'` - Pode ser `random`, `pca`. Padrão é `random`. A inicialização do embedding.
+
+- `verbose = 0` - Especifica se deve ser habilitado o uso de verbosidade. Padrão é `0`.
+
+- `random_state = None` - Semente aleatória. Padrão é `None`.
+
+- `method = 'barnes_hut'` - Pode ser `barnes_hut`, `exact`. Padrão é `barnes_hut`. O método de cálculo.
+
+- `angle = 0.5` - Padrão é `0.5`. O ângulo. Utilizado no calculo de gradiente. Um valor abaixo de 0.4 aumenta o tempo de execução, já valores altos podem acarretar em erros
+
+#### Atributos
+
+- `embedding_` - Incorporação.
+
+- `kl_divergence_` - Divergência KL.
+
+- `n_iter_` - Número de iterações.
+
+---
+
+![Exemplo t-SNE](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/t-sne.png)
+
+![t-SNE hiperparametros](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/tsne%20hiperparametros.png)
+
+A imagem acima já demonstra o resultado do t-SNE modificando o hiperparâmetro `perplexity`.
+
+### PHATE
+
+O PHATE(Potential of Heat-diffusion for Affinity-based Trajectory Embedding ou Potencial de Difusão de Calor para Incorporação de Trajetória Baseada em Afinidade) é uma ótima ferramenta para visualização de dados com muitas dimensões. Ela tem uma caracteristica em comum com o `PCA` que é tender a manter uma estrutura global dos dados, mas também tem uma caracteristica em comum com o `t-SNE` que é a preservação de clusters locais.
+
+O PHATE inicialmente codifica as informações locais (pontos próximos devem permanecer próximos). Além disso é utilizado de "difusão" para descobrir dados globais e então é feito a redução da dimensionalidade
+
+#### Parâmetros da instância
+
+- `n_components = 2` - Número de componentes. Padrão é `2`. O número de dimensões para a projeção.
+
+- `knn = 5` - Padrão é `5`. O número de vizinhos mais próximos. Aumente se o embedding estiver desconectado ou o conjunto de dados for muito extenso (100 mil amostras por exemplo).
+
+- `decay = 40` - Padrão é `15`. O decaimento. Aumente para aumentar a importância dos pontos mais distantes. Reduzir esse valor aumenta a conectividade do grafo
+
+- `n_landmark = 2000` - Padrão é `2000`. O número de marcos. Aumente para aumentar a precisão do embedding.
+
+- `t=auto` - Essa é a potência de difusão. Suavização é feita nos dados. Aumente esse valor se faltar estrutura no embedding. Diminua se a estrutura for rigida e compacta
+
+- `gamma = 1` - Padrão é `1`. O valor de gamma. Aumente para aumentar a importância dos pontos mais distantes. Reduzir esse valor aumenta a conectividade do grafo
+
+- `n_pca = 100` - Padrão é `100`. O número de componentes principais. Aumente para aumentar a precisão do embedding.
+
+- `n_jobs = 1` - Padrão é `1`. O número de trabalhos. Aumente para acelerar o cálculo.
+
+- `knn_dist = 'euclidean'` - Pode ser `euclidean`, `manhattan`, `chebyshev`, `minkowski`, `canberra`, `braycurtis`, `mahalanobis`, `wminkowski`, `seuclidean`, `cosine`, `correlation`, `haversine`, `hamming`, `jaccard`, `dice`, `russellrao`, `kulsinski`, `rogerstanimoto`, `sokalmichener`, `sokalsneath`, `yule`. Padrão é `euclidean`. A métrica de distância.
+
+- `mds_dist = 'euclidean'` - Pode ser `euclidean`, `manhattan`, `chebyshev`, `minkowski`, `canberra`, `braycurtis`, `mahalanobis`, `wminkowski`, `seuclidean`, `cosine`, `correlation`, `haversine`, `hamming`, `jaccard`, `dice`, `russellrao`, `kulsinski`, `rogerstanimoto`, `sokalmichener`, `sokalsneath`, `yule`. Padrão é `euclidean`. A métrica de distância.
+
+- `mds=metric` - Algoritmo de MDS para redução de dimensionalidade. Pode ser `metric`, `nonmetric`. Padrão é `metric`.
+
+- `verbose = 1` - Especifica se deve ser habilitado o uso de verbosidade. Padrão é `1`.
+
+- `random_state = None` - Semente aleatória. Padrão é `None`.
+
+#### Atributos
+
+- `X` - Dados de entrada.
+
+- `embedding` - Incorporação.
+
+- `diff_op` - Operador de difusão.
+
+- `graph` - Grafo.
+
+---
+
+![Phate](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/phate.png)
+
+A imagem acima já demonstra o resultado do PHATE.
+
+Conforme evidenciado nos exemplos de outras tecnicas, a modificação de hiperparametros pode ser crucial para obtenção de resultados mais favoraveis, observe também que quando o método `.set_params` é ajustado, o calculo é agilizado, pois o grafo previamente processado e o operador de difusão será utilizado.
+
+![Phate com HIperparametros](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/phate%20hiperparametro.png)
+
+Na imagem acima é claro a diferença dos hiperparametros. O hiperparâmetro utilizado é o `knn` que é o número de vizinhos mais próximos.
