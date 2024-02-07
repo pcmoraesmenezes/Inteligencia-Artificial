@@ -33,6 +33,7 @@ exceptiongroup==1.2.0
 executing==2.0.1
 fancyimpute==0.7.0
 fastai==2.7.13
+fastcluster==1.2.6
 fastcore==1.5.29
 fastdownload==0.0.7
 fastprogress==1.0.3
