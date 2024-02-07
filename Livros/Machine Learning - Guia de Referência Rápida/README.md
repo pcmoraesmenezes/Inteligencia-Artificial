@@ -222,6 +222,11 @@
     - [KMeans](#k-means)
         - [Parâmetros da instância](#parc3a2metros-da-instc3a2ncia-17)
         - [Atributos após a instância](#atributos-8)
+    - [Clustering Hierárquico](#clustering-hierárquico-aglomerativo)
+    - [Entendendo os Clusters](#entendendo-os-clusters)
+    - [Código Fonte](#cc3b3digo-fonte-10)
+
+
 ## 1. Introdução
 
 Esse livro é um guia de referência rápida para Machine Learning. O objetivo é fornecer uma visão geral dos principais conceitos de Machine Learning, com exemplos de código em Python. 
@@ -2587,3 +2592,45 @@ Entretanto há outras formas ainda de gerar e visualizar pontuações, como por 
 
 ![Yellowbrick com KMeans](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/kmeans%20yellowbrick.png)
 
+### Clustering (hierárquico) Aglomerativo
+
+Uma outra metodologia aplicavel é o clustering agloremativo. Nessa técnica, é empregado em cada amostra seu próprio cluster, na sequência é combinado os clusters "mais proximos" até que os clusters sejam combinados. No término terá-se um dendograma, isto é, uma árvore que controle quando os clusters foram criados e qual é a métrica das distâncias. A biblioteca `scipy` é bem útil para visualizar o dendograma.
+
+A `scipy` pode ser usada para criar um dendograma
+
+![Cluster hierarquico dendograma](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/dendograma%20cluster%20hierarquico.png)
+
+Observe que com muitas amostras é dificil ler os nós do tipo folha.
+
+Depois que tiver o dendograma em mãos, tem-se todos os clusters. As alturas representam o nível de semelhança dos clusters quando são unidos. Para descobrir a quantidade total de clusters nos dados basta "passar" uma linha horizontal no ponto em que ela cruzaria as linhas mais altas. Na imagem acima teria-se cerca de 3 clusters.
+
+Além disso é visivel que o gráfico possuí um certo ruído, pois contém todas as amostras. É possível usar o parâmetro `truncate_mode` para combinar as folhas em um único nó.
+
+![Cluster sem ruído](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/cluster%20sem%20ruido.png)
+
+Com a quantidade de clusters em mente, é possível gerar um modelo através do `scikit-learn` utilizando `sklearn.cluster import AgglomerativeClustering`
+
+### Entendendo os Clusters
+
+Quando se utiliza o k-means no conjunto de dados do Titanic, tem-se dois clusters. É possível utilizar a funcionalidade do `pandas` para visualizar e analisar as diferenças entre os clusters.
+
+![Entendendo os clusters](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/entendendo%20cluster.png)
+
+Observe que o valor de `pclass` varia bastante.
+
+
+![Média dos clusters](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/media%20clusters.png)
+
+A imagem acima mostra o gráfico para a média dos clusters.
+
+![PCA COM CLUSTERS](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/pca%20com%20cluster.png)
+
+É possível também usar o método `.describe()` do `pandas`.
+
+Além disso é possível também criar um modelo substituto (surrogate model) para explicar melhor os clusters. Isso pode ser feito através de um modelo de árvore de decisão.
+
+![Árvore de Decisão para Clusters](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/images/arvore%20de%20decisao%20para%20clusters.png)
+
+### Código Fonte
+
+O código fonte para o clustering pode ser encontrado [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo18.ipynb)
