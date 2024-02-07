@@ -225,6 +225,11 @@
     - [Clustering Hierárquico](#clustering-hierárquico-aglomerativo)
     - [Entendendo os Clusters](#entendendo-os-clusters)
     - [Código Fonte](#cc3b3digo-fonte-10)
+- [Capítulo 19 - Pipelines](#capítulo-19---pipelines)
+    - [Pipelines de Classificação](#pipelines-de-classificação)
+    - [Pipelines de Regressão](#pipelines-de-regressão)
+    - [Pipelines de PCA](#pipelines-de-pca)
+    - [Código Fonte](#cc3b3digo-fonte-11)
 
 
 ## 1. Introdução
@@ -2634,3 +2639,27 @@ Além disso é possível também criar um modelo substituto (surrogate model) pa
 ### Código Fonte
 
 O código fonte para o clustering pode ser encontrado [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo18.ipynb)
+
+## Capítulo 19 - Pipelines
+
+Pipelines são uma maneira de encadear vários estimadores em um único objeto. Isso é útil quando se tem várias etapas de pré-processamento e modelagem.
+
+Ao usar a classe `Pipeline` do `scikit-learn` é possível não apenas encadear transformadores e modelos, mas também é possível tratar o processo todo como um único modelo e realizar a busca em grade para encontrar os melhores hiperparâmetros.
+
+### Pipelines de classificação
+
+Cheque o exemplo do código fonte do capítulo, nele foi criado uma classe e foi utilizado o `Pipeline` para encadear o pré-processamento e o modelo de classificação.
+
+### Pipelines de Regressão
+
+Novamente, cheque o código fonte para informações avançadas.
+
+### Pipelines de PCA
+
+O `PCA` é um pré-processador, ou seja, ele é um transformador. Dessa forma é possível encadear o `PCA` com um modelo de classificação ou regressão.
+
+Cheque o código fonte para informações avançadas.
+
+### Código Fonte
+
+O código fonte para os pipelines pode ser encontrado [aqui](/Livros/Machine%20Learning%20-%20Guia%20de%20Referência%20Rápida/codigos/capitulo19.ipynb)
