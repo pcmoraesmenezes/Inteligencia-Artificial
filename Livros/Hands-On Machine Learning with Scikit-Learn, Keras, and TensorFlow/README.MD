@@ -253,3 +253,53 @@ The flow will look something like this:
 
 6. **Monitoring and Maintenance**: The model’s performance is monitored, and it’s updated as needed.
 
+
+## Chapter 3 - Classification
+
+In the previous chapter, we discussed regression problems. Now, let's focus on **classification** problems.
+
+Classification is the process of predicting the class of a given data point. The classes can be **binary** (e.g., spam/not spam) or **multiclass** (e.g., handwritten digit recognition). We will use the well-known **MNIST** dataset, which contains 70,000 small images of handwritten digits collected from students and U.S. Census Bureau employees. Each image is labeled with the digit it represents.
+
+### Binary Classification
+
+A **Binary Classification** task has two possible outcomes. A common example is spam detection (spam/not spam). Another typical binary classification task is identifying the presence or absence of a condition — for example, breast cancer detection (has cancer/does not have cancer).
+
+For this example, we will create a binary classifier to detect whether an image contains the digit **5** or not.
+
+### Performance Measures
+
+Evaluating a classifier is often more challenging than evaluating a regressor. Several performance metrics are available, and it is essential to understand them to choose the right one for your problem.
+
+Our goal in a machine learning project is to ensure that the model generalizes well to **new data**. Therefore, a good performance measure is critical. Techniques like **cross-validation** help ensure that the model performs well even when trained on different subsets of data.
+
+#### Confusion Matrix
+
+The **Confusion Matrix** is a helpful tool for understanding the performance of a classifier in terms of correct and incorrect predictions:
+
+| True Negative | False Positive |
+|---------------|----------------|
+| False Negative| True Positive  |
+
+Each cell in the matrix represents a count of predictions made by the model, comparing the actual label with the predicted label. This matrix is particularly useful for identifying which types of errors the model is making, such as reducing **False Negatives** in medical diagnosis problems.
+
+#### Precision, Recall, and F1 Score
+
+- **Precision**: Measures how accurate the positive predictions are.
+  - Formula: $Precision = \frac{TP}{TP + FP}$
+  
+- **Recall**: Measures how well the model captures all actual positive instances.
+  - Formula: $Recall = \frac{TP}{TP + FN}$
+  
+- **F1 Score**: The harmonic mean of Precision and Recall. It is useful when we want to balance both.
+  - Formula: $F1 = \frac{2}{\frac{1}{Precision} + \frac{1}{Recall}}$
+
+Each metric has its own importance depending on the context. For example, in spam detection, Precision is more critical, while in medical diagnoses, Recall is often prioritized.
+
+#### Precision/Recall Tradeoff
+
+The **Precision/Recall Tradeoff** occurs because improving one metric often worsens the other. For instance, increasing Precision can lead to a drop in Recall. In many cases, the goal is to find a balance that maximizes the F1 Score, which considers both Precision and Recall.
+
+#### ROC Curve and AUC
+
+The **ROC Curve** (Receiver Operating Characteristic) plots the True Positive Rate (Recall) against the False Positive Rate. One important metric derived from the ROC curve is the **AUC** (Area Under the Curve), which provides a summary of the model's overall performance. A higher AUC (closer to 1.0) indicates better performance.
+
