@@ -303,3 +303,41 @@ The **Precision/Recall Tradeoff** occurs because improving one metric often wors
 
 The **ROC Curve** (Receiver Operating Characteristic) plots the True Positive Rate (Recall) against the False Positive Rate. One important metric derived from the ROC curve is the **AUC** (Area Under the Curve), which provides a summary of the model's overall performance. A higher AUC (closer to 1.0) indicates better performance.
 
+
+### Multiclass Classification
+
+In a **Multiclass Classification** task, the model must classify instances into three or more classes. For example, classifying news articles into categories like sports, politics, or technology.
+
+Some algorithms like **Random Forest** and **Naive Bayes** can handle multiclass classification directly. Others like **Support Vector Machines (SVM)** and **Linear Classifiers** are strictly binary classifiers. However, there are strategies to perform multiclass classification using binary classifiers, such as **One-versus-All (OvA)** or **One-versus-One (OvO)**.
+
+#### OvA and OvO Strategies
+
+- **OvA**: Train a binary classifier for each class. When classifying a new instance, select the class with the highest score among all classifiers. This strategy is efficient for large datasets.
+
+- **OvO**: Train a binary classifier for each pair of classes. If there are N classes, you need N * (N - 1) / 2 classifiers. When classifying a new instance, the class that wins the most duels is the predicted class. This strategy is more efficient for smaller datasets.
+
+It is possible to select the strategy based on the algorithm's scalability and the dataset's size. For example, **SVM** scales poorly with the size of the training set, so OvO is preferred for SVM.
+
+To do this use the `OneVsOneClassifier` or `OneVsRestClassifier` classes from Scikit-Learn.
+
+### Error Analysis
+
+After training a model, it is essential to analyze its errors to understand where it is failing and why. This process can provide insights into how to improve the model.
+
+One common technique is to analyze the **confusion matrix** and identify which classes are often confused. This can help determine whether the model is making systematic errors, such as confusing similar classes.
+
+Another approach is to visualize the model's errors. For example, plotting instances that the model misclassified can provide insights into why it failed. This can help identify patterns that the model is not capturing.
+
+### Multilabel Classification
+
+In a **Multilabel Classification** task, each instance can have multiple classes. For example, classifying images of people into categories like "happy," "smiling," or "wearing glasses."
+
+To handle multilabel classification, you can use the `KNeighborsClassifier` or `RandomForestClassifier` from Scikit-Learn. These classifiers can output multiple binary labels for each instance.
+
+### Multioutput Classification
+
+In a **Multioutput Classification** task, each label can be multiclass. For example, removing noise from images can be seen as a multioutput classification task, where each pixel can have multiple values.
+
+To handle multioutput classification, you can use the `KNeighborsClassifier` or `RandomForestClassifier` from Scikit-Learn. These classifiers can output multiple binary labels for each instance.
+
+### Exercises
