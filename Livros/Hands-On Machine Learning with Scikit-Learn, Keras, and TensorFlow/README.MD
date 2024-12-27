@@ -341,3 +341,11 @@ In a **Multioutput Classification** task, each label can be multiclass. For exam
 To handle multioutput classification, you can use the `KNeighborsClassifier` or `RandomForestClassifier` from Scikit-Learn. These classifiers can output multiple binary labels for each instance.
 
 ### Exercises
+
+1. Try to build a classifier for the MNIST dataset that achieves over 97% accuracy on the test set. Hint: the KNeighborsClassifier works quite well for this task; you just need to find good hyperparameter values (try a grid search on the weights and n_neighbors hyperparameters).
+
+2. Write a function that can shift an MNIST image in any direction (left, right, up, or down) by one pixel. Then, for each image in the training set, create four shifted copies (one per direction) and add them to the training set. Finally, train your best model on this expanded training set and measure its accuracy on the test set. You should observe that your model performs even better now! This technique of artificially growing the training set is called **data augmentation** or **training set expansion**.
+
+3. Tackle the Titanic dataset. A great place to start is on Kaggle.
+
+4. Build a spam classifier (a more challenging exercise).
