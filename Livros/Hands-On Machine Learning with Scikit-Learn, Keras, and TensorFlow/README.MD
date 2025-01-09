@@ -421,3 +421,5 @@ Using the Normal Equation to compute we need to compute a the inverse of a matri
 The Normal Equation gets very slow when the number of features grows large. However, the equation is linear with regards to the number of instances in the training set, so it handles large training sets efficiently, provided they can fit in memory. 
 
 The good new is that once you have trained your Linear Regression model, predictions are very fast: the computational complexity is linear with regards to both the number of instances you want to make predictions on and the number of features.
+
+See the implementation of a linear regression in this [file](https://github.com/pcmoraesmenezes/Inteligencia-Artificial/blob/main/Livros/Hands-On%20Machine%20Learning%20with%20Scikit-Learn%2C%20Keras%2C%20and%20TensorFlow/codes/training_models/linear_regression.py)
