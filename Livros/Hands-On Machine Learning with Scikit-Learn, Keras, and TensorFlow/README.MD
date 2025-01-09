@@ -349,3 +349,75 @@ To handle multioutput classification, you can use the `KNeighborsClassifier` or 
 3. Tackle the Titanic dataset. A great place to start is on Kaggle.
 
 4. Build a spam classifier (a more challenging exercise).
+
+## Chapter 4 - Training Models
+
+This chapter was focused to explain some of the most common algorithms used in machine learning.
+
+### Linear Regression
+
+In the chapter two I've saw a little about linear regression, now I'm going to understand the math behind it.
+
+Basic a model can be explained as a function that maps the input features to the predicted output, for example life satisfaction = f(GDP per capita). This type of function is linear.
+
+A linear model makes a prediction by computing a weighted sum of the input features, plus a constant called the bias term (also called the intercept term). The equation is:
+
+$\hat{y} = \theta_0 + \theta_1x_1 + \theta_2x_2 + ... + \theta_nx_n$
+
+Where:
+
+- $\hat{y}$ is the predicted value.
+
+- n is the number of features.
+
+- $x_i$ is the i-th feature value.
+
+- $\theta_j$ is the j-th model parameter (including the bias term $\theta_0$ and the feature weights $\theta_1, \theta_2, ..., \theta_n$).
+
+As dealling with machine learning and deep learning approaches is common to use vectors and matrices to represent the equations, because it's easier and faster to compute. In the case of a linear regression model, we can represent the equation as:
+
+$\hat{y} = h_{\theta}(x) = \theta^T \cdot x$
+
+Where:
+
+- $\theta$ is the model's parameter vector, containing the bias term $\theta_0$ and the feature weights $\theta_1, \theta_2, ..., \theta_n$.
+
+- $x$ is the instance's feature vector, containing $x_0$ to $x_n$, with $x_0$ always equal to 1.
+
+- $\theta^T$ is the transpose of $\theta$.
+
+- $h_{\theta}$ is the hypothesis function, using the model parameters $\theta$.
+
+The process of training a model is to find the parameters that minimize the cost function. In the case of a linear regression model, the cost function is the Mean Squared Error (MSE) function:
+
+$MSE(X, h_{\theta}) = \frac{1}{m} \sum_{i=1}^{m} (\theta^T \cdot x^{(i)} - y^{(i)})^2$
+
+Where:
+
+- $m$ is the number of instances in the dataset.
+
+- $x^{(i)}$ is the i-th instance's feature vector.
+
+- $y^{(i)}$ is the i-th instance's target value.
+
+- $\theta^T \cdot x^{(i)}$ is the prediction for the i-th instance using the model parameters $\theta$.
+
+The goal is to find the value of $\theta$ that minimizes the MSE function. 
+
+We can get the value of $\theta$ by using the Normal Equation:
+
+$\hat{\theta} = (X^T \cdot X)^{-1} \cdot X^T \cdot y$
+
+Where:
+
+- $\hat{\theta}$ is the value of $\theta that minimizes the cost function.
+
+- y is the vector of target values containing $y^{(1)}$ to $y^{(m)}$.
+
+#### Computational Complexity
+
+Using the Normal Equation to compute we need to compute a the inverse of a matrix multiplication $(X^T \cdot X)$. Our matrix $X$ has a shape of $(m, n)$, where $m$ is the number of instances and $n$ is the number of features. Our matrix $X^T$ has a shape of $(n, m)$. So the matrix multiplication $X^T \cdot X$ has a shape of $(n, n)$. By doing the inverse of this matrix we have a new matrix with the same shape $(n, n)$. The computational complexity of inverting a matrix is about $O(n^{2.4})$ to  $O(n^3)$.
+
+The Normal Equation gets very slow when the number of features grows large. However, the equation is linear with regards to the number of instances in the training set, so it handles large training sets efficiently, provided they can fit in memory. 
+
+The good new is that once you have trained your Linear Regression model, predictions are very fast: the computational complexity is linear with regards to both the number of instances you want to make predictions on and the number of features.
