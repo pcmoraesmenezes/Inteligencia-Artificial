@@ -423,3 +423,122 @@ The Normal Equation gets very slow when the number of features grows large. Howe
 The good new is that once you have trained your Linear Regression model, predictions are very fast: the computational complexity is linear with regards to both the number of instances you want to make predictions on and the number of features.
 
 See the implementation of a linear regression in this [file](https://github.com/pcmoraesmenezes/Inteligencia-Artificial/blob/main/Livros/Hands-On%20Machine%20Learning%20with%20Scikit-Learn%2C%20Keras%2C%20and%20TensorFlow/codes/training_models/linear_regression.py)
+
+### Gradient Descent
+
+The gradient descent method is a optimization algorithm that finds the minimum of a function. The idea is to tweak the parameters iteratively to minimize a cost function.
+
+You can think of this as rolling a ball down a hill. The ball will eventually reach the lowest point. The parameters are updated in the opposite direction of the gradient of the cost function.
+
+#### Epochs and Learning Rate
+
+Those two parameters are crucial for this type of optimization algorithm.
+
+The first one, **Epochs**, is the number of times the algorithm goes through the dataset. The second one, **Learning Rate**, is the size of the steps the algorithm takes to find the minimum of the function.
+
+A high number of epochs leads to more time training the model, but it can lead to a better model. However, a high number of epochs does not necessary implies a better model. 
+
+The second one, the learning rate, is a hyperparameter that can be tuned. A high learning rate can make the algorithm to diverge, while a low learning rate can make the algorithm to take too long to converge.
+
+Those two parameters are crucial to be tuned to get a good model, and they complete each other. A high learning rate can be used with a low number of epochs, while a low learning rate can be used with a high number of epochs.
+
+#### Early Stopping
+
+Since we've discussed about the number of epochs and the learning ratio, we can talk about the early stopping
+
+The early stopping is a technique to stop the training of the model when the model is not improving anymore. We set a **PATIENCE** and a **TOLERANCE**. The patience is the number of epochs that the model can be stopped without improving, while the tolerance is the minimum improvement that the model must have to not be stopped.
+
+Those two parameters can be combinned with the learning rate and the number of epochs to get a good model.
+
+For example, we can set a high number of epochs and a low learning rate value, and set a arbitrary value for the patience and tolerance. If the model reachs the patience we can update dinaamically the learning rate to see if the model improves. If the model does not improve, we can stop the training.
+
+---
+
+There're three types of a cost function:
+
+1. No convex function: The function has many local minimums, so the algorithm can get stuck in a local minimum.
+
+2. Convex function: The function has only one minimum, so the algorithm can find the global minimum.
+
+3. Convex function with a high learning rate: The algorithm can diverge.
+
+![Convex Function](/images/gradient_descent1.jpg)
+
+As we can see the image above, the cost function is like a bowl. The algorithm starts at the top of the bowl and goes down to the bottom. 
+
+![Convex Function with a high learning rate](/images/gradient_descent_2.png)
+
+The second image shows a cost function that is more like a irregular terrain. The algorithm can get stuck in a local minimum and not diverge to the global minimum.
+
+By using a gradient descent algorithm we must ensure that all features have a similar scale. If the features have different scales, the algorithm will take a long time to converge.
+
+#### Batch Gradient Descent
+
+The Batch Gradient Descent algorithm computes the gradients of the cost function with regards to the model parameters $\theta$ for the entire training set $X$ at each step. The algorithm is slow when the training set is large. The calculation of the gradients is based on partial derivatives of the cost function in relation to the model parameters.
+
+The Batch Gradient Descent algorithm is given by the equation:
+
+$\frac{\partial}{\partial\theta_{j}} MSE(\theta) = \frac{2}{m} \sum_{i=1}^{m} (\theta^T \cdot x^{(i)} - y^{(i)})x^{(i)}_{j}$
+
+Where:
+
+- $m$ is the number of instances in the dataset.
+
+- $x^{(i)}$ is the i-th instance's feature vector.
+
+- $y^{(i)}$ is the i-th instance's target value.
+
+- $\theta^T \cdot x^{(i)}$ is the prediction for the i-th instance using the model parameters $\theta$.
+
+- $x^{(i)}_{j}$ is the j-th feature value of the i-th instance.
+
+The algorithm is given by the equation:
+
+We can use a vectorized form of the equation to compute the gradients of the cost function:
+
+$\nabla_{\theta} MSE(\theta) = \frac{2}{m} X^T \cdot (X \cdot \theta - y)$
+
+Where:
+
+- $\nabla_{\theta} MSE(\theta)$ is the gradient vector of the cost function.
+
+- $X$ is the matrix of feature values.
+
+- $y$ is the vector of target values.
+
+By adding a learning rate $\eta$ to the equation we have the equation:
+
+$\theta^{(next step)} = \theta - \eta \nabla_{\theta} MSE(\theta)$
+
+Where:
+
+- $\theta^{(next step)}$ is the next step of the model parameters.
+
+- $\eta$ is the learning rate.
+
+- $\nabla_{\theta} MSE(\theta)$ is the gradient vector of the cost function.
+
+
+#### Stochastic Gradient Descent
+
+Batch Gradient Descent, while effective, has a significant drawback: it uses the entire dataset to compute gradients. This can make the algorithm very slow, especially for large datasets. Stochastic Gradient Descent (SGD) offers an efficient alternative by computing the gradients of the cost function using randomly selected instances of the dataset. This makes it well-suited for large datasets.
+
+However, SGD has its own limitations. Unlike Batch Gradient Descent, which progresses smoothly towards the minimum, SGD introduces randomness due to its reliance on individual data points. This randomness can cause the algorithm to fluctuate around the minimum instead of converging exactly. Additionally, it can sometimes get stuck in local minima.
+
+That said, this same randomness can be an advantage in more complex scenarios. For cost functions with irregular terrains, SGD is less likely to settle into a local minimum and has a better chance of escaping to find the global minimum.
+
+To improve SGD's performance, a learning schedule can be employed. A learning schedule is a strategy that gradually reduces the learning rate as the algorithm progresses towards the minimum. By starting with a higher learning rate to make large strides and gradually decreasing it to fine-tune the solution, the algorithm can balance exploration and convergence. This approach, inspired by the Simulated Annealing optimization technique, enhances SGD's ability to find the global minimum.
+
+#### Mini-batch Gradient Descent
+
+Mini-batch Gradient Descent is a compromise between Batch Gradient Descent and Stochastic Gradient Descent. Instead of computing the gradients based on the entire dataset (Batch GD) or a single instance (SGD), Mini-batch GD computes the gradients on small random sets of instances called mini-batches.
+
+Mini-batch GD offers the best of both worlds: it is faster than Batch GD and more stable than SGD. The algorithm's progress is less erratic than SGD, as the mini-batches provide a smoother convergence towards the minimum. Additionally, Mini-batch GD can leverage hardware optimization for matrix operations, making it faster than pure Python implementations.
+
+However, Mini-batch GD is more likely to get stuck in local minima than SGD, as the algorithm's path is less erratic. To mitigate this, a learning schedule can be used to gradually reduce the learning rate as the algorithm approaches the minimum.
+
+---
+
+All of the algorithms have their own advantages and disadvantages. The Batch Gradient Descent is slow, but it can find the global minimum. The Stochastic Gradient Descent is fast, but it can get stuck in a local minimum. The Mini-batch Gradient Descent is a compromise between the two algorithms.
+
+It's possible to reach the implementation of the three algorithms in this [file](/codes/training_models/gradient_descent_models.py)
