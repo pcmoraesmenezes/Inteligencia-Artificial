@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from time import time
+from typing import Tuple
 
 class MyLinearRegression():
     """
@@ -29,6 +30,7 @@ class MyLinearRegression():
         self.training_time = None
         self.prediction_time = None
         self.noise = None  
+        self.costs = []
 
     def fit(self, X, y):
         """
@@ -60,6 +62,7 @@ class MyLinearRegression():
         self.coef_ = self.theta[1:]
         end_time = time()  # End timing
         self.training_time = end_time - start_time
+
 
     def predict(self, X):
         """
@@ -168,6 +171,55 @@ class MyLinearRegression():
         y_predict = X_new_b.dot(self.theta)  # Predict target values
         plt.plot(X_new, y_predict, "r-")  # Red line for regression
         plt.show()
+
+    def get_times(self) -> Tuple[float, float]:
+        """
+        Returns the training and prediction times of the model.
+
+        Returns:
+            tuple: A tuple (training_time, prediction_time), where:
+                - training_time (float): Time taken for training (in seconds).
+                - prediction_time (float): Time taken for predictions (in seconds).
+        """
+
+        training = self.training_time
+        prediction = self.prediction_time
+
+        return training, prediction
+
+
+    def get_intercept_and_coef(self) -> Tuple[float, np.ndarray]:
+        """
+        Returns the intercept and coefficients of the trained model.
+
+        Returns:
+            tuple: A tuple (intercept, coefficients), where:
+                - intercept (float): The intercept term of the model.
+                - coefficients (numpy.ndarray): The coefficients of the model.
+        """
+        return self.intercept_, self.coef_
+    
+    def simulate_cost_over_time(self, X, y, epochs=100):
+        """
+        Simula o custo ao longo das épocas para a regressão linear usando interpolação linear.
+        
+        Parameters:
+            X (numpy.ndarray): The input features of shape (n_samples, n_features).
+            y (numpy.ndarray): The true target values of shape (n_samples, 1).
+            epochs (int): The number of epochs to simulate.
+
+        Returns:
+            list: A list of simulated costs for each epoch.
+        """
+        X_b = np.c_[np.ones((len(X), 1)), X]  # Add a column of ones to X
+        
+        initial_theta = np.random.randn(X_b.shape[1], 1)
+        initial_cost = np.mean((X_b.dot(initial_theta) - y) ** 2)
+
+        final_cost = self.mse(X, y)
+
+        simulated_costs = np.linspace(initial_cost, final_cost, epochs).tolist()
+        return simulated_costs
 
     def __str__(self):
         """
