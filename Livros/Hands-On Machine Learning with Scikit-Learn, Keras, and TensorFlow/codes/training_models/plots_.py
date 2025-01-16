@@ -1,8 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import PolynomialFeatures
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.model_selection import train_test_split
+
+from regularization_ import MyRidgeRegression
 
 
 def high_regression_degree(
@@ -100,13 +102,69 @@ def plot_learning_curves(
     plt.show()
 
 
+
+def plot_ridge():
+    # Generate synthetic data
+    np.random.seed(42)
+    X = 2 * np.random.rand(100, 1)
+    y = 4 + 3 * X[:, 0] + np.random.randn(100)
+
+    # Test data for predictions
+    X_test = np.linspace(0, 2, 100).reshape(-1, 1)
+
+    # Alpha values for regularization
+    alphas = [0.1, 1.0, 10.0]
+
+    # Create a figure with two subplots
+    fig, axes = plt.subplots(1, 2, figsize=(12, 6), sharey=True)
+
+    # Linear Ridge Regression
+    for alpha in alphas:
+        model = MyRidgeRegression(alpha=alpha)
+        model.fit(X, y)
+        y_pred = model.predict(X_test)
+        axes[0].plot(X_test, y_pred, label=f"α = {alpha:.1f}")
+    
+    axes[0].scatter(X, y, color="blue", alpha=0.5, label="Training Data")
+    axes[0].set_title("Linear Ridge Regression")
+    axes[0].set_xlabel("X")
+    axes[0].set_ylabel("y")
+    axes[0].legend()
+
+    # Polynomial Ridge Regression
+    poly_degree = 10
+    for alpha in alphas:
+        # Generate polynomial features
+        X_poly = np.hstack([X**i for i in range(1, poly_degree + 1)])
+        X_test_poly = np.hstack([X_test**i for i in range(1, poly_degree + 1)])
+        
+        # Train Ridge Regression with polynomial features
+        model = MyRidgeRegression(alpha=alpha)
+        model.fit(X_poly, y)
+        y_pred_poly = model.predict(X_test_poly)
+        
+        axes[1].plot(X_test, y_pred_poly, label=f"α = {alpha:.1f}")
+
+    axes[1].scatter(X, y, color="blue", alpha=0.5, label="Training Data")
+    axes[1].set_title("Polynomial Ridge Regression (Degree 10)")
+    axes[1].set_xlabel("X")
+    axes[1].legend()
+
+    # Adjust layout and show plot
+    plt.tight_layout()
+    plt.suptitle("Effect of Regularization (α) on Ridge Regression", fontsize=16, y=1.05)
+    plt.show()
+    
+
+
 if __name__ == "__main__":
-    np.random.seed(0)
-    X = np.linspace(0, 10, 100)
-    y = 0.5 * X**3 - 2 * X**2 + 3 * X - 1 +  1.3 * np.random.normal(0, 10, 100)
+    # np.random.seed(0)
+    # X = np.linspace(0, 10, 100)
+    # y = 0.5 * X**3 - 2 * X**2 + 3 * X - 1 +  1.3 * np.random.normal(0, 10, 100)
 
-    degrees = [1, 2, 4, 6, 8, 10, 20, 30, 100, 300]
-    high_regression_degree(PolynomialFeatures, LinearRegression, X, y, degrees)
+    # degrees = [1, 2, 4, 6, 8, 10, 20, 30, 100, 300]
+    # high_regression_degree(PolynomialFeatures, LinearRegression, X, y, degrees)
 
-    model = LinearRegression()
-    plot_learning_curves(model, X.reshape(-1, 1), y)
+    # model = LinearRegression()
+    # plot_learning_curves(model, X.reshape(-1, 1), y)
+    plot_ridge()
