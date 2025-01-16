@@ -542,3 +542,13 @@ However, Mini-batch GD is more likely to get stuck in local minima than SGD, as 
 All of the algorithms have their own advantages and disadvantages. The Batch Gradient Descent is slow, but it can find the global minimum. The Stochastic Gradient Descent is fast, but it can get stuck in a local minimum. The Mini-batch Gradient Descent is a compromise between the two algorithms.
 
 It's possible to reach the implementation of the three algorithms in this [file](/codes/training_models/gradient_descent_models.py)
+
+### Polynomial Regression
+
+Some kind of data is not linear. When we're facing with this kind of problem we can use a polynomial regression. The idea is to add powers of each feature as new features, then train a linear model on this extended set of features.
+
+Facing a ML problem requires sometimes a try-error approach. Some problems is easily solved by linear models, while others require some suitable approach. For Polynomial Regression our focus is on the parameter `degree` of the model. The higher the degree, the more complex the model will be. Because of that, use high levels of degree can cause overfitting to the model. Otherwise use low levels when facing complex problems can cause underfitting.
+
+One cool caracteristic of the polynomial regression is that it can find the patterns in the data (a linear model can't). This happens because the polynomial regression also uses the features combinations to find the patterns till the degree of the model. For example, a `degree=3` the model will use the features $a$, $b$, $a^2$, $b^2$, $ab$, $a^3$, $b^3$, $a^2b$, $ab^2$.
+
+You can find a implementation of a polynomial regression in this [file](/codes/training_models/polynomial_regression.py)
