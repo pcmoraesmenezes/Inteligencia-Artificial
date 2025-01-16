@@ -549,6 +549,26 @@ Some kind of data is not linear. When we're facing with this kind of problem we 
 
 Facing a ML problem requires sometimes a try-error approach. Some problems is easily solved by linear models, while others require some suitable approach. For Polynomial Regression our focus is on the parameter `degree` of the model. The higher the degree, the more complex the model will be. Because of that, use high levels of degree can cause overfitting to the model. Otherwise use low levels when facing complex problems can cause underfitting.
 
+This can be called as `Learning Curves`. The learning curves are plots of the model's performance on the training set and the validation set as a function of the training set size (or the training iteration). This can help to understand if the model is overfitting or underfitting.
+
+![Learning Curves](/images/high_regression_degree.png)
+
+![Learning Curves](/images/learning_curve.png)
+
 One cool caracteristic of the polynomial regression is that it can find the patterns in the data (a linear model can't). This happens because the polynomial regression also uses the features combinations to find the patterns till the degree of the model. For example, a `degree=3` the model will use the features $a$, $b$, $a^2$, $b^2$, $ab$, $a^3$, $b^3$, $a^2b$, $ab^2$.
 
 You can find a implementation of a polynomial regression in this [file](/codes/training_models/polynomial_regression.py)
+
+--- 
+
+#### Tradeoff between Bias and Variance
+
+The **Bias/Variance Tradeoff** is a fundamental concept in machine learning. It describes the tradeoff between a model's ability to minimize bias (error from erroneous assumptions) and variance (sensitivity to small fluctuations in the training data).
+
+- **Bias**: Bias is the error from erroneous assumptions in the learning algorithm. High bias can cause underfitting, where the model is too simple to capture the underlying structure of the data.
+
+- **Variance**: Variance is the error from sensitivity to small fluctuations in the training data. High variance can cause overfitting, where the model is too complex and learns the noise in the training data.
+
+- **Irreducible Error**: Irreducible error is the error from the noisiness of the data itself. It cannot be reduced by the model.
+
+The goal is to find the right balance between bias and variance to minimize the model's generalization error. This is achieved by tuning the model's complexity, using techniques like cross-validation, regularization, and learning curves.
