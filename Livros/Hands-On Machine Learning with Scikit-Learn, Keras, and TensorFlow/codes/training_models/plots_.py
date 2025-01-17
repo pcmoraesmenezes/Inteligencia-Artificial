@@ -4,7 +4,7 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.model_selection import train_test_split
 
-from regularization_ import MyRidgeRegression
+from regularization_ import MyRidgeRegression, MyLassoRegression, MyElasticNetRegression
 
 
 def high_regression_degree(
@@ -155,16 +155,204 @@ def plot_ridge():
     plt.suptitle("Effect of Regularization (α) on Ridge Regression", fontsize=16, y=1.05)
     plt.show()
     
+def plot_lasso():
+    # Generate synthetic data
+    np.random.seed(42)
+    X = 2 * np.random.rand(100, 1)
+    y = 4 + 3 * X[:, 0] + np.random.randn(100)
+
+    # Test data for predictions
+    X_test = np.linspace(0, 2, 100).reshape(-1, 1)
+
+    # Alpha values for regularization
+    alphas = [0.1, 1.0, 10.0]
+
+    # Create a figure with two subplots
+    fig, axes = plt.subplots(1, 2, figsize=(12, 6), sharey=True)
+
+    # Linear Lasso Regression
+    for alpha in alphas:
+        model = MyLassoRegression(alpha=alpha)
+        model.fit(X, y)
+        y_pred = model.predict(X_test)
+        axes[0].plot(X_test, y_pred, label=f"α = {alpha:.1f}")
+    
+    axes[0].scatter(X, y, color="blue", alpha=0.5, label="Training Data")
+    axes[0].set_title("Linear Lasso Regression")
+    axes[0].set_xlabel("X")
+    axes[0].set_ylabel("y")
+    axes[0].legend()
+
+    # Polynomial Lasso Regression
+    poly_degree = 10
+    for alpha in alphas:
+        # Generate polynomial features
+        X_poly = np.hstack([X**i for i in range(1, poly_degree + 1)])
+        X_test_poly = np.hstack([X_test**i for i in range(1, poly_degree + 1)])
+        
+        # Train Lasso Regression with polynomial features
+        model = MyLassoRegression(alpha=alpha)
+        model.fit(X_poly, y)
+        y_pred_poly = model.predict(X_test_poly)
+        
+        axes[1].plot(X_test, y_pred_poly, label=f"α = {alpha:.1f}")
+
+    axes[1].scatter(X, y, color="blue", alpha=0.5, label="Training Data")
+    axes[1].set_title("Polynomial Lasso Regression (Degree 10)")
+    axes[1].set_xlabel("X")
+    axes[1].legend()
+
+    # Adjust layout and show plot
+    plt.tight_layout()
+    plt.suptitle("Effect of Regularization (α) on Lasso Regression", fontsize=16, y=1.05)
+    plt.show()
+
+def plot_elastic_net():
+    # Generate synthetic data
+    np.random.seed(42)
+    X = 2 * np.random.rand(100, 1)
+    y = 4 + 3 * X[:, 0] + np.random.randn(100)
+
+    # Test data for predictions
+    X_test = np.linspace(0, 2, 100).reshape(-1, 1)
+
+    # Alpha values for regularization
+    alphas = [0.1, 1.0, 10.0]
+
+    # Create a figure with two subplots
+    fig, axes = plt.subplots(1, 2, figsize=(12, 6), sharey=True)
+
+    # Linear Elastic Net Regression
+    for alpha in alphas:
+        model = MyElasticNetRegression(alpha=alpha, r=0.5)
+        model.fit(X, y)
+        y_pred = model.predict(X_test)
+        axes[0].plot(X_test, y_pred, label=f"α = {alpha:.1f}")
+    
+    axes[0].scatter(X, y, color="blue", alpha=0.5, label="Training Data")
+    axes[0].set_title("Linear Elastic Net Regression")
+    axes[0].set_xlabel("X")
+    axes[0].set_ylabel("y")
+    axes[0].legend()
+
+    # Polynomial Elastic Net Regression
+    poly_degree = 10
+    for alpha in alphas:
+        # Generate polynomial features
+        X_poly = np.hstack([X**i for i in range(1, poly_degree + 1)])
+        X_test_poly = np.hstack([X_test**i for i in range(1, poly_degree + 1)])
+        
+        # Train Elastic Net Regression with polynomial features
+        model = MyElasticNetRegression(alpha=alpha, r=0.5)
+        model.fit(X_poly, y)
+        y_pred_poly = model.predict(X_test_poly)
+        
+        axes[1].plot(X_test, y_pred_poly, label=f"α = {alpha:.1f}")
+
+    axes[1].scatter(X, y, color="blue", alpha=0.5, label="Training Data")
+    axes[1].set_title("Polynomial Elastic Net Regression (Degree 10)")
+    axes[1].set_xlabel("X")
+    axes[1].legend()
+
+    # Adjust layout and show plot
+    plt.tight_layout()
+    plt.suptitle("Effect of Regularization (α) on Elastic Net Regression", fontsize=16, y=1.05)
+    plt.show()
+    
+
+from sklearn.preprocessing import StandardScaler
+
+def compare_regularizations_adjusted_fixed():
+    # Generate synthetic data with considerable noise
+    np.random.seed(42)
+    X = 4 + 20 * np.random.rand(100, 1)
+    y = 2 + 3 * X + 0.5 * X**2 + np.random.randn(100, 1)
+
+    # Generate polynomial features of high degree
+    poly_degree = 100
+    poly_features = PolynomialFeatures(degree=poly_degree, include_bias=False)
+    X_poly = poly_features.fit_transform(X)
+
+    # Split into training and test sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+    X_train_poly = poly_features.fit_transform(X_train)
+    X_test_poly = poly_features.transform(X_test)
+
+    # Standardize features to avoid large coefficients
+    scaler_X = StandardScaler()
+    scaler_y = StandardScaler()
+
+    X_train_poly_scaled = scaler_X.fit_transform(X_train_poly)
+    X_test_poly_scaled = scaler_X.transform(X_test_poly)
+    y_train_scaled = scaler_y.fit_transform(y_train)
+    y_test_scaled = scaler_y.transform(y_test)
+
+    # Alpha values for regularization
+    alphas = [0.1, 1.0, 10.0]
+
+    # Set up subplots
+    fig, axes = plt.subplots(2, 2, figsize=(20, 15), sharex=True, sharey=True)
+
+    # Overfitted Polynomial Regression (Degree 100)
+    lin_reg = LinearRegression()
+    lin_reg.fit(X_train_poly_scaled, y_train_scaled)
+    y_pred_poly_scaled = lin_reg.predict(X_test_poly_scaled)
+    y_pred_poly = scaler_y.inverse_transform(y_pred_poly_scaled.reshape(-1, 1))
+
+    axes[0, 0].scatter(X_test, y_test, color="blue", alpha=0.5, label="Test Data")
+    axes[0, 0].plot(X_test, y_pred_poly, label="Overfitting (Degree 100)", color="red")
+    axes[0, 0].set_title("Overfitted Polynomial Regression")
+    axes[0, 0].set_xlabel("X")
+    axes[0, 0].set_ylabel("y")
+    axes[0, 0].legend()
+
+    # Ridge Regression
+    for alpha in alphas:
+        ridge_model = MyRidgeRegression(alpha=alpha)
+        ridge_model.fit(X_train_poly_scaled, y_train_scaled.ravel())
+        y_pred_ridge_scaled = ridge_model.predict(X_test_poly_scaled)
+        y_pred_ridge = scaler_y.inverse_transform(y_pred_ridge_scaled.reshape(-1, 1))
+        axes[0, 1].plot(X_test, y_pred_ridge, label=f"Ridge α={alpha}", linewidth=2)
+    
+    axes[0, 1].scatter(X_test, y_test, color="blue", alpha=0.5, label="Test Data")
+    axes[0, 1].set_title("Ridge Regression")
+    axes[0, 1].set_xlabel("X")
+    axes[0, 1].legend()
+
+    # Lasso Regression
+    for alpha in alphas:
+        lasso_model = MyLassoRegression(alpha=alpha)
+        lasso_model.fit(X_train_poly_scaled, y_train_scaled.ravel())
+        y_pred_lasso_scaled = lasso_model.predict(X_test_poly_scaled)
+        y_pred_lasso = scaler_y.inverse_transform(y_pred_lasso_scaled.reshape(-1, 1))
+        axes[1, 0].plot(X_test, y_pred_lasso, label=f"Lasso α={alpha}", linewidth=2)
+
+    axes[1, 0].scatter(X_test, y_test, color="blue", alpha=0.5, label="Test Data")
+    axes[1, 0].set_title("Lasso Regression")
+    axes[1, 0].set_xlabel("X")
+    axes[1, 0].legend()
+
+    # Elastic Net Regression
+    for alpha in alphas:
+        elastic_net_model = MyElasticNetRegression(alpha=alpha, r=0.5)
+        elastic_net_model.fit(X_train_poly_scaled, y_train_scaled.ravel())
+        y_pred_elastic_scaled = elastic_net_model.predict(X_test_poly_scaled)
+        y_pred_elastic = scaler_y.inverse_transform(y_pred_elastic_scaled.reshape(-1, 1))
+        axes[1, 1].plot(X_test, y_pred_elastic, label=f"Elastic Net α={alpha}, r=0.5", linewidth=2)
+
+    axes[1, 1].scatter(X_test, y_test, color="blue", alpha=0.5, label="Test Data")
+    axes[1, 1].set_title("Elastic Net Regression")
+    axes[1, 1].set_xlabel("X")
+    axes[1, 1].legend()
+
+    # Adjust layout and show plot
+    plt.tight_layout()
+    plt.suptitle("Comparison of Regularizations with Test Data", fontsize=18, y=1.02)
+    plt.show()
 
 
 if __name__ == "__main__":
-    # np.random.seed(0)
-    # X = np.linspace(0, 10, 100)
-    # y = 0.5 * X**3 - 2 * X**2 + 3 * X - 1 +  1.3 * np.random.normal(0, 10, 100)
-
-    # degrees = [1, 2, 4, 6, 8, 10, 20, 30, 100, 300]
-    # high_regression_degree(PolynomialFeatures, LinearRegression, X, y, degrees)
-
-    # model = LinearRegression()
-    # plot_learning_curves(model, X.reshape(-1, 1), y)
     plot_ridge()
+    plot_lasso()
+    plot_elastic_net()
+    compare_regularizations_adjusted_fixed()
