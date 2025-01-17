@@ -572,3 +572,158 @@ The **Bias/Variance Tradeoff** is a fundamental concept in machine learning. It 
 - **Irreducible Error**: Irreducible error is the error from the noisiness of the data itself. It cannot be reduced by the model.
 
 The goal is to find the right balance between bias and variance to minimize the model's generalization error. This is achieved by tuning the model's complexity, using techniques like cross-validation, regularization, and learning curves.
+
+#### Regularized Linear Models
+
+Regularization is a technique used to prevent overfitting by constraining a model's complexity. Regularized linear models add a regularization term to the cost function, which penalizes large model parameters. This encourages the model to fit the data well while keeping the model weights small.
+
+##### Ridge Regression
+
+**Ridge Regression** (also called Tikhonov regularization) adds a regularization term to the cost function equal to the L2 norm of the weight vector. This forces the model to fit the data well while keeping the weights as small as possible.
+
+The regularization is used only during the cost function calculation, not during the prediction. The regularization term is added to the cost function only during the training phase.
+
+The Ridge Regression cost function is given by:
+
+$J(\theta) = MSE(\theta) + \alpha \frac{1}{2} \sum_{i=1}^{n} \theta_i^2$
+
+Where:
+
+- $\alpha$ is the regularization hyperparameter.
+
+- $\theta_i$ is the i-th model parameter.
+
+If $\alpha$ is set to 0, Ridge Regression is just Linear Regression. If $\alpha$ is set to a very high value, all weights end up very close to zero, and the result is a flat line going through the data's mean.
+
+The Ridge Regression model is trained using the following equation:
+
+$\hat{\theta} = (X^T \cdot X + \alpha A)^{-1} \cdot X^T \cdot y$
+
+Where:
+
+- $A$ is the identity matrix with a 0 in the top-left cell.
+
+It's possible to use the Ridge regularization in gradient descent algorithms. The regularization term is added to the gradients of the cost function.
+
+![Ridge Regression](/images/ridge_regression.png)
+
+#### Lasso Regression
+
+**Lasso Regression** (Least Absolute Shrinkage and Selection Operator) is another regularized version of Linear Regression. Lasso Regression adds a regularization term to the cost function equal to the L1 norm of the weight vector. This forces the model to fit the data well while keeping the weights as small as possible.
+
+The Lasso Regression cost function is given by:
+
+$J(\theta) = MSE(\theta) + \alpha \sum_{i=1}^{n} |\theta_i|$
+
+One particularity of the Lasso Regression is that it tends to eliminate the weights of the least important features. This can be seen as an automatic feature selection technique.
+
+By using a gradient descent algorithm, the regularization term is added to the gradients of the cost function. Plus a dynamic alpha value can be used to update the learning rate.
+
+![Lasso Regression](/images/lasso_regression.png)
+
+#### Elastic Net
+
+**Elastic Net** is a middle ground between Ridge Regression and Lasso Regression. It combines both regularization terms, adding a mix ratio $r$ to the cost function.
+
+The Elastic Net cost function is given by:
+
+$J(\theta) = MSE(\theta) + r \alpha \sum_{i=1}^{n} |\theta_i| + \frac{1 - r}{2} \alpha \sum_{i=1}^{n} \theta_i^2$
+
+![Elastic Net](/images/elastic_net.png)
+
+### Logistic Regression
+
+**Logistic Regression** is a classification algorithm used to estimate the probability that an instance belongs to a particular class. If the estimated probability is greater than 50%, the model predicts the instance belongs to that class (positive class, labeled as 1). Otherwise, it predicts the instance belongs to the negative class (labeled as 0).
+
+Logistic Regression computes a weighted sum of the input features, plus a bias term, and outputs the logistic of the result. The logistic function is a sigmoid function that outputs a number between 0 and 1.
+
+The probability that the model predicts an instance belongs to the positive class is given by:
+
+$\hat{p} = h_{\theta}(x) = \sigma(\theta^T \cdot x)$
+
+A logistic function is given by:
+
+$\sigma(t) = \frac{1}{1 + e^{-t}}$
+
+#### How to train a Logistic Regression model
+
+The objective of training a Logistic Regression model is to set the model parameters $\theta$ so that the model estimates high probabilities for positive instances and low probabilities for negative instances. The cost function used in Logistic Regression is the **Log Loss** function.
+
+The Log Loss function is given by:
+
+$J(\theta) = -\frac{1}{m} \sum_{i=1}^{m} [y^{(i)} \log(\hat{p}^{(i)}) + (1 - y^{(i)}) \log(1 - \hat{p}^{(i)})]$
+
+Where:
+
+- $m$ is the number of instances in the dataset.
+
+- $\hat{p}^{(i)}$ is the model's estimated probability that the i-th instance belongs to the positive class.
+
+- $y^{(i)}$ is the target value of the i-th instance (1 if the instance belongs to the positive class, 0 otherwise).
+
+The Log Loss function penalizes the model when it estimates a low probability for a positive instance or a high probability for a negative instance. The model parameters $\theta$ are trained to minimize the cost function.
+
+The Log Loss function does not have a closed-form solution, so it cannot be computed directly. However, it is a convex function, so Gradient Descent (or any other optimization algorithm) is guaranteed to find the global minimum.
+
+The gradients of the Log Loss function are given by:
+
+$\frac{\partial}{\partial\theta_j} J(\theta) = \frac{1}{m} \sum_{i=1}^{m} (\sigma(\theta^T \cdot x^{(i)}) - y^{(i)})x^{(i)}_{j}$
+
+The model parameters $\theta$ are updated using the following equation:
+
+$\theta^{(next step)} = \theta - \eta \nabla_{\theta} J(\theta)$
+
+#### Decision Frontier
+
+![Decision Frontier](/images/decision_frontier.png)
+
+A decision boundary is a surface that separates instances of different classes. In the case of Logistic Regression, the decision boundary is linear. This means the model predicts a positive class for instances on one side of the boundary and a negative class for instances on the other side.
+
+In this plot, the decision boundary is the line where the model's estimated probability is 50%. Instances on one side of the line are classified as positive, while instances on the other side are classified as negative.
+
+### Softmax Regression
+
+**Softmax Regression** (also called Multinomial Logistic Regression) is a generalization of Logistic Regression to support multiple classes. Instead of predicting just two classes (positive and negative), Softmax Regression can predict multiple classes.
+
+This happens by computing a score for each class, then applying the softmax function to estimate the probability that an instance belongs to each class. The class with the highest probability is the one predicted by the model.
+
+The score for class $k$ is given by:
+
+$s_k(x) = x^T \cdot \theta^{(k)}$
+
+After computing the score for each class, the Softmax function is applied to estimate the probability that the instance belongs to class $k$:
+
+$\hat{p}_k = \sigma(s(x))_k = \frac{e^{s_k(x)}}{\sum_{j=1}^{K} e^{s_j(x)}}$
+
+Where:
+
+- $K$ is the number of classes.
+
+- $s(x)$ is a vector containing the scores of each class for the instance $x$.
+
+- $\sigma(s(x))_k$ is the estimated probability that the instance $x$ belongs to class $k$.
+
+The Softmax Regression model predicts the class with the highest estimated probability:
+
+$\hat{y} = \text{argmax}_k \sigma(s(x))_k$
+
+The model is trained using the **Cross-Entropy** cost function, which penalizes the model when it estimates a low probability for the target class. The Cross-Entropy cost function is given by:
+
+$J(\Theta) = -\frac{1}{m} \sum_{i=1}^{m} \sum_{k=1}^{K} y_k^{(i)} \log(\hat{p}_k^{(i)})$
+
+Where:
+
+- $m$ is the number of instances in the dataset.
+
+- $K$ is the number of classes.
+
+- $y_k^{(i)}$ is the target probability that the i-th instance belongs to class $k$.
+
+- $\hat{p}_k^{(i)}$ is the model's estimated probability that the i-th instance belongs to class $k$.
+
+The gradients of the Cross-Entropy cost function are given by:
+
+$\nabla_{\theta^{(k)}} J(\Theta) = \frac{1}{m} \sum_{i=1}^{m} (\hat{p}_k^{(i)} - y_k^{(i)})x^{(i)}$
+
+![Softmax Regression](/images/softmax_regression.png)
+
