@@ -727,3 +727,67 @@ $\nabla_{\theta^{(k)}} J(\Theta) = \frac{1}{m} \sum_{i=1}^{m} (\hat{p}_k^{(i)} -
 
 ![Softmax Regression](/images/softmax_regression.png)
 
+### Exercises
+
+1. What Linear Regression training algorithm can you use if you have a training set with millions of features?
+
+    - If you have a training set with millions of features, you may want to use a training algorithm that can handle large datasets efficiently. One option is to use **Stochastic Gradient Descent** (SGD) or **Mini-batch Gradient Descent**. These algorithms are well-suited for large datasets because they process instances individually or in small batches, making them faster than Batch Gradient Descent.
+
+2. Suppose the features in your training set have very different scales. What algorithms might suffer from this, and how? What can you do about it?
+
+    - Algorithms that are sensitive to feature scales, such as **Gradient Descent** and **Regularized Linear Models**, may suffer when features have very different scales. This is because the algorithm may take a long time to converge or may not converge at all. To address this issue, you can scale the features using techniques like **Min-Max Scaling** or **Standardization**. These techniques ensure that all features have similar scales, making the algorithm converge faster and more reliably.
+
+3. Can Gradient Descent get stuck in a local minimum when training a Logistic Regression model?
+
+    - No, Gradient Descent cannot get stuck in a local minimum when training a Logistic Regression model. This is because the cost function for Logistic Regression is convex, meaning it has only one global minimum. Gradient Descent is guaranteed to find the global minimum for convex cost functions, so it will always converge to the optimal solution for Logistic Regression.
+
+4. Do all Gradient Descent algorithms lead to the same model, provided you let them run long enough?
+
+    - No, not all Gradient Descent algorithms lead to the same model, even if you let them run long enough. The choice of learning rate, batch size, and other hyperparameters can affect the final model. For example, **Stochastic Gradient Descent** (SGD) and **Mini-batch Gradient Descent** may converge to a different solution than **Batch Gradient Descent**. Additionally, the learning rate schedule and regularization techniques can also influence the final model.
+
+5. Suppose you use Batch Gradient Descent and you plot the validation error at every epoch. If you notice that the validation error consistently goes up, what is likely going on? How can you fix this?
+
+    - If the validation error consistently goes up when using Batch Gradient Descent, it is likely that the model is overfitting the training data. This means the model is learning the noise in the training data and is not generalizing well to new data. To fix this issue, you can try the following techniques:
+      - **Early Stopping**: Stop training when the validation error starts to increase.
+      - **Regularization**: Add regularization to the model to prevent overfitting.
+      - **Feature Selection**: Remove irrelevant features from the dataset.
+      - **Cross-Validation**: Use k-fold cross-validation to evaluate the model's performance on different subsets of the data.
+
+6. Is it a good idea to stop Mini-batch Gradient Descent immediately when the validation error goes up?
+
+    - No, it is not a good idea to stop Mini-batch Gradient Descent immediately when the validation error goes up. This is because the validation error can fluctuate due to noise in the data. Instead, you can use techniques like **Early Stopping** to stop training when the validation error consistently increases over several epochs. This helps prevent overfitting and ensures the model generalizes well to new data.
+
+7. Which Gradient Descent algorithm (among those we discussed) will reach the vicinity of the optimal solution the fastest? Which will actually converge? How can you make the others converge as well?
+
+    - Among the Gradient Descent algorithms we discussed, **Stochastic Gradient Descent** (SGD) will reach the vicinity of the optimal solution the fastest. This is because SGD updates the model parameters after processing each instance, making it faster than Batch Gradient Descent and Mini-batch Gradient Descent. However, SGD may not converge to the optimal solution due to its erratic path. To make the other algorithms converge faster, you can use techniques like **Learning Rate Schedules**, **Regularization**, and **Feature Scaling**. These techniques help the algorithms converge more efficiently and reliably.
+
+8. Suppose you are using Polynomial Regression. You plot the learning curves and you notice that there is a large gap between the training error and the validation error. What is happening? What are three ways to solve this?
+
+    - If there is a large gap between the training error and the validation error in Polynomial Regression, it is likely that the model is overfitting the training data. This means the model is too complex and is learning the noise in the training data. To solve this issue, you can try the following techniques:
+      - **Reduce the Model Complexity**: Use a lower degree for the polynomial features to reduce the model's complexity.
+      - **Regularization**: Add regularization to the model to prevent overfitting.
+      - **Feature Selection**: Remove irrelevant features from the dataset to reduce the model's complexity.
+
+9. Suppose you are using Ridge Regression and you notice that the training error and the validation error are almost equal and fairly high. Would you say that the model suffers from high bias or high variance? Should you increase the regularization hyperparameter $\alpha$ or reduce it?
+
+    - If the training error and the validation error are almost equal and fairly high in Ridge Regression, the model likely suffers from high bias. This means the model is too simple to capture the underlying structure of the data. To address this issue, you can try the following techniques:
+      - **Increase the Model Complexity**: Use a higher degree for the polynomial features to increase the model's complexity.
+      - **Reduce the Regularization Hyperparameter**: Reduce the value of $\alpha$ to allow the model to fit the data better.
+
+10. Why would you want to use:
+
+    - Ridge Regression instead of plain Linear Regression (i.e., without any regularization)?
+      - You would want to use Ridge Regression instead of plain Linear Regression when the model is overfitting the training data. Ridge Regression adds a regularization term to the cost function, which penalizes large model parameters. This helps prevent overfitting and ensures the model generalizes well to new data.
+
+    - Lasso Regression instead of Ridge Regression?
+      - You would want to use Lasso Regression instead of Ridge Regression when you want to perform feature selection. Lasso Regression adds an L1 regularization term to the cost function, which tends to eliminate the weights of the least important features. This can be useful when you have a large number of features and want to reduce the model's complexity.
+
+    - Elastic Net instead of Lasso Regression?
+      - You would want to use Elastic Net instead of Lasso Regression when you want a middle ground between Ridge Regression and Lasso Regression. Elastic Net combines both L1 and L2 regularization terms, allowing you to control the mix ratio $r$. This gives you more flexibility in choosing the regularization technique that best fits your data.
+
+11. Suppose you want to classify pictures as outdoor/indoor and daytime/nighttime. Should you implement two Logistic Regression classifiers or one Softmax Regression classifier?
+
+    - If you want to classify pictures as outdoor/indoor and daytime/nighttime, you should implement two Logistic Regression classifiers. This is because the classes are not mutually exclusive, meaning an instance can belong to both classes (e.g., outdoor and daytime). Softmax Regression is used for multiclass classification tasks where the classes are mutually exclusive, so it is not suitable for this scenario.
+
+12. Implement Batch Gradient Descent with early stopping for Softmax Regression (without using Scikit-Learn).
+
