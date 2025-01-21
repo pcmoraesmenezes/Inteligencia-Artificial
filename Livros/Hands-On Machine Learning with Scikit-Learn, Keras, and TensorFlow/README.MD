@@ -791,3 +791,30 @@ $\nabla_{\theta^{(k)}} J(\Theta) = \frac{1}{m} \sum_{i=1}^{m} (\hat{p}_k^{(i)} -
 
 12. Implement Batch Gradient Descent with early stopping for Softmax Regression (without using Scikit-Learn).
 
+## Chapter 5 - Support Vector Machines
+
+**Support Vector Machines (SVM)** are a powerful and versatile machine learning algorithm. They are capable of performing linear or nonlinear classification, regression, and outlier detection tasks. SVMs are particularly well-suited for complex classification tasks with small to medium-sized datasets.
+
+### Linear SVM Classification
+
+**Linear SVM Classification** is a classification task that separates instances into two classes using a linear decision boundary. The goal is to find the widest possible margin that separates the classes. This margin is defined by the support vectors, which are the instances located on the edge of the margin.
+
+The decision boundary is defined by the hyperplane that maximizes the margin between the classes. The hyperplane is the line that separates the classes, while the margin is the distance between the hyperplane and the support vectors.
+
+The objective of Linear SVM Classification is to find the hyperplane that maximizes the margin while minimizing the number of margin violations (instances that are inside the margin or on the wrong side of the hyperplane).
+
+Think of this as a line that separate the classes. The line is the hyperplane, while the margin is the distance between the line and the closest instance of the classes. A frontier is a line that separates the classes and the margin is the distance between the frontier and the closest instance of the classes.
+
+The decision function of a Linear SVM is given by:
+
+$\hat{y} = \begin{cases} 0 & \text{if } \theta^T \cdot x < t \\ 1 & \text{if } \theta^T \cdot x \geq t \end{cases}$
+
+#### Hard Margin Classification
+
+By defining that all instances must be outside the margin and on the correct side of the hyperplane, we have a **Hard Margin Classification**. This approach is sensitive to outliers and may not work well with noisy data. If the data is not linearly separable, the model may not converge.
+
+#### Soft Margin Classification
+
+To address the limitations of Hard Margin Classification, we can use **Soft Margin Classification**. This approach allows some instances to be inside the margin or on the wrong side of the hyperplane. The objective is to find a balance between maximizing the margin and minimizing the number of margin violations.
+
+The Soft Margin Classification is controlled by the hyperparameter $C$, which determines the tradeoff between margin width and margin violations. A low $C$ value allows more margin violations but a wider margin, while a high $C$ value allows fewer margin violations but a narrower margin.
