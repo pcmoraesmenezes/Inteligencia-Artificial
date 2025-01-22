@@ -818,3 +818,68 @@ By defining that all instances must be outside the margin and on the correct sid
 To address the limitations of Hard Margin Classification, we can use **Soft Margin Classification**. This approach allows some instances to be inside the margin or on the wrong side of the hyperplane. The objective is to find a balance between maximizing the margin and minimizing the number of margin violations.
 
 The Soft Margin Classification is controlled by the hyperparameter $C$, which determines the tradeoff between margin width and margin violations. A low $C$ value allows more margin violations but a wider margin, while a high $C$ value allows fewer margin violations but a narrower margin.
+
+---
+
+The SVM algorithm is sensitive to feature scales, so it is important to scale the features before training the model. This can be done using techniques like **Min-Max Scaling** or **Standardization**.
+
+Instead of a train using the class `LinearSVC` from `scikit-learn` we can use `SGDClassifier` with **loss=hinge** and **alpha=1/(m*C)**. This is because the `LinearSVC` class is based on the `liblinear` library, while the `SGDClassifier` class is based on the `liblinear` library.
+
+The `SGDClassifier` class can be used to train large datasets efficiently, as it processes instances individually or in small batches. This makes it well-suited for large datasets that do not fit in memory.
+
+### Nonlinear SVM Classification
+
+**Nonlinear SVM Classification** is a classification task that separates instances into two classes using a nonlinear decision boundary. This is achieved by transforming the features into a higher-dimensional space, where the classes are linearly separable.
+
+This can be done by setting a `Polynomial features` or a `Similarity features`. The `Polynomial features` is used to add polynomial features to the dataset, while the `Similarity features` is used to add features based on the similarity of the instances to a landmark.
+
+### Polynomial Kernel
+
+The **Polynomial Kernel** is a kernel trick that allows SVMs to perform nonlinear classification tasks by adding polynomial features to the dataset. This is achieved by using the `PolynomialFeatures` transformer from `scikit-learn` to add polynomial features to the dataset.
+
+We can use the `SVC` class from `scikit-learn` to train a SVM model with a polynomial kernel. The `SVC` class uses the `libsvm` library to train the model, which is more efficient than the `LinearSVC` class for large datasets.
+
+### Similarity features
+
+Another way to deal with nonlinear classification tasks is to add features based on the similarity of the instances to a landmark. This is achieved by using the **Similarity Features** technique, which transforms the instances into a higher-dimensional space where the classes are linearly separable.
+
+The Similarity Features technique is useful for clustering and anomaly detection tasks, where the instances are not linearly separable. By transforming the instances into a higher-dimensional space, the SVM can find a decision boundary that separates the classes.
+
+$\phi_{\gamma}(x, l) = \exp(-\gamma ||x - l||^2)$
+
+Where:
+
+- $\phi_{\gamma}(x, l)$ is the similarity feature vector for the instance $x$ and the landmark $l$.
+
+- $\gamma$ is the similarity parameter.
+
+- $||x - l||$ is the Euclidean distance between the instance $x$ and the landmark $l$.
+
+![Similiarity](/images/simialirity.png)
+
+### Gaussian RBF Kernel
+
+The **Gaussian RBF Kernel** is a kernel trick that allows SVMs to perform nonlinear classification tasks by adding similarity features to the dataset. This is achieved by using the `RBF` kernel from `scikit-learn` to add similarity features to the dataset.
+
+#### Hyperparameters gamma and C
+
+The **gamma** hyperparameter controls the width of the Gaussian RBF kernel. A low gamma value makes the bell-shaped curve wider, while a high gamma value makes it narrower. The gamma hyperparameter can be used to control the model's complexity and prevent overfitting.
+
+The **C** hyperparameter controls the tradeoff between margin width and margin violations. A low C value allows more margin violations but a wider margin, while a high C value allows fewer margin violations but a narrower margin. The C hyperparameter can be used to control the model's bias and variance.
+
+#### Which kernel to use?
+
+When training an SVM model, it is important to choose the right kernel for the task. The **Linear Kernel** is suitable for linear classification tasks, while the **Polynomial Kernel** and **Gaussian RBF Kernel** are suitable for nonlinear classification tasks. Therefore, the choice of kernel depends on the complexity of the data and the desired decision boundary.
+
+### Computational Complexity
+
+`LinearSVC` class is based on the `liblinear` which is an optimization algorithm that supports linear SVMs. The algorithm is efficient for large datasets and can handle millions of instances and features. The computational complexity of the `LinearSVC` class is about $O(m \times n)$.
+
+`SVC` class is based on the `libsvm` library, which is an optimization algorithm that supports nonlinear SVMs. The algorithm is efficient for large datasets and can handle millions of instances and features. The computational complexity of the `SVC` class is about $O(m^2 \times n)$ to $O(m^3 \times n)$.
+
+### Regression with SVM
+
+**Support Vector Machines (SVM)** can also be used for regression tasks. This is achieved by using the **Support Vector Regression (SVR)** algorithm, which is a variant of SVM that supports regression tasks.
+
+The objective of SVR is to find a function that approximates the data points while minimizing the margin violations. The margin violations are controlled by the hyperparameter $\epsilon$, which determines the width of the margin.
+
