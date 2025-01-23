@@ -883,3 +883,154 @@ When training an SVM model, it is important to choose the right kernel for the t
 
 The objective of SVR is to find a function that approximates the data points while minimizing the margin violations. The margin violations are controlled by the hyperparameter $\epsilon$, which determines the width of the margin.
 
+### Prediction function and decision function
+
+The prediction function of SVR is given by:
+
+$\hat{y} = w^T \cdot x + b$
+
+If the result is greather than $0$ the model predicts the instance belongs to the positive class, otherwise it predicts the instance belongs to the negative class.
+
+### Training goal
+
+Consider the inclination of the decision function as: normal to the weight vector, $||w||$. If we divide by $2$ the points where the decision function is equal to $1$ and $-1$, will be twice as far from frontier. Divide the inclination by two is the same as multiply the margin by two.
+
+Basically the goal of this model is to minimize $||w||$ to get a large margin and minimize the margin violations.
+
+We need a decidion function to be greather than $1$ for positive instances and less than $-1$ for negative instances.  We can define $t^{(i)} = -1$ for negative instances and $t^{(i)} = 1$ for positive instances, also we can express the restrictions as $t^{(i)}(w^T \cdot x^{(i)} + b) \geq 1$.
+
+So the goal of a SVM linear is a optimization problem that minimize $||w||$ and minimize the margin violations. This can be expressed as:
+
+$\min_{w, b} \frac{1}{2} w^T \cdot w$
+
+Subject to:
+
+$t^{(i)}(w^T \cdot x^{(i)} + b) \geq 1$
+
+To we get a soft margin we must add a slack variable $\zeta^{(i)} >= 0$ to each instance. The slack variable is used to measure the margin violations. The goal is to minimize the margin violations while maximizing the margin.
+
+Now we have two goals: 
+
+1. Get the slack variable as low as possible.
+
+2. Get $1/2 w^T \cdot w$ as low as possible.
+
+For this we have a parameter $C$ that controls the tradeoff between the two goals. A low $C$ value allows more margin violations but a wider margin, while a high $C$ value allows fewer margin violations but a narrower margin.
+
+The optimization problem is given by:
+
+$\min_{w, b, \zeta} \frac{1}{2} w^T \cdot w + C \sum_{i=1}^{m} \zeta^{(i)}$
+
+Subject to:
+
+$t^{(i)}(w^T \cdot x^{(i)} + b) \geq 1 - \zeta^{(i)}$
+
+$\zeta^{(i)} \geq 0$
+
+### Quadratic Programming
+
+The optimization problem of the SVM can be solved using Quadratic Programming. Quadratic Programming is a mathematical optimization technique that finds the minimum of a quadratic function subject to linear constraints.
+
+The Quadratic Programming problem is given by:
+
+$\min_{p} \frac{1}{2} p^T \cdot H \cdot p + f^T \cdot p$
+
+Subject to:
+
+$A \cdot p \leq b$
+
+A way to train a classifier linear SVM with tough margin is to use a QP solver.
+
+### Dual Problem
+
+The optimization problem of the SVM can be expressed as the **Primal Problem** or the **Dual Problem**. The **Primal Problem** is the original optimization problem, while the **Dual Problem** is an equivalent formulation that can be solved more efficiently.
+
+The **Dual Problem** is given by:
+
+$\min_{\alpha} \frac{1}{2} \sum_{i=1}^{m} \sum_{j=1}^{m} \alpha^{(i)} \alpha^{(j)} t^{(i)} t^{(j)} (x^{(i)} \cdot x^{(j)}) - \sum_{i=1}^{m} \alpha^{(i)}$
+
+Subject to:
+
+$\alpha^{(i)} \geq 0$
+
+After solving the **Dual Problem**, the model parameters $w$ and $b$ can be computed using the following equations:
+
+$w = \sum_{i=1}^{m} \alpha^{(i)} t^{(i)} x^{(i)}$
+
+$b = \frac{1}{n_s} \sum_{i=1}^{m} (t^{(i)} - w^T \cdot x^{(i)})$
+
+A problem with the **Dual Problem** is that it requires computing the dot product of all pairs of instances, which can be computationally expensive for large datasets. To address this issue, the **Kernel Trick** can be used to compute the dot product in a higher-dimensional space without actually transforming the instances.
+
+### Kernel Trick
+
+Let's suppose that you want to apply a polynomial transformation of degree $d$ to the train dataset with $d$ dimensions. The transformation is given by:
+
+$\phi(x) = \phi([x_1, x_2]) = [x_1^2, \sqrt{2}x_1x_2, x_2^2]$
+
+for $d=2$. The dot product of the transformation is given by:
+
+$\phi(x)^T \cdot \phi(z) = [x_1^2, \sqrt{2}x_1x_2, x_2^2] \cdot [z_1^2, \sqrt{2}z_1z_2, z_2^2] = x_1^2z_1^2 + 2x_1z_1x_2z_2 + x_2^2z_2^2 = (x_1z_1 + x_2z_2)^2$
+
+This can be reached as $(x^T \cdot z)^2$. 
+
+The dot product of the transformation is equal to the square of the dot product of the original instances. This property is known as the **Kernel Trick**
+
+Common kernels are:
+
+- **Linear Kernel**: $K(x, z) = x^T \cdot z$
+
+- **Polynomial Kernel**: $K(x, z) = (\gamma x^T \cdot z + r)^d$
+
+- **Gaussian RBF Kernel**: $K(x, z) = \exp(-\gamma ||x - z||^2)$
+
+- **Sigmoid Kernel**: $K(x, z) = \tanh(\gamma x^T \cdot z + r)$
+
+The primal problem introduce a problem to computing the prediction function because of the dimension of the transformation. We can use the formula $h(x) = \sum_{i=1}^{m} \alpha^{(i)} t^{(i)} K(x^{(i)}, x) + b$ to compute the prediction function without the transformation.
+
+### SVM online
+
+The **Online SVM** algorithm is an extension of the SVM algorithm that supports online learning. This means the model can be trained on a stream of data instances, one at a time, without needing to store the entire dataset in memory.
+
+The Online SVM algorithm uses the **Hinge Loss** function to update the model parameters after processing each instance. The Hinge Loss function penalizes the model when it makes a margin violation, which helps the model learn from the data.
+
+The Online SVM algorithm is well-suited for large datasets that do not fit in memory and for tasks that require real-time processing of data streams.
+
+The cost function of the Online SVM algorithm is given by:
+
+$J(\theta) = \max(0, 1 - t \cdot (\theta^T \cdot x))$
+
+### Exercises
+
+1. What is the fundamental idea behind Support Vector Machines?
+
+    - The fundamental idea behind Support Vector Machines (SVM) is to find the optimal decision boundary that separates instances into two classes. The decision boundary is defined by the hyperplane that maximizes the margin between the classes. The margin is the distance between the hyperplane and the support vectors, which are the instances located on the edge of the margin.
+
+2. What is a support vector?
+  
+      - A support vector is an instance located on the edge of the margin that defines the decision boundary in a Support Vector Machine (SVM). The support vectors are the instances that are closest to the hyperplane and have the largest influence on the decision boundary.
+
+3. Why is it important to scale the inputs when using SVMs?
+
+    - It is important to scale the inputs when using SVMs because the algorithm is sensitive to feature scales. SVMs use the distance between instances to define the decision boundary, so features with larger scales can dominate the optimization process. Scaling the inputs ensures that all features have similar scales, making the algorithm more robust and efficient.
+
+4. Can an SVM classifier output a confidence score when it classifies an instance? What about a probability?
+
+    - Yes, an SVM classifier can output a confidence score when it classifies an instance. The confidence score is the distance between the instance and the decision boundary, which indicates how confident the model is in its prediction. However, SVMs do not output probabilities directly, as they are not probabilistic models. To estimate probabilities, you can use Platt scaling or cross-validation.
+
+5. Should you use the primal or the dual form of the SVM problem to train a model on a training set with millions of instances and hundreds of features?
+
+    - When training an SVM model on a large dataset with millions of instances and hundreds of features, it is generally more efficient to use the **Dual Form** of the SVM problem. The Dual Form is more computationally efficient for large datasets because it involves computing the dot product of all pairs of instances, which can be expensive for large datasets. The Dual Form also allows the use of the **Kernel Trick** to compute the dot product in a higher-dimensional space without actually transforming the instances.
+
+6. Say you trained an SVM classifier with an RBF kernel. It seems to underfit the training set: should you increase or decrease $\gamma$? What about C?
+
+    - If an SVM classifier with an RBF kernel underfits the training set, you should increase the value of $\gamma$. The $\gamma$ hyperparameter controls the width of the Gaussian RBF kernel, so increasing $\gamma$ makes the bell-shaped curve narrower, which can help the model fit the data better. You can also try increasing the value of the $C$ hyperparameter, which controls the tradeoff between margin width and margin violations. A higher $C$ value allows fewer margin violations but a narrower margin, which can help the model fit the data better.
+
+7. How should you set the QP parameters ($H$, $f$, $A$, and $b$) to solve the soft margin linear SVM classifier problem using an off-the-shelf QP solver?
+
+    - To solve the soft margin linear SVM classifier problem using an off-the-shelf QP solver, you need to set the QP parameters as follows:
+      - $H = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
+      - $f = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}$
+      - $A = \begin{pmatrix} -t^{(1)} & -t^{(2)} & -t^{(3)} \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
+      - $b = \begin{pmatrix} -1 \\ 0 \\ 0 \end{pmatrix}$
+
+  
