@@ -1033,4 +1033,131 @@ $J(\theta) = \max(0, 1 - t \cdot (\theta^T \cdot x))$
       - $A = \begin{pmatrix} -t^{(1)} & -t^{(2)} & -t^{(3)} \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
       - $b = \begin{pmatrix} -1 \\ 0 \\ 0 \end{pmatrix}$
 
-  
+
+## Chapter 6 - Decision Trees
+
+**Decision Trees** are a versatile machine learning algorithm that can perform both classification and regression tasks. They are easy to interpret and visualize, making them useful for understanding how a model makes predictions.
+
+### Training and Visualizing a Decision Tree
+
+We can use the `tree` module from `scikit-learn` to train a Decision Tree model. The `DecisionTreeClassifier` class is used for classification tasks, while the `DecisionTreeRegressor` class is used for regression tasks.
+
+To visualize the Decision Tree model, we can use the `export_graphviz` function from the `tree` module. This function generates a Graphviz file that can be visualized using the `dot` command-line tool.
+
+The command-line is given by:
+
+```bash
+
+dot -Tpng tree.dot -o tree.png
+
+```
+
+![codes/decision_tree](/codes/decision_tree/iris_tree.png)
+
+### Making Predictions
+
+As it is possible to see in the image above, the Decision Tree model makes predictions by following the decision nodes from the root to the leaf nodes. The model predicts the class of an instance by following the decision nodes based on the feature values of the instance.
+
+One of great advantages of ML models is that they are not black boxes. It is possible to understand how the model makes predictions by visualizing the decision nodes and the feature values that lead to the predictions.
+
+Decision Trees does not require feature scaling or centering, as they are not sensitive to the scale of the features.
+
+#### Hyperparameters
+
+The Decision Tree model has several hyperparameters that can be tuned to improve the model's performance. Some of the most important hyperparameters are:
+
+- **max_depth**: The maximum depth of the Decision Tree. A higher max_depth value makes the model more complex and prone to overfitting.
+
+- **min_samples_split**: The minimum number of samples required to split a node. A higher min_samples_split value prevents the model from splitting nodes with too few samples.
+
+- **min_samples_leaf**: The minimum number of samples required to be a leaf node. A higher min_samples_leaf value prevents the model from creating leaf nodes with too few samples.
+
+- **max_features**: The maximum number of features to consider when splitting a node. A lower max_features value reduces the model's complexity and prevents overfitting.
+
+- **sample_weight**: The weight of each sample in the dataset. This hyperparameter can be used to assign different weights to the samples, which can be useful for imbalanced datasets.
+
+- **gini**: The impurity measure used to split nodes. The Gini impurity is a measure of how often a randomly chosen element would be incorrectly classified. The impurity can be calculated using the formula:
+
+$G_i = 1 - \sum_{k=1}^{n} p_{i, k}^2$
+
+Where:
+
+- $G_i$ is the Gini impurity of node $i$.
+
+- $p_{i, k}$ is the ratio of class $k$ instances in node $i$.
+
+---
+
+A decision tree also can be used to estimate the probability that an instance belongs to a particular class. The probability is given by the ratio of the instances of the class in the leaf node.
+
+### CART Training Algorithm
+
+The **Classification and Regression Tree (CART)** algorithm is a popular training algorithm used to train Decision Tree models. The CART algorithm works by recursively splitting the dataset into subsets based on the feature values of the instances.
+
+The CART algorithm splits the dataset into two subsets at each node by finding the feature and threshold that minimize the impurity of the subsets. The impurity is a measure of how mixed the classes are in the subset, and the goal is to split the dataset in a way that minimizes the impurity.
+
+This can be expressed as a optimization problem that minimize the impurity of the subsets. The optimization problem is given by:
+
+$\min_{k, t_k} \frac{m_{\text{left}}}{m} G_{\text{left}} + \frac{m_{\text{right}}}{m} G_{\text{right}}$
+
+The CART algorithm continues splitting the dataset until it reaches the maximum depth of the tree or the minimum number of samples per leaf node. This helps prevent the model from overfitting the training data and ensures the model generalizes well to new data.
+
+One of the biggest problems of Decision Trees is that they can be expressed as a NP-Complete problem. This means that the algorithm won't find the optimal solution in a reasonable time.
+
+### Gini Impurity or Entropy
+
+The **Gini Impurity** and **Entropy** are two common impurity measures used to split nodes in a Decision Tree. The Gini Impurity is a measure of how often a randomly chosen element would be incorrectly classified, while the Entropy is a measure of the average information content of a node. Entropy is zero when all instances in a node belong to the same class.
+
+The entropy of a node is given by:
+
+$H_i = -\sum_{k=1}^{n} p_{i, k} \log_2(p_{i, k})$
+
+Gini's coefficient is faster to compute than entropy, but entropy tends to isolate the most frequent class in its own branch of the tree.
+
+### Regression
+
+The Decision Tree algorithm can also be used for regression tasks. This is achieved by using the `DecisionTreeRegressor` class from `scikit-learn` to train a Decision Tree model for regression tasks.
+
+Instead of predicting a class label, the Decision Tree model predicts a continuous value for each instance. The model makes predictions by following the decision nodes from the root to the leaf nodes, based on the feature values of the instance.
+
+![codes/decision_tree](/codes/decision_tree/iris_tree_reg.png)
+
+CART algorithm works as the same way for regression tasks, but instead of minimizing the impurity of the subsets, it minimizes the MSE of the subsets.
+
+### Instability
+
+Decision Trees are prone to overfitting the training data, especially when the model is too complex or the dataset is noisy. One of their problem's is related to decision boundaries that are orthogonal to the axis. This means that the model is sensitive to small variations in the training data, which can lead to overfitting.
+
+To address this issue, we can use techniques like **Pruning**, **Regularization**, and **Ensemble Learning**.
+
+**Pruning** is a technique used to reduce the complexity of the Decision Tree model by removing nodes that do not improve the model's performance. Pruning helps prevent overfitting and ensures the model generalizes well to new data.
+
+**Regularization** is a technique used to prevent overfitting by adding constraints to the model. This can be done by setting hyperparameters like `max_depth`, `min_samples_split`, and `min_samples_leaf` to control the model's complexity.
+
+**Ensemble Learning** is a technique used to combine multiple Decision Tree models to improve the model's performance. This can be done by using techniques like **Random Forests** and **Gradient Boosting** to train multiple Decision Tree models and combine their predictions.
+
+### Exercises
+
+1. What is the approximate depth of a Decision Tree trained (without restrictions) on a training set with one million instances?
+
+    - The approximate depth of a Decision Tree trained on a training set with one million instances is about $O(\log_2(m))$, where $m$ is the number of instances in the dataset. For a dataset with one million instances, the depth of the Decision Tree would be about $O(\log_2(10^6)) = 20$.
+
+2. Is a node's Gini impurity generally lower or greater than its parent's? Is it generally lower/greater, or always lower/greater?
+
+    - A node's Gini impurity is generally lower than its parent's, as the Decision Tree algorithm splits the dataset in a way that minimizes the impurity of the subsets. The impurity is a measure of how mixed the classes are in the subset, so the goal is to split the dataset in a way that reduces the impurity of the nodes.
+
+3. If a Decision Tree is overfitting the training set, is it a good idea to try decreasing `max_depth`?
+
+    - If a Decision Tree is overfitting the training set, it is a good idea to try decreasing the `max_depth` hyperparameter. This reduces the complexity of the model and prevents it from memorizing the training data. By limiting the depth of the Decision Tree, you can prevent overfitting and ensure the model generalizes well to new data.
+
+4. If a Decision Tree is underfitting the training set, is it a good idea to try scaling the input features?
+
+    - If a Decision Tree is underfitting the training set, it is not a good idea to try scaling the input features. Decision Trees are not sensitive to the scale of the features, so scaling the features will not improve the model's performance. Instead, you can try increasing the model's complexity by tuning the hyperparameters like `max_depth`, `min_samples_split`, and `min_samples_leaf`.
+
+5. If it takes one hour to train a Decision Tree on a training set containing 1 million instances, roughly how much time will it take to train another Decision Tree on a training set containing 10 million instances?
+
+    - If it takes one hour to train a Decision Tree on a training set containing 1 million instances, it will take about 10 hours to train another Decision Tree on a training set containing 10 million instances. The training time of a Decision Tree is proportional to the number of instances in the dataset, so training a model on a larger dataset will take longer.
+
+6. If your training set contains 100,000 instances, will setting `presort=True` speed up training?
+
+    - If your training set contains 100,000 instances, setting `presort=True` will not speed up training. The `presort` parameter is used to presort the data before training the model, which can be computationally expensive for large datasets. For a dataset with 100,000 instances, presorting the data may not provide a significant speedup and can slow down the training process.
