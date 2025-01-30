@@ -1161,3 +1161,53 @@ To address this issue, we can use techniques like **Pruning**, **Regularization*
 6. If your training set contains 100,000 instances, will setting `presort=True` speed up training?
 
     - If your training set contains 100,000 instances, setting `presort=True` will not speed up training. The `presort` parameter is used to presort the data before training the model, which can be computationally expensive for large datasets. For a dataset with 100,000 instances, presorting the data may not provide a significant speedup and can slow down the training process.
+
+
+
+
+## Chapter 7 - Ensemble Learning and Random Forests
+
+**Ensemble Learning** is a machine learning technique that combines multiple models to improve the model's performance. Ensemble Learning can be used to reduce overfitting, increase model accuracy, and improve the model's robustness.
+
+### Voting Classifiers
+
+**Voting Classifiers** are a type of Ensemble Learning technique that combines multiple models to make predictions. There are three types of Voting Classifiers:
+
+- **Hard Voting**: The model predicts the class that receives the most votes from the individual models.
+
+- **Soft Voting**: The model predicts the class with the highest probability based on the individual models' predictions.
+
+- **Weighted Voting**: The model assigns weights to the individual models' predictions based on their performance.
+
+Voting Classifiers can be used for both classification and regression tasks. They work by combining the predictions of multiple models to make more accurate predictions.
+
+It's possible to use the `VotingClassifier` class from `scikit-learn` to train a Voting Classifier model. The `VotingClassifier` class supports different voting strategies, including `hard`, `soft`, and `weighted`.
+
+See the code [here](/codes/ensemble/Voting.py)
+
+### Bagging and Pasting
+
+**Bagging** and **Pasting** are Ensemble Learning techniques that combine multiple models to improve the model's performance. Bagging and Pasting work by training multiple models on different subsets of the training data and combining their predictions.
+
+With **Bagging**, the models are trained on random subsets of the training data with replacement. This means that the same instance can be sampled multiple times in the same subset. Bagging is short for **Bootstrap Aggregating**.
+
+With **Pasting**, the models are trained on random subsets of the training data without replacement. This means that each instance can only be sampled once in the same subset.
+
+It's possible to use the `BaggingClassifier` and `BaggingRegressor` classes from `scikit-learn` to train Bagging models. The `BaggingClassifier` class supports different base estimators, including Decision Trees, Random Forests, and Support Vector Machines.
+
+![Bagging decision boundaries](/images/bagging_decision_frontier.png)
+
+In the image above, it's possible to see the decision boundaries of a decision tree and a bagging classifier. The bagging classifier has a smoother decision boundary, which helps prevent overfitting and improves the model's performance.
+
+### Out-of-Bag Evaluation
+
+**Out-of-Bag (OOB) Evaluation** is a technique used to evaluate the performance of a Bagging model without the need for a separate validation set. The OOB Evaluation works by using the instances that were not sampled in the training data to evaluate the model's performance.
+
+The OOB Evaluation is useful for estimating the model's accuracy and generalization error without the need for a separate validation set. This can help save time and resources when training Bagging models.
+
+### Random Patches and Random Subspaces
+
+**Random Patches** and **Random Subspaces** are variations of Bagging that sample both instances and features to train the models. Random Patches sample both instances and features, while Random Subspaces sample only features.
+
+
+
