@@ -1209,5 +1209,49 @@ The OOB Evaluation is useful for estimating the model's accuracy and generalizat
 
 **Random Patches** and **Random Subspaces** are variations of Bagging that sample both instances and features to train the models. Random Patches sample both instances and features, while Random Subspaces sample only features.
 
+### Random Forests
 
+**Random Forests** are a type of Ensemble Learning technique that combines multiple Decision Tree models to improve the model's performance. Random Forests work by training multiple Decision Tree models on random subsets of the training data and combining their predictions.
+
+They are trained using **bagging** or **pasting**. It's possible to use it directly by API instead of using the **BaggingClassifier** with the **DecisionTreeClassifier**.
+
+Random Forests can be used for both classification and regression tasks. They work by combining the predictions of multiple Decision Tree models to make more accurate predictions.
+
+### Extra-Trees
+
+**Extra-Trees** are a variation of Random Forests that use random thresholds for each feature to split the nodes. This helps prevent overfitting and improves the model's performance.
+
+Extra-Trees can be used to reduce the variance of the model and improve the model's generalization error. They work by training multiple Decision Tree models on random subsets of the training data and combining their predictions.
+
+### Feature Importance
+
+Random Forests can be used to estimate the importance of each feature in the dataset. The feature importance is a measure of how much each feature contributes to the model's predictions.
+
+The feature importance is calculated by measuring the decrease in impurity or the decrease in the model's performance when a feature is removed from the dataset. Features that lead to a larger decrease in impurity are considered more important.
+
+### Boosting
+
+**Boosting** is an Ensemble Learning technique that combines multiple weak learners to create a strong learner. Boosting works by training multiple models sequentially, where each model corrects the errors of the previous model.
+
+There are several types of Boosting algorithms, including **AdaBoost**, **Gradient Boosting**, and **XGBoost**. These algorithms work by training multiple models sequentially and combining their predictions to improve the model's performance.
+
+### AdaBoost
+
+**AdaBoost** is a type of Boosting algorithm that combines multiple weak learners to create a strong learner. AdaBoost works by training multiple models sequentially, where each model focuses on the instances that were misclassified by the previous model.
+
+AdaBoost can be used for both classification and regression tasks. It works by training multiple models sequentially and combining their predictions to improve the model's performance.
+
+See the code [here](/codes/ensemble/ada_boost.py)
+
+### Gradient Boosting
+
+**Gradient Boosting** is a type of Boosting algorithm that combines multiple weak learners to create a strong learner. Gradient Boosting works by training multiple models sequentially, where each model corrects the errors of the previous model.
+
+Gradient Boosting adds sequential models to the ensemble, where each model focuses on the errors of the previous model. This helps improve the model's performance and reduce the model's bias.
+
+### Stacking
+
+**Stacking** is an Ensemble Learning technique that combines multiple models to improve the model's performance. Stacking works by training multiple models on the training data and combining their predictions to make more accurate predictions.
+
+Stacking can be used to reduce overfitting, increase model accuracy, and improve the model's robustness. It works by training multiple models on the training data and combining their predictions to make more accurate predictions.
 
