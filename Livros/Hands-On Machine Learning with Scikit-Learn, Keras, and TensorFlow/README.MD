@@ -1255,3 +1255,33 @@ Gradient Boosting adds sequential models to the ensemble, where each model focus
 
 Stacking can be used to reduce overfitting, increase model accuracy, and improve the model's robustness. It works by training multiple models on the training data and combining their predictions to make more accurate predictions.
 
+### Exercises
+
+1. If you have trained five different models on the exact same training data, and they all achieve 95% precision, is there any chance that you can combine these models to get better results? If so, how?
+
+    - Yes, there is a chance that you can combine these models to get better results using Ensemble Learning techniques. By combining the predictions of multiple models, you can improve the model's performance and reduce the model's bias. You can use techniques like Voting Classifiers, Bagging, and Boosting to combine the predictions of the models and make more accurate predictions.
+
+2. What is the difference between hard and soft voting classifiers?
+
+    - The difference between hard and soft voting classifiers is how they combine the predictions of the individual models. In a hard voting classifier, the model predicts the class that receives the most votes from the individual models. In a soft voting classifier, the model predicts the class with the highest probability based on the individual models' predictions.
+
+3. Is it possible to speed up training of a bagging ensemble by distributing it across multiple servers? What about pasting ensembles, boosting ensembles, random forests, or stacking ensembles?
+
+    - Yes, it is possible to speed up training of a bagging ensemble by distributing it across multiple servers. Bagging ensembles can be trained in parallel on different subsets of the training data, which can help reduce the training time. Pasting ensembles, boosting ensembles, random forests, and stacking ensembles can also be trained in parallel to speed up the training process.
+
+4. What is the benefit of out-of-bag evaluation?
+
+    - The benefit of out-of-bag (OOB) evaluation is that it allows you to evaluate the performance of a Bagging model without the need for a separate validation set. The OOB evaluation uses the instances that were not sampled in the training data to estimate the model's accuracy and generalization error. This can help save time and resources when training Bagging models.
+
+5. What makes Extra-Trees more random than regular Random Forests? How can this extra randomness help? Are Extra-Trees slower or faster than regular Random Forests?
+
+    - Extra-Trees are more random than regular Random Forests because they use random thresholds for each feature to split the nodes. This extra randomness helps prevent overfitting and improves the model's performance. Extra-Trees are faster than regular Random Forests because they use random thresholds for each feature, which reduces the complexity of the model and speeds up the training process.
+
+6. If your AdaBoost ensemble underfits the training data, what hyperparameters should you tweak and how?
+
+    - If your AdaBoost ensemble underfits the training data, you can try tweaking the hyperparameters like the number of estimators, the learning rate, and the base estimator. Increasing the number of estimators can help improve the model's performance by adding more weak learners to the ensemble. You can also try decreasing the learning rate to reduce the impact of each weak learner on the model's predictions. Finally, you can try changing the base estimator to a more complex model to improve the model's performance.
+
+
+7. If your Gradient Boosting ensemble overfits the training set, should you increase or decrease the learning rate?
+
+    - If your Gradient Boosting ensemble overfits the training set, you should decrease the learning rate. The learning rate controls the impact of each weak learner on the model's predictions, so decreasing the learning rate can help prevent overfitting and improve the model's performance. By reducing the learning rate, you can make the model more robust and ensure it generalizes well to new data.
