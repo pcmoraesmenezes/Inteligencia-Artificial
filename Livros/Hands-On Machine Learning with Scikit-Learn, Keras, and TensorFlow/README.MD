@@ -1285,3 +1285,158 @@ Stacking can be used to reduce overfitting, increase model accuracy, and improve
 7. If your Gradient Boosting ensemble overfits the training set, should you increase or decrease the learning rate?
 
     - If your Gradient Boosting ensemble overfits the training set, you should decrease the learning rate. The learning rate controls the impact of each weak learner on the model's predictions, so decreasing the learning rate can help prevent overfitting and improve the model's performance. By reducing the learning rate, you can make the model more robust and ensure it generalizes well to new data.
+
+
+## Chapter 8 - Dimensionality Reduction
+
+**Dimensionality Reduction** is a technique used to reduce the number of features in a dataset while preserving the most important information. Dimensionality Reduction can be used to improve the model's performance, reduce overfitting, and speed up the training process. Also is useful to visualize the data and reduce the memory usage.
+
+### The Curse of Dimensionality
+
+The **Curse of Dimensionality** is a phenomenon that occurs when the number of features in a dataset is too high relative to the number of instances. This can lead to overfitting, increased computational complexity, and reduced model performance.
+
+This can be explained in a mathematical way. The volume of a $d$-dimensional hypercube with side length $s$ is given by $s^d$. As the number of dimensions increases, the volume of the hypercube grows exponentially, which can lead to sparsity and overfitting.
+
+Also the distance between the instances increases as the number of dimensions increases. This can lead to the **Huber's phenomenon**, where the instances are equidistant from the center of the dataset.
+
+If we pick two points randomly in a unit square, the distance between them is about $0.52$. If we pick two points randomly in a unit 3D cube, the distance between them is about $0.66$. If we pick two points randomly in a unit 1,000D hypercube, the distance between them is about $408.25$. This means that most of the instances are located at the edges of the hypercube. The overfitting goes because there's no amount of data that can fill the space.
+
+### Main Approaches for Dimensionality Reduction
+
+There are two main approaches for Dimensionality Reduction:
+
+- **Projection**: The data is projected onto a lower-dimensional subspace. This can be done using techniques like **Principal Component Analysis (PCA)** and **Linear Discriminant Analysis (LDA)**.
+
+- **Manifold Learning**: The data is transformed into a lower-dimensional manifold. This can be done using techniques like **t-Distributed Stochastic Neighbor Embedding (t-SNE)** and **Isomap**.
+
+### Projection
+
+**Projection** is a technique used to project the data onto a lower-dimensional subspace. Many features are projected into a lower-dimensional space, which can help reduce the number of features in the dataset.
+
+However projection is not always the best approach for Dimensionality Reduction. This is because the data may not be linearly separable in the lower-dimensional subspace, which can lead to information loss and reduced model performance.
+
+### Manifold Learning
+
+**Manifold Learning** is a technique used to transform the data into a lower-dimensional manifold. The data is transformed into a lower-dimensional space, which can help reduce the number of features in the dataset.
+
+Manifold Learning is useful for non-linear datasets that are not linearly separable in the lower-dimensional subspace. This can help preserve the most important information in the dataset and improve the model's performance.
+
+### PCA
+
+**Principal Component Analysis (PCA)** is a popular Dimensionality Reduction technique that projects the data onto a lower-dimensional subspace. PCA works by finding the principal components of the data, which are the directions of maximum variance in the dataset.
+
+PCA can be used to reduce the number of features in the dataset while preserving the most important information. This can help improve the model's performance, reduce overfitting, and speed up the training process.
+
+PCA can be used to visualize the data in a lower-dimensional space and identify patterns and relationships in the dataset. This can help understand the structure of the data and make more informed decisions.
+
+#### Singular Value Decomposition
+
+PCA can be implemented using the **Singular Value Decomposition (SVD)** algorithm. SVD is a matrix factorization technique that decomposes a matrix into three matrices: $U$, $\Sigma$, and $V^T$.
+
+The SVD algorithm is used to find the principal components of the data and project the data onto a lower-dimensional subspace. This can help reduce the number of features in the dataset and improve the model's performance.
+
+```python
+
+X_centered = X - X.mean(axis=0)
+U, s, Vt = np.linalg.svd(X_centered)
+c1 = Vt.T[:, 0]
+c2 = Vt.T[:, 1]
+```
+
+Never forget to center the data before applying PCA.
+
+### Projecting Down to $d$ Dimensions
+
+To project the data down to $d$ dimensions, you can use the first $d$ principal components. This can help reduce the number of features in the dataset and improve the model's performance.
+
+$X_{d-proj} = X \cdot W_d$
+
+Where:
+
+- $X_{d-proj}$ is the projected data in the lower-dimensional subspace.
+
+- $X$ is the original data.
+
+- $W_d$ is the matrix of the first $d$ principal components.
+
+### Explained Variance Ratio
+
+The **Explained Variance Ratio** is a measure of how much variance is explained by each principal component. The explained variance ratio is calculated by dividing the variance of each principal component by the total variance of the dataset.
+
+The explained variance ratio can be used to determine how much information is preserved in the lower-dimensional subspace. This can help understand the structure of the data and make more informed decisions.
+
+### Choosing the Right Number of Dimensions
+
+To choose the right number of dimensions for the PCA, you can use the **cumulative explained variance ratio**. This is the sum of the explained variance ratios of the principal components.
+
+The cumulative explained variance ratio can be used to determine how much information is preserved in the lower-dimensional subspace. This can help choose the right number of dimensions for the PCA and improve the model's performance.
+
+### PCA for Compression
+
+PCA can be used for data compression by projecting the data onto a lower-dimensional subspace. This can help reduce the number of features in the dataset and improve the model's performance.  
+
+### Incremental PCA
+
+**Incremental PCA** is a technique used to train PCA on large datasets that do not fit in memory. Incremental PCA works by splitting the dataset into mini-batches and training PCA on each mini-batch.
+
+.
+
+### Randomized PCA
+
+**Randomized PCA** is a technique used to train PCA on large datasets that do not fit in memory. Randomized PCA works by approximating the principal components of the data using a random projection.
+
+Randomized PCA is faster than the standard PCA algorithm and can be used to train PCA on large datasets. This can help reduce the computational complexity of the PCA algorithm and speed up the training process.
+
+
+### LLE
+
+**Locally Linear Embedding (LLE)** is a Manifold Learning technique that transforms the data into a lower-dimensional manifold. LLE works by finding the local linear relationships between the instances and preserving the most important information in the dataset.
+
+LLE can be used to reduce the number of features in the dataset while preserving the most important information. This can help improve the model's performance, reduce overfitting, and speed up the training process.
+
+### Other Dimensionality Reduction Techniques
+
+There are other Dimensionality Reduction techniques that can be used to reduce the number of features in a dataset. Some of the most popular techniques include:
+
+- **t-Distributed Stochastic Neighbor Embedding (t-SNE)**: A Manifold Learning technique that transforms the data into a lower-dimensional manifold
+
+- **Isomap**: A Manifold Learning technique that transforms the data into a lower-dimensional manifold
+
+- **Linear Discriminant Analysis (LDA)**: A Projection technique that projects the data onto a lower-dimensional subspace
+
+- **Kernel PCA**: A Kernel technique that projects the data onto a lower-dimensional subspace
+
+### Exercises
+
+1. What is the main advantage of dimensionality reduction techniques?
+
+    - The main advantage of dimensionality reduction techniques is that they can reduce the number of features in a dataset while preserving the most important information. This can help improve the model's performance, reduce overfitting, and speed up the training process. Dimensionality reduction techniques can also be used to visualize the data and reduce the memory usage.
+
+2. What is the curse of dimensionality?
+
+    - The curse of dimensionality is a phenomenon that occurs when the number of features in a dataset is too high relative to the number of instances. This can lead to overfitting, increased computational complexity, and reduced model performance. The curse of dimensionality can be addressed using dimensionality reduction techniques.
+
+3. After applying a dimensionality reduction technique, can you reverse it and recover the original data?
+
+    - No, you cannot reverse a dimensionality reduction technique and recover the original data. Dimensionality reduction techniques like PCA and LLE project the data onto a lower-dimensional subspace, which can lead to information loss. While you can use the reduced data to make predictions, you cannot recover the original data from the reduced data.
+
+4. Can PCA be used to reduce the dimensionality of a highly nonlinear dataset?
+
+    - Yes, PCA can be used to reduce the dimensionality of a highly nonlinear dataset. While PCA is a linear technique, it can still be effective at reducing the number of features in a dataset and preserving the most important information. However, for highly nonlinear datasets, other dimensionality reduction techniques like t-SNE and Isomap may be more effective.
+
+5. Suppose you perform PCA on a 1,000-dimensional dataset, setting the explained variance ratio to 95%. How many dimensions will the dataset be reduced to?
+
+    - If you perform PCA on a 1,000-dimensional dataset and set the explained variance ratio to 95%, the dataset will be reduced to about 150 dimensions. This means that the first 150 principal components will explain 95% of the variance in the dataset, while the remaining 850 dimensions will be discarded.
+
+6. In what cases would you use vanilla PCA, Incremental PCA, Randomized PCA, or Kernel PCA?
+
+    - You would use vanilla PCA when you have a small dataset that fits in memory and you want to reduce the number of features. You would use Incremental PCA when you have a large dataset that does not fit in memory and you want to train PCA on mini-batches. You would use Randomized PCA when you have a large dataset that does not fit in memory and you want to approximate the principal components using a random projection. You would use Kernel PCA when you have a nonlinear dataset and you want to project the data onto a lower-dimensional subspace.
+
+7. How can you evaluate the performance of a dimensionality reduction algorithm on your dataset?
+
+    - You can evaluate the performance of a dimensionality reduction algorithm on your dataset by measuring the model's performance before and after applying the algorithm. You can use metrics like accuracy, precision, recall, and F1 score to evaluate the model's performance. You can also use techniques like cross-validation and grid search to tune the hyperparameters of the algorithm and improve the model's performance.
+
+8. Does it make any sense to chain two different dimensionality reduction algorithms?
+
+    - Yes, it can make sense to chain two different dimensionality reduction algorithms to improve the model's performance. Chaining two different algorithms can help reduce the number of features in the dataset and preserve the most important information. This can help improve the model's performance, reduce overfitting, and speed up the training process. You can chain algorithms like PCA and LLE to transform the data into a lower-dimensional subspace and improve the model's performance.
+
