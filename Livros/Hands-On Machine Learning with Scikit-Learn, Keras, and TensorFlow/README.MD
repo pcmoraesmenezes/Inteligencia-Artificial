@@ -1440,3 +1440,47 @@ There are other Dimensionality Reduction techniques that can be used to reduce t
 
     - Yes, it can make sense to chain two different dimensionality reduction algorithms to improve the model's performance. Chaining two different algorithms can help reduce the number of features in the dataset and preserve the most important information. This can help improve the model's performance, reduce overfitting, and speed up the training process. You can chain algorithms like PCA and LLE to transform the data into a lower-dimensional subspace and improve the model's performance.
 
+
+## Chapter 9 - Unsupervised Learning Techniques
+
+**Unsupervised Learning** is a machine learning technique that is used to find patterns and relationships in the data without the need for labeled instances. Unsupervised Learning can be used to cluster similar instances, reduce the dimensionality of the data, and detect anomalies in the data.
+
+### Clustering
+
+**Clustering** is an Unsupervised Learning technique that is used to group similar instances together. Clustering can be used to find patterns and relationships in the data and identify clusters of similar instances.
+
+There are several clustering algorithms that can be used to group instances together, including **K-Means**, **DBSCAN**, and **Hierarchical Clustering**.
+
+It has many applications, such as customer segmentation, anomaly detection, and image segmentation.
+
+### K-Means
+
+**K-Means** is a popular clustering algorithm that is used to group instances together. K-Means works by finding the centroids of the clusters and assigning each instance to the nearest centroid.
+
+Related to the K-Means algorithm the most important hyperparameter is the number of clusters. The algorithm works by finding the centroids of the clusters and assigning each instance to the nearest centroid. The number of clusters is a critical hyperparameter that can affect the model's performance and the quality of the clusters.
+
+### K-Means Algorithm
+
+The K-Means algorithm works by minimizing the **inertia** of the clusters, which is the sum of the squared distances between the instances and the centroids. The goal is to find the centroids that minimize the inertia of the clusters.
+
+The algorithm works by initializing the centroids randomly and assigning each instance to the nearest centroid. The centroids are then updated by computing the mean of the instances assigned to each cluster. This process is repeated until the centroids converge and the clusters are stable.
+
+The computational complexity of the K-Means algorithm is linear with the number of instances and the number of clusters. This makes the algorithm efficient and scalable for large datasets. 
+
+Also the algorithm is sensitive to the initial centroids. This means that the algorithm may converge to a suboptimal solution if the initial centroids are not well chosen.
+
+The algorithm has a guarantee of convergence, however depending on the initial initialization of the centroids the convergence can be to a local optimum.
+
+### Elbow Method and Silhouette Score
+
+The **Elbow Method** and **Silhouette Score** are two techniques used to evaluate the performance of the K-Means algorithm and choose the right number of clusters.
+
+The Elbow Method works by plotting the inertia of the clusters as a function of the number of clusters. The goal is to find the "elbow" point in the plot, where the inertia starts to decrease more slowly. This can help choose the right number of clusters for the K-Means algorithm.
+
+![Elbow Method](/images/elbow.png)
+
+The Silhouette Score is a measure of how well the instances are clustered together. The Silhouette Score ranges from -1 to 1, where a score of 1 indicates that the instances are well-clustered and a score of -1 indicates that the instances are poorly clustered.
+
+The Silhouette Score can be used to evaluate the quality of the clusters and choose the right number of clusters for the K-Means algorithm.
+
+![Silhouette Score](/images/silhouete.png)
