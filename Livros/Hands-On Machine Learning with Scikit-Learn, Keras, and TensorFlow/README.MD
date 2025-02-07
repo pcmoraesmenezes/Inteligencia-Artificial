@@ -1484,3 +1484,12 @@ The Silhouette Score is a measure of how well the instances are clustered togeth
 The Silhouette Score can be used to evaluate the quality of the clusters and choose the right number of clusters for the K-Means algorithm.
 
 ![Silhouette Score](/images/silhouete.png)
+
+### DBSCAN
+
+**DBSCAN** is a clustering algorithm that is used to group instances together based on their density. DBSCAN works by finding dense regions of instances and assigning each instance to a cluster.
+
+DBSCAN has two hyperparameters: **epsilon** and **min_samples**. The epsilon hyperparameter controls the radius of the neighborhood around each instance, while the min_samples hyperparameter controls the minimum number of instances required to form a dense region.
+
+DBSCAN can be used to find clusters of arbitrary shapes and sizes, which can help identify complex patterns and relationships in the data.
+
