@@ -1493,3 +1493,50 @@ DBSCAN has two hyperparameters: **epsilon** and **min_samples**. The epsilon hyp
 
 DBSCAN can be used to find clusters of arbitrary shapes and sizes, which can help identify complex patterns and relationships in the data.
 
+### Gaussian Mixture Models
+
+**Gaussian Mixture Models (GMM)** is a clustering algorithm that is used to group instances together based on their probability distribution. GMM works by modeling the data as a mixture of Gaussian distributions and assigning each instance to the most likely cluster.
+
+
+GMM has several hyperparameters that can be tuned to improve the model's performance, including the number of components and the covariance type.
+
+GMM can be used to find clusters of arbitrary shapes and sizes, which can help identify complex patterns and relationships in the data.
+
+### Exercises
+
+1. How would you define clustering?
+
+    - Clustering is an Unsupervised Learning technique that is used to group similar instances together. Clustering can be used to find patterns and relationships in the data and identify clusters of similar instances. There are several clustering algorithms that can be used to group instances together, including K-Means, DBSCAN, and Hierarchical Clustering.
+
+2. What are some common applications of clustering?
+
+    - Clustering has many applications, such as customer segmentation, anomaly detection, and image segmentation. Clustering can be used to group similar instances together and identify clusters of similar instances. This can help find patterns and relationships in the data and make more informed decisions.
+
+3. What are some common clustering algorithms?
+
+    - Some common clustering algorithms include K-Means, DBSCAN, and Hierarchical Clustering. K-Means is a popular clustering algorithm that is used to group instances together based on their centroids. DBSCAN is a clustering algorithm that is used to group instances together based on their density. Hierarchical Clustering is a clustering algorithm that is used to group instances together based on their similarity.
+
+4. What is label propagation?
+
+    - Label propagation is a semi-supervised learning technique that is used to propagate labels from labeled instances to unlabeled instances. Label propagation works by assigning labels to the unlabeled instances based on the labels of the labeled instances. This can help improve the model's performance and reduce overfitting.
+
+5. What is the difference between K-Means and DBSCAN?
+
+    - The main difference between K-Means and DBSCAN is how they group instances together. K-Means works by finding the centroids of the clusters and assigning each instance to the nearest centroid. DBSCAN works by finding dense regions of instances and assigning each instance to a cluster based on its density. K-Means is sensitive to the number of clusters, while DBSCAN is sensitive to the epsilon and min_samples hyperparameters.
+
+6. Could you exemplify two clustering algorithms that can scale to large datasets?
+
+    - Two clustering algorithms that can scale to large datasets are K-Means and DBSCAN. K-Means is a popular clustering algorithm that is efficient and scalable for large datasets. DBSCAN is a clustering algorithm that is used to group instances together based on their density. Both algorithms can be used to find patterns and relationships in the data and identify clusters of similar instances.
+
+7. What is the difference between K-Means and Gaussian Mixture Models?
+
+    - The main difference between K-Means and Gaussian Mixture Models (GMM) is how they group instances together. K-Means works by finding the centroids of the clusters and assigning each instance to the nearest centroid. GMM works by modeling the data as a mixture of Gaussian distributions and assigning each instance to the most likely cluster. K-Means is sensitive to the number of clusters, while GMM is sensitive to the number of components and the covariance type.
+
+8. What is the difference between anomaly detection and novelty detection?
+
+    - Anomaly detection is a technique used to detect instances that are significantly different from the rest of the data. Anomaly detection can be used to identify outliers and anomalies in the data. Novelty detection is a technique used to detect instances that are significantly different from the training data. Novelty detection can be used to identify new and unseen instances in the data.
+
+9. What is a gaussian mixture model?
+
+    - A Gaussian Mixture Model (GMM) is a clustering algorithm that is used to group instances together based on their probability distribution. GMM works by modeling the data as a mixture of Gaussian distributions and assigning each instance to the most likely cluster. GMM can be used to find clusters of arbitrary shapes and sizes, which can help identify complex patterns and relationships in the data.
+
