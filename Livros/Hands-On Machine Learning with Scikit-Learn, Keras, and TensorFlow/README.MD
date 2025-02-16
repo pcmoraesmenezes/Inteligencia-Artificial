@@ -1540,3 +1540,50 @@ GMM can be used to find clusters of arbitrary shapes and sizes, which can help i
 
     - A Gaussian Mixture Model (GMM) is a clustering algorithm that is used to group instances together based on their probability distribution. GMM works by modeling the data as a mixture of Gaussian distributions and assigning each instance to the most likely cluster. GMM can be used to find clusters of arbitrary shapes and sizes, which can help identify complex patterns and relationships in the data.
 
+## Part II - Neural Networks and Deep Learning
+
+## Chapter 10 - Introduction to Artificial Neural Networks with Keras
+
+**Artificial Neural Networks (ANN)** are a type of machine learning model that is inspired by the structure and function of the human brain. ANN can be used to learn complex patterns and relationships in the data and make predictions.
+
+### Perceptrons
+
+**Perceptrons** are the building blocks of Artificial Neural Networks. A Perceptron is a simple model that takes a set of inputs, applies weights to the inputs, and passes the weighted sum through an activation function to produce an output.
+
+The Perceptron model can be used to learn linear patterns and relationships in the data. However, it is limited to learning linear patterns and cannot learn complex patterns.
+
+A perceptron training algorithm is the **Hebb's Rule**. The Hebb's Rule works by updating the weights of the perceptron based on the product of the input and the output.
+
+Which can be expressed as:
+
+$w_{i, j}^{(next step)} = w_{i, j} + \eta(y_j - \hat{y}_j)x_i$
+
+Where:
+
+- $w_{i, j}$ is the weight of the connection between the input $i$ and the output $j$.
+
+- $\eta$ is the learning rate.
+
+- $y_j$ is the target output.
+
+- $\hat{y}_j$ is the predicted output.
+
+- $x_i$ is the input.
+
+A prediction is made by computing the weighted sum of the inputs and passing the sum through an activation function. The activation function is used to introduce non-linearity into the model and make it more expressive.
+
+Which can be expressed as:
+
+$\hat{y} = \sigma(w^T \cdot x)$
+
+Where:
+
+- $\hat{y}$ is the predicted output.
+
+- $\sigma$ is the activation function.
+
+- $w$ is the weight vector.
+
+A perceptron class is implemented in the `sklearn` library.
+
+Also by using `SGDClassifier` with the `loss='perceptron'` and `learning_rate='constant'` it's possible to train a perceptron model.
